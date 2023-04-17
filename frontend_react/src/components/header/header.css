@@ -1,0 +1,33 @@
+/* BUTTONS NAV */
+
+.css-e53awj-MuiStack-root>a {
+    text-transform: capitalize;
+    font-size: 1rem;
+}
+
+/* movies */
+.css-e53awj-MuiStack-root>a:nth-child(1) {
+    color: aquamarine;
+}
+
+.css-e53awj-MuiStack-root>a:nth-child(1):hover {
+    color: seashell;
+}
+
+/* people */
+.css-e53awj-MuiStack-root>a:nth-child(2) {
+    color: aqua;
+}
+
+.css-e53awj-MuiStack-root>a:nth-child(2):hover {
+    color: seashell;
+}
+
+/* more */
+.css-e53awj-MuiStack-root>a:nth-child(3) {
+    color: darkturquoise;
+}
+
+.css-e53awj-MuiStack-root>a:nth-child(3):hover {
+    color: seashell;
+}

@@ -1,0 +1,21 @@
+/* LOGIN BUTTON */
+.css-e53awj-MuiStack-root>button:last-child {
+    color: aquamarine;
+    text-transform: capitalize;
+    font-size: 1rem;
+}
+
+.css-e53awj-MuiStack-root>button:last-child:hover {
+    color: seashell;
+}
+
+/* NotificationsIcon */
+.bell {
+    color: white;
+    align-content: center;
+}
+
+/* Avatar */
+.css-1wo6lnl-MuiAvatar-root{
+    align-self: center;
+}

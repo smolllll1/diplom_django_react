@@ -1,0 +1,10 @@
+/* button submit */
+.d-flex>button:nth-child(2) {
+    color: darkturquoise;
+    text-transform: capitalize;
+    font-size: 1rem;
+}
+
+.d-flex>button:nth-child(2):hover {
+    color: seashell;
+}
