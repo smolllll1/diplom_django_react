@@ -1,0 +1,26 @@
+/* LOGIN REGISTRATION BUTTONS */
+.css-e53awj-MuiStack-root>a:last-child button {
+    color: darkturquoise;
+    text-transform: capitalize;
+    font-size: 1rem;
+}
+
+.css-e53awj-MuiStack-root>a:last-child button:hover {
+    color: seashell;
+}
+
+/* NotificationsIcon */
+.bell {
+    color: white;
+    align-content: center;
+}
+
+/* Avatar */
+.css-ianz0n-MuiAvatar-root {
+    align-self: center;
+}
+
+/** Registration */
+#registration-btn {
+    color: darkturquoise;
+}
