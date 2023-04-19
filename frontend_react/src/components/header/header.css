@@ -1,33 +1,40 @@
 /* BUTTONS NAV */
 
-.css-e53awj-MuiStack-root>a {
+.css-e53awj-MuiStack-root>a>button {
     text-transform: capitalize;
     font-size: 1rem;
 }
 
 /* movies */
-.css-e53awj-MuiStack-root>a:nth-child(1) {
+.css-e53awj-MuiStack-root>a:nth-child(1) button {
     color: aquamarine;
 }
 
-.css-e53awj-MuiStack-root>a:nth-child(1):hover {
+.css-e53awj-MuiStack-root>a:nth-child(1) button:hover {
     color: seashell;
 }
 
 /* people */
-.css-e53awj-MuiStack-root>a:nth-child(2) {
+.css-e53awj-MuiStack-root>a:nth-child(2) button {
     color: aqua;
 }
 
-.css-e53awj-MuiStack-root>a:nth-child(2):hover {
+.css-e53awj-MuiStack-root>a:nth-child(2) button:hover {
     color: seashell;
 }
 
 /* more */
-.css-e53awj-MuiStack-root>a:nth-child(3) {
+.css-e53awj-MuiStack-root>button:nth-child(3) {
     color: darkturquoise;
+    text-transform: capitalize;
+    font-size: 1rem;
 }
 
-.css-e53awj-MuiStack-root>a:nth-child(3):hover {
+.css-e53awj-MuiStack-root>button:nth-child(3):hover {
     color: seashell;
+}
+
+/** registration bell avatar login */
+.css-e53awj-MuiStack-root {
+    align-items: center;
 }

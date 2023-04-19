@@ -1,26 +1,33 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ErrorBoundary } from '../error-boundary/error-boundary';
-// import { Service } from '../../services/service';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Service } from '../../services/service';
 import Header from '../header';
+import Home from '../../pages/home';
+import Registration from '../../pages/registration';
+import { Content } from '../../pages/content';
 import Footer from '../footer';
-import Main from '../main';
 
 const App = () => {
 
-  useEffect(() => {
-    // const data = new Service().getData();
-    // console.dir(data)
-  }, [])
-  // const data = new Service().getData();
-  // console.dir(data)
-
   return (
-    <ErrorBoundary
-    // fallback={<p>Something went wrong</p>}
-    >
-      <Header />
-      <Main />
-      <Footer />
+    <ErrorBoundary>
+      <Router>
+        <Header />
+        <Routes>
+          <Route exact path="/" element={<Home />}>
+          </Route>
+          <Route exact path="/registration" element={<Registration />}>
+          </Route>
+          <Route exact path="/movies"
+            element={<Content request={new Service().getDataMoviesPopular()} />}>
+          </Route>
+          <Route exact path="/people"
+            element={<Content request={new Service().getDataPeoplePopular()} />}>
+          </Route>
+        </Routes>
+        <Footer />
+      </Router>
     </ErrorBoundary>
   );
 }
