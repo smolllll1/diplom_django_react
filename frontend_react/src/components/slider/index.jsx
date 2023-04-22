@@ -5,7 +5,7 @@ import CircularStatic from "../progress";
 
 import './slider.css'
 
-function IndividualIntervalsExample() {
+function SliderIntervals() {
 
     const [movieseSlide, setMovieseSlide] = useState(null);
 
@@ -58,6 +58,6 @@ function IndividualIntervalsExample() {
     );
 }
 
-export default IndividualIntervalsExample;
+export default SliderIntervals;
 
 // src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}

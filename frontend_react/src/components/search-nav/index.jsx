@@ -1,9 +1,9 @@
 import React from "react";
 import Button from '@mui/material/Button';
 
-import './search.css'
+import './search-nav.css'
 
-const SearchHeader = () => {
+const SearchNav = () => {
     return (
         <form className="d-flex">
             <input className="form-control me-sm-2" type="search" placeholder="Search" />
@@ -12,4 +12,4 @@ const SearchHeader = () => {
     )
 }
 
-export default SearchHeader;
+export default SearchNav;

@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import SearchHeader from "../search";
+import SearchNav from "../search-nav";
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import Login from "../login";
+import LoginNav from "../login-nav";
 
 import logo from '../../img/logo.svg';
 import './header.css'
@@ -11,7 +11,7 @@ import './header.css'
 const Header = () => {
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav className="navbar navbar-expand-lg navbar-dark">
             <div className="container-fluid">
                 <Link className="navbar-brand" to={"/"}>
                     <img src={logo} alt="logo" width={100} />
@@ -25,8 +25,8 @@ const Header = () => {
                     </Link>
                     <Button>More</Button>
                 </Stack>
-                <SearchHeader />
-                <Login />
+                <SearchNav />
+                <LoginNav />
             </div>
         </nav>
     )

@@ -24,16 +24,28 @@ class Service {
         }
     }
 
+
     /** backend project */
-    // _linkDjango = "https://127.0.0.1:8000/"
+    _linkDjango = "pop_piple/"
     async getData() {
-        const data = await fetch(`${this._linkDjango}test/`);
+        const data = await fetch(`${this._linkDjango}`);
         if (data.status > 300 || data.status < 199) {
             throw new Error(`Виникла помилка у запиті: ${data.statusText} ${data.status} ${data.ok}`);
         } else {
             return await data.json();
         }
     }
+    
+    /** backend project */
+    // _linkDjango = "https://127.0.0.1:8000/"
+    // async getData() {
+    //     const data = await fetch(`${this._linkDjango}test/`);
+    //     if (data.status > 300 || data.status < 199) {
+    //         throw new Error(`Виникла помилка у запиті: ${data.statusText} ${data.status} ${data.ok}`);
+    //     } else {
+    //         return await data.json();
+    //     }
+    // }
 
 }
 
