@@ -36,4 +36,4 @@ def pop_piple(request, pk=1):
     apiRequst = requests.get(f'https://api.themoviedb.org/3/person/popular?api_key=4b9514bc01000261f03dfb9e5e317db3&language=uk-UA&page={pk}')
     json_data = json.loads(apiRequst.content)
     title = json_data.get('results')
-    return Response(title)
+    return Response(json_data)
