@@ -1,4 +1,6 @@
 /* LOGIN REGISTRATION BUTTONS */
+
+/** Login button */
 .css-e53awj-MuiStack-root>a:last-child button {
     color: darkturquoise;
     text-transform: capitalize;
@@ -20,7 +22,11 @@
     align-self: center;
 }
 
-/** Registration */
+/** Registration button */
 #registration-btn {
     color: darkturquoise;
+}
+
+#registration-btn:hover {
+    color: seashell;
 }

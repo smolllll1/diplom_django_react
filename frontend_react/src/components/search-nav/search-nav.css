@@ -1,3 +1,9 @@
+/**input search */
+.form-control {
+    height: 30px;
+    align-self: center;
+}
+
 /* button submit */
 .d-flex>button:nth-child(2) {
     color: darkturquoise;

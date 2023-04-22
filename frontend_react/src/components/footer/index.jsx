@@ -1,19 +1,53 @@
 import React from "react";
 
-import logo from '../../img/logo.svg';
+import logo from '../../img/logo-footer.svg';
 import './footer.css';
 
 const Footer = () => {
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div className="container-fluid">
-                <a className="navbar-brand" href="#!">
+        <footer>
+            <nav>
+                <div>
                     <img src={logo} alt="logo" width={100} />
-                </a>
-            </div>
-        </nav>
-
+                </div>
+                <div>
+                    <h3>The Basics</h3>
+                    <ul>
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Get Involved</h3>
+                    <ul>
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Community</h3>
+                    <ul>
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Legal</h3>
+                    <ul>
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                    </ul>
+                </div>
+            </nav>
+        </footer>
     )
 }
 

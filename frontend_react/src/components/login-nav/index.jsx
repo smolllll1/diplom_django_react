@@ -8,9 +8,9 @@ import Badge from '@mui/material/Badge';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { lightGreen } from '@mui/material/colors';
 
-import './login.css'
+import './login-nav.css'
 
-const Login = () => {
+const LoginNav = () => {
     return (
         <Stack direction="row" spacing={2}>
             <Link to={'/registration'}>
@@ -31,4 +31,4 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default LoginNav;
