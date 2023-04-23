@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-import { Service } from '../../services/service';
+import { GetRequest } from '../../api/get-request';
 import CircularStatic from "../progress";
 
 import './slider.css'
@@ -10,7 +10,7 @@ function SliderIntervals() {
     const [movieseSlide, setMovieseSlide] = useState(null);
 
     useEffect(() => {
-        new Service().getDataMoviesPopular().then((data) => {
+        new GetRequest().getDataMoviesPopular().then((data) => {
             setMovieseSlide(data.results);
         })
     }, []);
