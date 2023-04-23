@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 import requests
 import json
 from .models import Test
-from .serializers import NoteSerializer
+from .serializers import NoteSerializer, RegisterSerializer
 
 # Create your views here.
 
@@ -22,6 +22,15 @@ def getTes(request, pk):
     notes = Test.objects.get(id=pk)
     serializer = NoteSerializer(notes, many=False)
     return Response(serializer.data)
+
+@api_view(['POST'])
+def post(request):
+    serializer = RegisterSerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+    serializer.save()
+    return Response({'post': serializer.data})
+
+
 
 @api_view(['GET'])
 def pop_movies(request, pk=1):
