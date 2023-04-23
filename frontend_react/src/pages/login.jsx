@@ -8,7 +8,7 @@ import axios from "../api/axios";
 const ourLoginValue = createContext();
 
 // Regular Expressions
-const nameRegExp = /^[a-zA-Zа-яА-ЯЇїІі'][a-zA-Zа-яА-ЯЇїІі' ]+[a-zA-Zа-яА-ЯЇїІі']?$/;
+const nameRegExp = /^[a-zA-Za-яА-ЯЇїІі0-9](_(?!(\.|_))|\.(?!(_|\.))|[a-zA-Za-яА-ЯЇїІі0-9]){1,18}[a-zA-Za-яА-ЯЇїІі0-9]?$/;
 
 // POST URL LOGIN
 const LOGIN_URL = '/login';

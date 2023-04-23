@@ -30,7 +30,7 @@ const FormLogin = () => {
                                 {formikLogin.touched.name
                                     && formikLogin.errors.name
                                     ? formikLogin.errors.name
-                                    : "Name"
+                                    : "Username"
                                 }
                             </label>
                             <input className="w-100 input-style-login"

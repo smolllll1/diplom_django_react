@@ -30,7 +30,7 @@ const FormRegiatration = () => {
                                 {formikRegistration.touched.name
                                     && formikRegistration.errors.name
                                     ? formikRegistration.errors.name
-                                    : "Name"
+                                    : "Username"
                                 }
                             </label>
                             <input className="input-style-registration"
