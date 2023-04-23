@@ -11,6 +11,8 @@ const ourRegistrationValue = createContext();
 const phoneRegExp = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
 const nameRegExp = /^[a-zA-Zа-яА-ЯЇїІі'][a-zA-Zа-яА-ЯЇїІі' ]+[a-zA-Zа-яА-ЯЇїІі']?$/;
 const emailRegExp = /^(([^<>()[\]\\.,;:\\"]+(\.[^<>()[\]\\.,;:\\"]+)*)|(\\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+// POST URL REGISTRATION
 const REGISTRATION_URL = '/registration';
 
 const Registration = () => {
@@ -29,7 +31,7 @@ const Registration = () => {
             terms: "",
         },
 
-        // Validate form
+        // Validate form registration
         validationSchema: Yup.object({
             name: Yup.string()
                 .min(2, 'Name is short')
@@ -53,12 +55,12 @@ const Registration = () => {
                 .required('Terms of service must be checked'),
         }),
 
-        // Submit form
+        // Submit form registration
         onSubmit: async (values) => {
 
             if (values.terms.length !== 0) {
                 navigateRegistration('/')
-                // console.log(values);
+                console.log(values);
             }
             const response = await axios.post(REGISTRATION_URL,
                 JSON.stringify({ values }),
@@ -67,8 +69,7 @@ const Registration = () => {
                     withCredentials: true
                 }
             )
-            console.log(response.data);
-            console.log(response.accessToken);
+            console.log(response);
             console.log(JSON.stringify(response));
 
             // const data =(JSON.stringify(values, null, 2));
@@ -98,7 +99,7 @@ const Registration = () => {
 
     return (
         <ourRegistrationValue.Provider value={{ formikRegistration: formikRegistration }}>
-            <FormRegiatration /> :
+            <FormRegiatration />
         </ourRegistrationValue.Provider>
     )
 }

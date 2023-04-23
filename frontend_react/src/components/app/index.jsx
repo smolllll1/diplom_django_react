@@ -5,7 +5,7 @@ import { GetRequest } from '../../api/get-request';
 import Header from '../header';
 import Home from '../../pages/home';
 import { Registration } from '../../pages/registration';
-import Login from '../../pages/login';
+import { Login } from '../../pages/login';
 import { Content } from '../../pages/content';
 import Success from '../../pages/success';
 import Footer from '../footer';
