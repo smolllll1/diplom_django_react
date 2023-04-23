@@ -6,14 +6,14 @@ const ourContext = createContext()
 const Content = ({ request }) => {
 
     const [popularInformation, setPopularInformation] = useState(null);
-
-    const onElementInfo = (value) => {
+    
+    const onCardsInfo = (value) => {
         setPopularInformation(value)
     }
 
     return (
         <ourContext.Provider value={{
-            onElementInfo: onElementInfo,
+            onCardsInfo: onCardsInfo,
             popularInformation: popularInformation,
             setPopularInformation: setPopularInformation
         }}>

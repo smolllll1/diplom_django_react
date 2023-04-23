@@ -16,7 +16,7 @@ function ItemList({ request }) {
         })
     }, [request])
 
-    const { onElementInfo } = useContext(ourContext);
+    const { onCardsInfo } = useContext(ourContext);
 
     return (
         <div className="wrapper">
@@ -27,7 +27,7 @@ function ItemList({ request }) {
                     property.map((item) => {
                         return <Card key={item.id}
                             style={{ width: '14rem' }}
-                            onClick={() => onElementInfo(item)}>
+                            onClick={() => onCardsInfo(item)}>
                             {item.backdrop_path ?
                                 <Card.Img variant="top" className="img-moveis"
                                     src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
@@ -51,5 +51,3 @@ function ItemList({ request }) {
 }
 
 export default ItemList;
-
-/**src={`https://image.tmdb.org/t/p/original/9n2tJBplPbgR2ca05hS5CKXwP2c.jpg`} */
