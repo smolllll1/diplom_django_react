@@ -1,8 +1,9 @@
-import React, { createContext } from "react";
+import React, { createContext, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom"
 import FormRegiatration from "../components/form-registration";
+import Success from "../components/form-registration/success";
 import axios from "../api/axios";
 
 const ourRegistrationValue = createContext();
@@ -18,6 +19,7 @@ const REGISTRATION_URL = '/registration';
 
 const Registration = () => {
 
+    const [success, setSuccess] = useState(false)
     const navigateRegistration = useNavigate();
 
     // formikRegistration logics
@@ -60,7 +62,10 @@ const Registration = () => {
         onSubmit: async (values) => {
 
             if (values.terms.length !== 0) {
-                navigateRegistration('/')
+                setSuccess(true);
+                setTimeout(() => {
+                    navigateRegistration('/')
+                }, 5000)
                 console.log(values);
             }
             const response = await axios.post(REGISTRATION_URL,
@@ -71,36 +76,17 @@ const Registration = () => {
                 }
             )
             console.log(response);
-            console.log(JSON.stringify(response));
-
-            // const data =(JSON.stringify(values, null, 2));
-
-            // fetch('http://127.0.0.1:8000/registration', {
-            //   method: 'POST',
-            //   headers: {
-            //     'Content-Type': 'application/json',
-            //   },
-            //   body: data,
-            // })
-            //   .then(response => {
-            //     if (response.ok) {
-            //       return response.json();
-            //     } else {
-            //       throw new Error('Form submission error');
-            //     }
-            //   })
-            //   .then(data => {
-            //     console.log('Form submitted successfully:', data);
-            //   })
-            //   .catch(error => {
-            //     console.error(error);
-            //   });
+            // console.log(JSON.stringify(response));
         }
     });
 
     return (
         <ourRegistrationValue.Provider value={{ formikRegistration: formikRegistration }}>
-            <FormRegiatration />
+            {success === false ?
+                <FormRegiatration />
+                :
+                <Success />
+            }
         </ourRegistrationValue.Provider>
     )
 }

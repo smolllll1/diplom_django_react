@@ -1,6 +1,7 @@
 /** FORM REGISTRATION */
 .wrapper-registration {
-    background-color: #01b4e4;
+    max-height: 80%;
+    background-color: rgb(1, 180, 228);
 }
 
 /** box form registration */
@@ -22,12 +23,6 @@
     font-size: 1.875rem;
     line-height: 2.25rem;
     color: gray;
-}
-
-/** form registration text */
-.registration-text {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
 }
 
 /** inputs registration */

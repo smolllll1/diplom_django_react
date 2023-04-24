@@ -5,7 +5,8 @@
 
 /** box form login */
 .form-login {
-    width: 40%;
+    width: 30%;
+    margin: 10% 0 10% 0; 
     border-radius: .5rem;
     background-color: floralwhite;
 }
@@ -22,12 +23,6 @@
     font-size: 1.875rem;
     line-height: 2.25rem;
     color: gray;
-}
-
-/** form login text */
-.login-text {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
 }
 
 /** inputs login */

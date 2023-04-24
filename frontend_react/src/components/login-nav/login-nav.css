@@ -18,6 +18,10 @@
 }
 
 /* Avatar */
+.css-e53awj-MuiStack-root>:not(style)+:not(style) {
+    text-decoration: none;
+}
+
 .css-ianz0n-MuiAvatar-root {
     align-self: center;
 }

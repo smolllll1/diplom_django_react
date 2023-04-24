@@ -7,7 +7,7 @@ import Home from '../../pages/home';
 import { Registration } from '../../pages/registration';
 import { Login } from '../../pages/login';
 import { Content } from '../../pages/content';
-import Success from '../../pages/success';
+import UsersAccount from '../../pages/users-account';
 import Footer from '../footer';
 
 const App = () => {
@@ -19,8 +19,8 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/registration" element={<Registration />} />
-          <Route exact path="/success" element={<Success />} />
           <Route exact path="/login" element={<Login />} />
+          <Route exact path="/users/account" element={<UsersAccount />} />
           <Route exact path="/movies"
             element={<Content request={new GetRequest().getDataMoviesPopular()} />}>
           </Route>
