@@ -1,5 +1,4 @@
 from rest_framework.serializers import ModelSerializer
-from rest_framework import serializers
 from .models import Test, Registration
 
 class NoteSerializer(ModelSerializer):
@@ -7,7 +6,7 @@ class NoteSerializer(ModelSerializer):
         model = Test
         fields = '__all__'
 
-class RegisterSerializer(serializers.ModelSerializer):
+class RegisterSerializer(ModelSerializer):
     class Meta:
         model = Registration
         fields = '__all__'
