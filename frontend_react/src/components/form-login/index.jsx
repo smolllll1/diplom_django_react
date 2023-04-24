@@ -1,5 +1,6 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { ourLoginValue } from "../../pages/login";
+import { motion as m } from "framer-motion";
 
 import './form-login.css';
 
@@ -8,15 +9,16 @@ const FormLogin = () => {
     const { formikLogin } = useContext(ourLoginValue);
 
     return (
-        <div className="d-flex align-items-center justify-content-center wrapper-login" >
-            <form className="m-5 d-flex form-login"
+        <m.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="d-flex align-items-center justify-content-center wrapper-login" >
+            <form className="d-flex form-login"
                 onSubmit={formikLogin.handleSubmit}
             >
                 <div className="wrap-form-login-text">
                     <h2 className="login-text-title">Login to your account</h2>
-                    <p className="login-text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    </p>
                     <div className="wrap-form-login-input">
                         {/* Username input field */}
                         <div className="p-1">
@@ -73,7 +75,7 @@ const FormLogin = () => {
                     </div>
                 </div>
             </form>
-        </div >
+        </m.div >
     )
 }
 

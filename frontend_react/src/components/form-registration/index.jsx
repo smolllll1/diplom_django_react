@@ -1,5 +1,6 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { ourRegistrationValue } from "../../pages/registration";
+import { motion as m } from "framer-motion";
 
 import './form-registration.css';
 
@@ -8,15 +9,16 @@ const FormRegiatration = () => {
     const { formikRegistration } = useContext(ourRegistrationValue);
 
     return (
-        <div className="d-flex align-items-center justify-content-center wrapper-registration">
-            <form className="m-4 d-flex form-registration"
+        <m.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="d-flex align-items-center justify-content-center wrapper-registration">
+            <form className="m-3 d-flex form-registration"
                 onSubmit={formikRegistration.handleSubmit}
             >
                 <div className="wrap-form-registration-text">
                     <h2 className="registration-text-title">Let's get started 👋</h2>
-                    <p className="registration-text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    </p>
                     <div className="wrap-form-registration-input">
                         {/* Name input field */}
                         <div className="p-1">
@@ -185,7 +187,7 @@ const FormRegiatration = () => {
                                     onChange={formikRegistration.handleChange}
                                     onBlur={formikRegistration.handleBlur}
                                 />
-                                <p className="registration-text-checked">
+                                <p className="m-1 registration-text-checked">
                                     I agree to the Terms and Service that my data will be taken and sold.
                                 </p>
                             </div>
@@ -203,8 +205,8 @@ const FormRegiatration = () => {
                     />
                 </div>
             </form>
-        </div>
+        </m.div>
     )
 }
 
-export default FormRegiatration ;
+export default FormRegiatration;

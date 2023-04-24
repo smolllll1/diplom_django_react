@@ -23,7 +23,9 @@ const LoginNav = () => {
                     <NotificationsIcon className="bell" />
                 </Badge>
             </IconButton>
-            <Avatar variant='circular' sx={{ bgcolor: lightGreen[500] }}>V</Avatar>
+            <Link to={'/users/account'}>
+                <Avatar variant='circular' sx={{ bgcolor: lightGreen[500] }}>V</Avatar>
+            </Link>
             <Link to={'/login'}>
                 <Button type="button">Login</Button>
             </Link>
