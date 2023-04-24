@@ -15,7 +15,7 @@ const nameRegExp = /^[a-zA-Za-яА-ЯЇїІі0-9](_(?!(\.|_))|\.(?!(_|\.))|[a-zA
 const emailRegExp = /^(([^<>()[\]\\.,;:\\"]+(\.[^<>()[\]\\.,;:\\"]+)*)|(\\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 // POST URL REGISTRATION
-const REGISTRATION_URL = '/registration';
+const REGISTRATION_URL = 'registration/';
 
 const Registration = () => {
 
@@ -60,7 +60,7 @@ const Registration = () => {
 
         // Submit form registration
         onSubmit: async (values) => {
-            
+
             if (values.terms.length !== 0) {
                 setSuccess(true);
                 setTimeout(() => {
@@ -68,25 +68,24 @@ const Registration = () => {
                 }, 5000)
                 console.log(values);
             }
-            const response = await axios.post(REGISTRATION_URL,
-                JSON.stringify({ values }),
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
-                }
-            )
-            console.log(response);
-            // console.log(JSON.stringify(response));
+
+            await axios.post(REGISTRATION_URL, values)
+            .then(response =>{
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
         }
     });
 
     return (
         <ourRegistrationValue.Provider value={{ formikRegistration: formikRegistration }}>
-                {success === false ?
-                    <FormRegiatration />
-                    :
-                    <Success />
-                }
+            {success === false ?
+                <FormRegiatration />
+                :
+                <Success />
+            }
         </ourRegistrationValue.Provider>
     )
 }

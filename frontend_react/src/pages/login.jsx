@@ -11,7 +11,7 @@ const ourLoginValue = createContext();
 const nameRegExp = /^[a-zA-Za-яА-ЯЇїІі0-9](_(?!(\.|_))|\.(?!(_|\.))|[a-zA-Za-яА-ЯЇїІі0-9]){1,18}[a-zA-Za-яА-ЯЇїІі0-9]?$/;
 
 // POST URL LOGIN
-const LOGIN_URL = '/login';
+const LOGIN_URL = 'login/';
 
 const Login = () => {
 
@@ -43,15 +43,13 @@ const Login = () => {
             navigateLogin('/')
             console.log(values);
 
-            const response = await axios.post(LOGIN_URL,
-                JSON.stringify({ values }),
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
-                }
-            )
-            console.log(response);
-            console.log(JSON.stringify(response));
+            await axios.post(LOGIN_URL, values)
+            .then(response =>{
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
         }
     });
 
