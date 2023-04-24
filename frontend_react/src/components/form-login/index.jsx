@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { ourLoginValue } from "../../pages/login";
+import { motion as m } from "framer-motion";
 
 import './form-login.css';
 
@@ -8,7 +9,11 @@ const FormLogin = () => {
     const { formikLogin } = useContext(ourLoginValue);
 
     return (
-        <div className="d-flex align-items-center justify-content-center wrapper-login" >
+        <m.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="d-flex align-items-center justify-content-center wrapper-login" >
             <form className="d-flex form-login"
                 onSubmit={formikLogin.handleSubmit}
             >
@@ -70,7 +75,7 @@ const FormLogin = () => {
                     </div>
                 </div>
             </form>
-        </div >
+        </m.div >
     )
 }
 

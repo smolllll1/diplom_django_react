@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { ourRegistrationValue } from "../../pages/registration";
+import { motion as m } from "framer-motion";
 
 import './form-registration.css';
 
@@ -8,7 +9,11 @@ const FormRegiatration = () => {
     const { formikRegistration } = useContext(ourRegistrationValue);
 
     return (
-        <div className="d-flex align-items-center justify-content-center wrapper-registration">
+        <m.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="d-flex align-items-center justify-content-center wrapper-registration">
             <form className="m-3 d-flex form-registration"
                 onSubmit={formikRegistration.handleSubmit}
             >
@@ -200,7 +205,7 @@ const FormRegiatration = () => {
                     />
                 </div>
             </form>
-        </div>
+        </m.div>
     )
 }
 

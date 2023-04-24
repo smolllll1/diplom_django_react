@@ -60,7 +60,7 @@ const Registration = () => {
 
         // Submit form registration
         onSubmit: async (values) => {
-
+            
             if (values.terms.length !== 0) {
                 setSuccess(true);
                 setTimeout(() => {
@@ -82,11 +82,11 @@ const Registration = () => {
 
     return (
         <ourRegistrationValue.Provider value={{ formikRegistration: formikRegistration }}>
-            {success === false ?
-                <FormRegiatration />
-                :
-                <Success />
-            }
+                {success === false ?
+                    <FormRegiatration />
+                    :
+                    <Success />
+                }
         </ourRegistrationValue.Provider>
     )
 }

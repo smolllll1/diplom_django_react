@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { ourContext } from "../../pages/content";
 import Card from 'react-bootstrap/Card';
 import CircularStatic from "../progress";
+import { motion as m } from 'framer-motion';
 
 import './item-list.css'
 
@@ -12,14 +13,18 @@ function ItemList({ request }) {
     useEffect(() => {
         request.then((data) => {
             setProperty(data.results)
-            console.dir(data.results)
+            // console.dir(data.results)
         })
     }, [request])
 
     const { onCardsInfo } = useContext(ourContext);
 
     return (
-        <div className="wrapper">
+        <m.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="wrapper">
             <div className="wrapper-cards">
                 {property === null ?
                     <CircularStatic />
@@ -46,7 +51,7 @@ function ItemList({ request }) {
                     })
                 }
             </div>
-        </div>
+        </m.div>
     )
 }
 
