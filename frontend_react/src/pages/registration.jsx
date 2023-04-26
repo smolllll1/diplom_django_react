@@ -64,9 +64,9 @@ const Registration = () => {
             if (values.terms.length !== 0) {
                 setSuccess(true);
                 setTimeout(() => {
-                    navigateRegistration('/')
+                    navigateRegistration('/users/account')
                 }, 5000)
-                console.log(values);
+                // console.log(values);
             }
 
             await axios.post(REGISTRATION_URL, values)

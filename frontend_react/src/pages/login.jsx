@@ -40,7 +40,7 @@ const Login = () => {
 
         // Submit form login
         onSubmit: async (values) => {
-            navigateLogin('/')
+            navigateLogin('/users/account')
             console.log(values);
 
             await axios.post(LOGIN_URL, values)
@@ -52,7 +52,6 @@ const Login = () => {
             });
         }
     });
-
 
     return (
         <ourLoginValue.Provider value={{ formikLogin: formikLogin }}>

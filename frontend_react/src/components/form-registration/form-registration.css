@@ -9,6 +9,7 @@
     width: 90%;
     border-radius: .5rem;
     background-color: floralwhite;
+    box-shadow: 4px 5px 5px -4px rgba(13, 37, 63);
 }
 
 /** wrapper form registration text*/

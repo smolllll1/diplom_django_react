@@ -1,1 +1,25 @@
+/* PAGE PERSON ACCOUNT */
 
+/* top block */
+.top-person-account {
+    flex-wrap: wrap;
+    background-color: rgb(13, 37, 63);
+    background-image: url(../../svg/account-pipes.svg);
+    position: relative;
+    background-position: center;
+    background-size: cover;
+}
+
+/* avatar circle */
+.avatar-person-account-circle {
+    min-width: 150px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #01D277;
+}
+
+.css-3z0mn7-MuiStack-root>button:nth-child(n) {
+    text-transform: capitalize;
+    color: dimgray;
+}

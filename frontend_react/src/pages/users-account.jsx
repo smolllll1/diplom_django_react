@@ -3,7 +3,7 @@ import PersonAccount from "../components/person-account";
 
 const UsersAccount = () => {
     return (
-        <div className="vh-100">
+        <div>
             <PersonAccount />
         </div>
     )

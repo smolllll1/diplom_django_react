@@ -9,6 +9,7 @@ import { Registration } from '../../pages/registration';
 import { Login } from '../../pages/login';
 import { Content } from '../../pages/content';
 import UsersAccount from '../../pages/users-account';
+import UsersSettings from '../../pages/users-settings';
 import Footer from '../footer';
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
             <Route exact path="/registration" element={<Registration />} />
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/users/account" element={<UsersAccount />} />
+            <Route exact path="/settings" element={<UsersSettings />} />
             <Route exact path="/movies"
               element={<Content request={new GetRequest().getDataMoviesPopular()} />}>
             </Route>

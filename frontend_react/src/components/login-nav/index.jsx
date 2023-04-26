@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { lightGreen } from '@mui/material/colors';
+import AccountMenu from "./avatar/index"
 
 import './login-nav.css'
 
@@ -23,9 +22,10 @@ const LoginNav = () => {
                     <NotificationsIcon className="bell" />
                 </Badge>
             </IconButton>
-            <Link to={'/users/account'}>
-                <Avatar variant='circular' sx={{ bgcolor: lightGreen[500] }}>V</Avatar>
-            </Link>
+            {/* <Link to={'/users/account'}> */}
+                {/* <Avatar variant='circular' sx={{ bgcolor: "#01D277" }}>V</Avatar> */}
+                <AccountMenu />
+            {/* </Link> */}
             <Link to={'/login'}>
                 <Button type="button">Login</Button>
             </Link>
