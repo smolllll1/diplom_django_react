@@ -1,11 +1,9 @@
-import React, { useContext, useState, useEffect } from "react";
-import { ourRegistrationValue } from "../../../pages/registration";
+import React, { useState, useEffect } from "react";
 import { motion as m } from 'framer-motion';
 import Confetti from 'react-confetti';
 
-const Success = () => {
+const Success = ({ formikRegistration }) => {
 
-    const { formikRegistration } = useContext(ourRegistrationValue);
     const [pieces, setPiaces] = useState(200);
     const stopConfetti = () => {
         setTimeout(() => {

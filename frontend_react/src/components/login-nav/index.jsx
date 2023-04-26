@@ -1,34 +1,63 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import AccountMenu from "./avatar/index"
+import AccountMenu from "./avatar/index";
+import { DataContext } from "../data-context/data-context";
 
 import './login-nav.css'
 
 const LoginNav = () => {
+
+    const { formikRegistration,
+        formikLogin,
+        success,
+        hideButtonRegistration,
+        hideButtonLogin,
+    } = useContext(DataContext);
+
     return (
         <Stack direction="row" spacing={2}>
-            <Link to={'/registration'}>
-                <Button type="button" id="registration-btn">Registration</Button>
-            </Link>
-            <IconButton
-                size="large"
-                aria-label="show 7 new notifications">
-                <Badge badgeContent={7} color="error">
-                    <NotificationsIcon className="bell" />
-                </Badge>
-            </IconButton>
-            {/* <Link to={'/users/account'}> */}
-                {/* <Avatar variant='circular' sx={{ bgcolor: "#01D277" }}>V</Avatar> */}
-                <AccountMenu />
-            {/* </Link> */}
-            <Link to={'/login'}>
-                <Button type="button">Login</Button>
-            </Link>
+            {success === false
+                && hideButtonRegistration === false
+                && hideButtonLogin === false
+                ?
+                <Link to={'/registration'}>
+                    <Button type="button" id="registration-btn">Registration</Button>
+                </Link>
+                :
+                null
+            }
+            {hideButtonLogin === true ?
+                <IconButton
+                    size="large"
+                    aria-label="show 0 new notifications">
+                    <Badge badgeContent={0} color="error">
+                        <NotificationsIcon className="bell" />
+                    </Badge>
+                </IconButton>
+                :
+                null
+            }
+            {hideButtonLogin === true ?
+                <AccountMenu
+                    formikRegistration={formikRegistration}
+                    formikLogin={formikLogin}
+                    hideButtonLogin={hideButtonLogin}
+                />
+                :
+                null
+            }
+            {hideButtonLogin === false ?
+                <Link to={'/login'}>
+                    <Button type="button">Login</Button>
+                </Link>
+                :
+                <div className="me-5 px-2"></div>
+            }
         </Stack>
     )
 }

@@ -4,10 +4,9 @@ import Button from '@mui/material/Button';
 import { motion as m } from "framer-motion";
 import '../../svg/account-pipes.svg';
 
-
 import './person-account.css'
 
-const PersonAccount = () => {
+const PersonAccount = ({ formikLogin, formikRegistration }) => {
     return (
         <m.div
             initial={{ opacity: 0 }}
@@ -17,9 +16,12 @@ const PersonAccount = () => {
                 <div className='d-flex col top-person-account align-items-center'>
                     <div className='d-flex m-5 justify-content-center 
                             align-items-center avatar-person-account-circle'>
-                        <p className='text-white' style={{ fontSize: "4rem" }}>V</p>
+                        <p className='text-white' style={{ fontSize: "4rem" }}>
+                            {formikLogin.values.name[0] || formikRegistration.values.name[0]}
+                        </p>
                     </div>
-                    <p className='fs-2 m-1 fw-bold text-white'>Username
+                    <p className='fs-2 m-1 fw-bold text-white'>
+                        {formikLogin.values.name || formikRegistration.values.name}
                         <span className='fs-5 m-2 fw-normal text-secondary'>Member since April 2023</span>
                     </p>
                 </div>

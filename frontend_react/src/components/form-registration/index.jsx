@@ -1,12 +1,9 @@
-import React, { useContext } from "react";
-import { ourRegistrationValue } from "../../pages/registration";
+import React from "react";
 import { motion as m } from "framer-motion";
 
 import './form-registration.css';
 
-const FormRegiatration = () => {
-
-    const { formikRegistration } = useContext(ourRegistrationValue);
+const FormRegiatration = ({formikRegistration}) => {
 
     return (
         <m.div

@@ -8,7 +8,10 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import { Link } from "react-router-dom";
 
-export default function AccountMenu() {
+export default function AccountMenu({
+    formikRegistration,
+    formikLogin,
+}) {
 
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
@@ -33,7 +36,11 @@ export default function AccountMenu() {
                         aria-haspopup="true"
                         aria-expanded={open ? 'true' : undefined}
                     >
-                        <Avatar sx={{ width: 34, height: 34, bgcolor: "#01D277", fontSize: "1rem" }}>V</Avatar>
+                        <Avatar
+                            sx={{ width: 34, height: 34, bgcolor: "#01D277", fontSize: "1rem" }}
+                        >
+                            {formikLogin.values.name[0] || formikRegistration.values.name[0]}
+                        </Avatar>
                     </IconButton>
                 </Tooltip>
             </Box>
