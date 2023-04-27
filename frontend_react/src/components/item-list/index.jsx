@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
-import { ourContext } from "../../pages/content";
+import React, { useState, useEffect } from "react";
 import Card from 'react-bootstrap/Card';
 import CircularStatic from "../progress";
 import { motion as m } from 'framer-motion';
 
 import './item-list.css'
 
-function ItemList({ request }) {
+function ItemList({ request, onCardsInfo }) {
 
     const [property, setProperty] = useState(null)
 
@@ -15,9 +14,7 @@ function ItemList({ request }) {
             setProperty(data.results)
             // console.dir(data.results)
         })
-    }, [request])
-
-    const { onCardsInfo } = useContext(ourContext);
+    }, [request]);
 
     return (
         <m.div

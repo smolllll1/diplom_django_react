@@ -6,7 +6,7 @@ import '../../svg/account-pipes.svg';
 
 import './person-account.css'
 
-const PersonAccount = ({ formikLogin, formikRegistration }) => {
+const PersonAccount = ({ formikLogin }) => {
     return (
         <m.div
             initial={{ opacity: 0 }}
@@ -17,11 +17,13 @@ const PersonAccount = ({ formikLogin, formikRegistration }) => {
                     <div className='d-flex m-5 justify-content-center 
                             align-items-center avatar-person-account-circle'>
                         <p className='text-white' style={{ fontSize: "4rem" }}>
-                            {formikLogin.values.name[0] || formikRegistration.values.name[0]}
+                            {/* avatar first letter Username */}
+                            {formikLogin.values.name[0]}
                         </p>
                     </div>
                     <p className='fs-2 m-1 fw-bold text-white'>
-                        {formikLogin.values.name || formikRegistration.values.name}
+                        {/* after avatar item Username */}
+                        {formikLogin.values.name}
                         <span className='fs-5 m-2 fw-normal text-secondary'>Member since April 2023</span>
                     </p>
                 </div>

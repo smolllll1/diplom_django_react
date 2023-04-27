@@ -12,11 +12,12 @@ import './login-nav.css'
 
 const LoginNav = () => {
 
-    const { formikRegistration,
+    const {
         formikLogin,
         success,
         hideButtonRegistration,
         hideButtonLogin,
+        onHandlerLogout,
     } = useContext(DataContext);
 
     return (
@@ -44,9 +45,8 @@ const LoginNav = () => {
             }
             {hideButtonLogin === true ?
                 <AccountMenu
-                    formikRegistration={formikRegistration}
                     formikLogin={formikLogin}
-                    hideButtonLogin={hideButtonLogin}
+                    onHandlerLogout={onHandlerLogout}
                 />
                 :
                 null

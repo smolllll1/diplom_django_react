@@ -8,7 +8,7 @@ import '../../svg/account-pipes.svg';
 
 import './person-settings.css'
 
-const PersonSettings = ({ formikRegistration, formikLogin }) => {
+const PersonSettings = ({ formikLogin }) => {
 
     return (
         <m.div
@@ -20,11 +20,13 @@ const PersonSettings = ({ formikRegistration, formikLogin }) => {
                     <div className='d-flex m-3 justify-content-center 
                         avatar-person-settings-circle'>
                         <p className='text-white' style={{ fontSize: "2rem" }}>
-                            {formikLogin.values.name[0] || formikRegistration.values.name[0]}
+                            {/* avatar first letter Username */}
+                            {formikLogin.values.name[0]}
                         </p>
                     </div>
                     <h2 className='m-1 fw-bold text-white'>
-                        {formikLogin.values.name || formikRegistration.values.name}
+                        {/* after avatar item Username */}
+                        {formikLogin.values.name}
                     </h2>
                 </div>
             </div>

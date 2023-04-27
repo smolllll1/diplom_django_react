@@ -4,12 +4,11 @@ import { DataContext } from '../components/data-context/data-context';
 
 const UsersSettings = () => {
 
-    const { formikRegistration, formikLogin } = useContext(DataContext);
+    const { formikLogin } = useContext(DataContext);
 
     return (
         <>
             <PersonSettings
-                formikRegistration={formikRegistration}
                 formikLogin={formikLogin}
             />
         </>

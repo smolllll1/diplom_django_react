@@ -125,6 +125,10 @@ const DataProvider = ({ children }) => {
         }
     });
 
+    const onHandlerLogout = () => {
+        console.log('isLogout');
+    }
+
     return (
         <DataContext.Provider value={{
             formikRegistration: formikRegistration,
@@ -132,6 +136,7 @@ const DataProvider = ({ children }) => {
             success: success,
             hideButtonRegistration: hideButtonRegistration,
             hideButtonLogin: hideButtonLogin,
+            onHandlerLogout: onHandlerLogout,
         }}>
             {children}
         </DataContext.Provider>

@@ -8,10 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import { Link } from "react-router-dom";
 
-export default function AccountMenu({
-    formikRegistration,
-    formikLogin,
-}) {
+export default function AccountMenu({ formikLogin, onHandlerLogout }) {
 
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
@@ -39,7 +36,8 @@ export default function AccountMenu({
                         <Avatar
                             sx={{ width: 34, height: 34, bgcolor: "#01D277", fontSize: "1rem" }}
                         >
-                            {formikLogin.values.name[0] || formikRegistration.values.name[0]}
+                            {/* avatar first letter username */}
+                            {formikLogin.values.name[0]}
                         </Avatar>
                     </IconButton>
                 </Tooltip>
@@ -48,8 +46,8 @@ export default function AccountMenu({
                 anchorEl={anchorEl}
                 id="account-menu"
                 open={open}
-                onClose={handleClose}
-                onClick={handleClose}
+                // onClose={handleClose}
+                // onClick={handleClose}
                 PaperProps={{
                     elevation: 0,
                     sx: {
@@ -80,19 +78,29 @@ export default function AccountMenu({
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
                 <Link to={'/users/account'} className="underline-avatar">
-                    <MenuItem onClick={handleClose}>
-                        Username
+                    <MenuItem className='d-flex row' onClick={handleClose}>
+                        {/* avatar menu username */}
+                        <p className='m-0 p-0 fw-bold'>
+                            {formikLogin.values.name}
+                        </p>
+                        <p className='m-0 p-0' style={{ fontSize: '.75rem' }}>
+                            View profile
+                        </p>
                     </MenuItem>
                 </Link>
                 <Divider />
                 <Link to={'/settings'} className="underline-avatar">
-                    <MenuItem onClick={handleClose}>
+                    <MenuItem
+                        onClick={handleClose}
+                    >
                         Settings
                     </MenuItem>
                 </Link>
                 <Divider />
                 <Link to={'/'} className="underline-avatar">
-                    <MenuItem onClick={handleClose}>
+                    <MenuItem
+                        onClick={(() => { onHandlerLogout(); handleClose(); })}
+                    >
                         Logout
                     </MenuItem>
                 </Link>
