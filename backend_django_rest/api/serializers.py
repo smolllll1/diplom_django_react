@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Test, Registration
+from django.contrib.auth.models import User
 
 class NoteSerializer(serializers.ModelSerializer):
     class Meta:
@@ -13,3 +14,8 @@ class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Registration
         fields = ['id', 'name', 'email', 'password']
+
+class LoginSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email', 'date_joined']

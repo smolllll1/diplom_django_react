@@ -21,4 +21,3 @@ class Registration(models.Model):
     email = models.CharField(max_length=100, validators=(email_validator, ))
     phone = models.CharField(max_length=16, validators=(phone_validator, ))
     password = models.CharField(max_length=100)
-    
