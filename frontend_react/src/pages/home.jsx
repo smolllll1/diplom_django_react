@@ -1,11 +1,11 @@
-import React from "react";
+import React, { Fragment } from "react";
 import IndividualIntervalsExample from "../components/slider";
 
-const Home =()=>{
-    return(
-        <>
-        <IndividualIntervalsExample />
-        </>
+const Home = () => {
+    return (
+        <Fragment>
+            <IndividualIntervalsExample />
+        </Fragment>
     )
 }
 

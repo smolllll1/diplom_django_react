@@ -6,7 +6,7 @@ const ourContext = createContext()
 const Content = ({ request }) => {
 
     const [popularInformation, setPopularInformation] = useState(null);
-    
+
     const onCardsInfo = (value) => {
         setPopularInformation(value)
     }

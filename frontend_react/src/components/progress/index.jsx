@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 function CircularProgressWithLabel(props) {
+  
   return (
     <Box sx={{ position: 'relative', display: 'inline-flex' }}>
       <CircularProgress variant="determinate" {...props} />
@@ -38,15 +39,18 @@ CircularProgressWithLabel.propTypes = {
 };
 
 export default function CircularStatic() {
-  const [progress, setProgress] = React.useState(10);
+  const [progress, setProgress] = useState(10);
 
-  React.useEffect(() => {
+  useEffect(() => {
+
     const timer = setInterval(() => {
       setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 10));
     }, 800);
+
     return () => {
       clearInterval(timer);
     };
+
   }, []);
 
   return <CircularProgressWithLabel value={progress} />;
