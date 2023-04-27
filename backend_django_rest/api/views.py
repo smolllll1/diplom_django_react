@@ -61,8 +61,8 @@ def loginView(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                userRespons = request.user
-                serializer = LoginSerializer(userRespons)
+                userRespon = request.user
+                serializer = LoginSerializer(userRespon)
                 return Response({'loginRespons': serializer.data})
             else:
                 return Response({'message': 'Disabled account'})
