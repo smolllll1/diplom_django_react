@@ -1,5 +1,17 @@
 /* LOGIN REGISTRATION BUTTONS */
 
+/* component <AccountMenu/> Link: Username Settings Logout*/
+.underline-avatar {
+    text-decoration: none;
+    color: rgba(128, 128, 128, .8);
+}
+
+.underline-avatar>li:hover {
+    color: floralwhite;
+    background-color: rgba(13, 37, 63, .8);
+}
+
+
 /** Login button */
 .css-e53awj-MuiStack-root>a:last-child button {
     color: darkturquoise;

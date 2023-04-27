@@ -1,12 +1,9 @@
-import React, { useContext } from "react";
-import { ourLoginValue } from "../../pages/login";
+import React from "react";
 import { motion as m } from "framer-motion";
 
 import './form-login.css';
 
-const FormLogin = () => {
-
-    const { formikLogin } = useContext(ourLoginValue);
+const FormLogin = ({formikLogin}) => {
 
     return (
         <m.div

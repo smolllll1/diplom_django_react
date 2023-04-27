@@ -1,18 +1,18 @@
 import React, { useContext } from "react";
-import PersonAccount from "../components/person-account";
+import PersonSettings from "../components/person-settings";
 import { DataContext } from '../components/data-context/data-context';
 
-const UsersAccount = () => {
+const UsersSettings = () => {
 
     const { formikLogin } = useContext(DataContext);
 
     return (
         <>
-            <PersonAccount
+            <PersonSettings
                 formikLogin={formikLogin}
             />
         </>
     )
 }
 
-export default UsersAccount;
+export default UsersSettings;

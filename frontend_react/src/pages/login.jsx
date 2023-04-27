@@ -1,64 +1,16 @@
-import React, { createContext } from "react";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import { useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
 import FormLogin from "../components/form-login";
-import axios from "../api/axios";
-
-const ourLoginValue = createContext();
-
-// Regular Expressions
-const nameRegExp = /^[a-zA-Za-яА-ЯЇїІі0-9](_(?!(\.|_))|\.(?!(_|\.))|[a-zA-Za-яА-ЯЇїІі0-9]){1,18}[a-zA-Za-яА-ЯЇїІі0-9]?$/;
-
-// POST URL LOGIN
-const LOGIN_URL = 'login/';
+import { DataContext } from '../components/data-context/data-context';
 
 const Login = () => {
 
-    const navigateLogin = useNavigate();
-
-    // formikLogin logics
-    const formikLogin = useFormik({
-
-        initialValues: {
-            name: "",
-            password: "",
-        },
-
-        // Validate form login
-        validationSchema: Yup.object({
-            name: Yup.string()
-                .min(2, 'Name is short')
-                .max(20, 'Name must be 20 characters or less.')
-                .matches(nameRegExp, 'Name is not valid')
-                .required('Name is required'),
-            password: Yup.string()
-                .min(6, 'Password is short')
-                .max(20, 'Password must be 20 characters or less.')
-                .required('Password is required'),
-        }),
-
-        // Submit form login
-        onSubmit: async (values) => {
-            navigateLogin('/')
-            console.log(values);
-
-            await axios.post(LOGIN_URL, values)
-            .then(response =>{
-                console.log(response.data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-        }
-    });
-
+    const { formikLogin } = useContext(DataContext);
 
     return (
-        <ourLoginValue.Provider value={{ formikLogin: formikLogin }}>
-            <FormLogin />
-        </ourLoginValue.Provider>
+        <>
+            <FormLogin formikLogin={formikLogin} />
+        </>
     )
 }
 
-export { Login, ourLoginValue };
+export default Login;

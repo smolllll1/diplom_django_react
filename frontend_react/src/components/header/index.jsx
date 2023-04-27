@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import LoginNav from "../login-nav";
 
-import logo from '../../img/logo.svg';
+import logo from '../../svg/logo.svg';
 import './header.css'
 
 const Header = () => {
