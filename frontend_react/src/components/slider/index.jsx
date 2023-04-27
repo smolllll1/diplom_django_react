@@ -10,9 +10,12 @@ function SliderIntervals() {
     const [movieseSlide, setMovieseSlide] = useState(null);
 
     useEffect(() => {
-        new GetRequest().getDataMoviesPopular().then((data) => {
-            setMovieseSlide(data.results);
-        })
+
+        new GetRequest().getDataMoviesPopular()
+            .then((data) => {
+                setMovieseSlide(data.results);
+            })
+
     }, []);
 
     return (

@@ -46,8 +46,8 @@ export default function AccountMenu({ formikLogin, onHandlerLogout }) {
                 anchorEl={anchorEl}
                 id="account-menu"
                 open={open}
-                // onClose={handleClose}
-                // onClick={handleClose}
+                onClose={handleClose}
+                onClick={handleClose}
                 PaperProps={{
                     elevation: 0,
                     sx: {

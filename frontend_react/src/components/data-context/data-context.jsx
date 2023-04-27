@@ -125,6 +125,7 @@ const DataProvider = ({ children }) => {
         }
     });
 
+    // avatar menu press logout show button login 
     const onHandlerLogout = () => {
         // console.log('isLogout');
         setHideButtonLogin(false);
