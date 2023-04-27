@@ -126,7 +126,8 @@ const DataProvider = ({ children }) => {
     });
 
     const onHandlerLogout = () => {
-        console.log('isLogout');
+        // console.log('isLogout');
+        setHideButtonLogin(false);
     }
 
     return (
