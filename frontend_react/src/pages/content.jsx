@@ -11,7 +11,7 @@ const Content = ({ request }) => {
 
     const onCardsInfo = (value) => {
         setPopularInformation(value);
-        // console.log(value)
+        console.log(value.id)
         setShowInfo(true);
     }
 

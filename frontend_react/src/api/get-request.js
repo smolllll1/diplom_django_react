@@ -26,7 +26,7 @@ class GetRequest {
 
 
     /** backend project: content page, description people, button people */
-    // _linkDjango = "pop_piple/"
+    // _linkDjango = "pop_people/"
     // async getDataPeoplePopular() {
     //     const data = await fetch(`${this._linkDjango}`);
     //     if (data.status > 300 || data.status < 199) {
@@ -47,6 +47,7 @@ class GetRequest {
     //     }
     // }
     // "proxy": "http://127.0.0.1:8000",
+    // loginURL: "http://127.0.0.1:8000/login"
 
 }
 

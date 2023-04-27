@@ -17,6 +17,9 @@ const emailRegExp = /^(([^<>()[\]\\.,;:\\"]+(\.[^<>()[\]\\.,;:\\"]+)*)|(\\"))@((
 const REGISTRATION_URL = 'registration/';
 // POST URL LOGIN
 const LOGIN_URL = 'login/';
+// GET URL LOGOUT
+const LOGOUT_URL = 'logout/';
+
 
 const DataProvider = ({ children }) => {
 
@@ -129,6 +132,14 @@ const DataProvider = ({ children }) => {
     const onHandlerLogout = () => {
         // console.log('isLogout');
         setHideButtonLogin(false);
+
+        axios.get(LOGOUT_URL)
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
     return (

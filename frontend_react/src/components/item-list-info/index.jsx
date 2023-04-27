@@ -5,11 +5,11 @@ import { ourContext } from "../../pages/content";
 const ItemListInfo = ({ request }) => {
 
     const { popularInformation } = useContext(ourContext);
-    console.log(popularInformation.url)
+    console.log(popularInformation.id)
 
     useEffect(() => {
         request.then((data) => {
-            console.log(data.results)
+            // console.log(data.results)
         });
 
         
@@ -20,7 +20,7 @@ const ItemListInfo = ({ request }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="d-flex w-100 justify-content-end px-3"
+            className="d-flex w-100 justify-content-start px-3"
             style={{ backgroundColor: 'floralwhite' }}
         >
             <div className="card mb-3 mt-3 w-50" >
