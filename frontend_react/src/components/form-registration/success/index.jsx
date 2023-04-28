@@ -26,7 +26,7 @@ const Success = ({ formikRegistration }) => {
                     maxWidth: "60%",
                     borderRadius: '0.5rem',
                     boxShadow: '4px 5px 5px -4px rgba(13, 37, 63)',
-                    backgroundColor: 'floralwhite'
+                    backgroundColor: 'floralwhite',
                 }}>
                 <h1 className="">Thanks for the Email {formikRegistration.values.name} ✨</h1>
                 <p>We have send you an email over at {formikRegistration.values.email}.
