@@ -26,13 +26,6 @@ def getTes(request, pk):
     serializer = NoteSerializer(notes, many=False)
     return Response(serializer.data)
 
-# @api_view(['POST'])
-# def registrationView(request):
-#     serializer = RegisterSerializer(data=request.data)
-#     serializer.is_valid(raise_exception=True)
-#     serializer.save()
-#     return Response({'registrationRespons': serializer.data})
-
 @api_view(['POST'])
 def register(request):
     name = request.data.get('name')
@@ -51,7 +44,7 @@ def register(request):
             data['id'] = user.id
         return Response({'registrationRespons': data})
 
-@api_view(['POST'])
+@api_view(['POST', 'GET'])
 def loginView(request):
         username = request.data.get('name')
         password = request.data.get('password')
@@ -78,7 +71,7 @@ def logout_view(request):
 
 @api_view(['GET'])
 def pop_movies(request, pk=1):
-    apiRequst = requests.get(f'https://api.themoviedb.org/3/movie/popular?api_key=4b9514bc01000261f03dfb9e5e317db3&language=uk-UA&page={pk}')
+    apiRequst = requests.get(f'https://api.themoviedb.org/3/movie/popular?api_key=4b9514bc01000261f03dfb9e5e317db3&language=en-US&page={pk}')
     json_data = json.loads(apiRequst.content)
     title = json_data.get('results')
 
@@ -86,7 +79,7 @@ def pop_movies(request, pk=1):
 
 @api_view(['GET'])
 def pop_piple(request, pk=1):
-    apiRequst = requests.get(f'https://api.themoviedb.org/3/person/popular?api_key=4b9514bc01000261f03dfb9e5e317db3&language=uk-UA&page={pk}')
+    apiRequst = requests.get(f'https://api.themoviedb.org/3/person/popular?api_key=4b9514bc01000261f03dfb9e5e317db3&language=en-US&page={pk}')
     json_data = json.loads(apiRequst.content)
     title = json_data.get('results')
-    return Response(json_data)
+    return Response(title)
