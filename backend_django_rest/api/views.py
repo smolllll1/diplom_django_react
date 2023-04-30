@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from rest_framework import status
+from rest_framework import viewsets, mixins
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
@@ -12,19 +12,28 @@ from .serializers import NoteSerializer, RegisterSerializer, LoginSerializer
 
 # Create your views here.
 
-@api_view(['GET'])
-def getTest(request):
-    notes = Test.objects.all()
-    serializer = NoteSerializer(notes, many=True)
-    return Response(serializer.data)
+class TestViewSet(mixins.CreateModelMixin,
+                   mixins.RetrieveModelMixin,
+                   mixins.UpdateModelMixin,
+                  # mixins.DestroyModelMixin,
+                   mixins.ListModelMixin,
+                   viewsets.GenericViewSet):
+     queryset = Test.objects.all()
+     serializer_class = NoteSerializer
 
-@api_view(['GET'])
-def getTes(request, pk):
-    param = requests.GET.get('id')
+# @api_view(['GET'])
+# def cdgetTest(request):
+#     notes = Test.objects.all()
+#     serializer = NoteSerializer(notes, many=True)
+#     return Response(serializer.data)
 
-    notes = Test.objects.get(id=pk)
-    serializer = NoteSerializer(notes, many=False)
-    return Response(serializer.data)
+# @api_view(['GET'])
+# def getTes(request, pk):
+#     param = requests.GET.get('id')
+
+#     notes = Test.objects.get(id=pk)
+#     serializer = NoteSerializer(notes, many=False)
+#     return Response(serializer.data)
 
 @api_view(['POST'])
 def register(request):
@@ -50,7 +59,6 @@ def loginView(request):
         password = request.data.get('password')
 
         user = authenticate(username=username, password=password)
-
         if user is not None:
             if user.is_active:
                 login(request, user)
@@ -73,13 +81,11 @@ def logout_view(request):
 def pop_movies(request, pk=1):
     apiRequst = requests.get(f'https://api.themoviedb.org/3/movie/popular?api_key=4b9514bc01000261f03dfb9e5e317db3&language=en-US&page={pk}')
     json_data = json.loads(apiRequst.content)
-    title = json_data.get('results')
 
-    return Response(title)
+    return Response(json_data)
 
 @api_view(['GET'])
 def pop_piple(request, pk=1):
     apiRequst = requests.get(f'https://api.themoviedb.org/3/person/popular?api_key=4b9514bc01000261f03dfb9e5e317db3&language=en-US&page={pk}')
     json_data = json.loads(apiRequst.content)
-    title = json_data.get('results')
-    return Response(title)
+    return Response(json_data)
