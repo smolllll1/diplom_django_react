@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { motion as m } from "framer-motion";
+import { DataContext } from "../data-context/data-context";
 
 import './form-registration.css';
 
-const FormRegiatration = ({formikRegistration}) => {
+const FormRegiatration = ({ formikRegistration }) => {
 
+    const { errMsgRegistration } = useContext(DataContext)
+   
     return (
         <m.div
             initial={{ opacity: 0 }}
@@ -189,6 +192,12 @@ const FormRegiatration = ({formikRegistration}) => {
                                 </p>
                             </div>
                         </div>
+                        <p className="text-center text-warning">
+                            {errMsgRegistration !== null ?
+                                errMsgRegistration
+                                :
+                                null
+                            }</p>
                         <button type="submit" className="w-100 submit-register">
                             Start watching today!
                         </button>

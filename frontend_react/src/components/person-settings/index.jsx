@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { motion as m } from "framer-motion";
+import { DataContext } from '../data-context/data-context';
 import '../../svg/account-pipes.svg';
 
 import './person-settings.css'
 
 const PersonSettings = ({ formikLogin }) => {
+
+    const { responseLogin } = useContext(DataContext)
 
     return (
         <m.div
@@ -21,12 +24,20 @@ const PersonSettings = ({ formikLogin }) => {
                         avatar-person-settings-circle'>
                         <p className='text-white' style={{ fontSize: "2rem" }}>
                             {/* avatar first letter Username */}
-                            {formikLogin.values.name[0]}
+                            {responseLogin !== null ?
+                                responseLogin.username[0]
+                                :
+                                formikLogin.values.name[0]
+                            }
                         </p>
                     </div>
                     <h2 className='m-1 fw-bold text-white'>
                         {/* after avatar item Username */}
-                        {formikLogin.values.name}
+                        {responseLogin !== null ?
+                            responseLogin.username
+                            :
+                            formikLogin.values.name
+                        }
                     </h2>
                 </div>
             </div>
@@ -43,6 +54,7 @@ const PersonSettings = ({ formikLogin }) => {
                             }}>
                             Settings
                         </li>
+                        <MenuItem>item0</MenuItem>
                         <MenuItem>item1</MenuItem>
                         <MenuItem>item2</MenuItem>
                         <MenuItem>item3</MenuItem>
@@ -52,7 +64,6 @@ const PersonSettings = ({ formikLogin }) => {
                         <MenuItem>item7</MenuItem>
                         <MenuItem>item8</MenuItem>
                         <MenuItem>item9</MenuItem>
-                        <MenuItem>item10</MenuItem>
                     </MenuList>
                 </Paper>
             </Stack>

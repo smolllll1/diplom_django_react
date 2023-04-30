@@ -11,7 +11,6 @@ const Content = ({ request }) => {
 
     const onCardsInfo = (value) => {
         setPopularInformation(value);
-        console.log(value.id)
         setShowInfo(true);
     }
 
@@ -24,7 +23,7 @@ const Content = ({ request }) => {
             {showInfo === false ?
                 <ItemList request={request} />
                 :
-                <ItemListInfo request={request} />
+                <ItemListInfo />
             }
         </ourContext.Provider>
     );
