@@ -1,49 +1,84 @@
 import React, { useContext, useEffect, useState } from "react";
 import { motion as m } from 'framer-motion';
 import { ourContext } from "../../pages/content";
+import CircularStatic from "../progress";
 
 const ItemListInfo = () => {
 
     const [information, setInformation] = useState(null);
-    const [image, setImage] = useState(null);
     const { popularInformation } = useContext(ourContext);
-    console.log(popularInformation.backdrop_path)
 
     useEffect(() => {
-
         setInformation(popularInformation);
-
-        if(popularInformation !== null) {
-            
-
-        }
-
-
-        
-        
     }, [popularInformation]);
 
-    return (
-        <m.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="d-flex w-100 justify-content-start px-3"
-            style={{ backgroundColor: 'floralwhite' }}
-        >
-            <div className="card mb-3 mt-3 w-50" >
-                <img
-                    src='https://image.tmdb.org/t/p/original/ovM06PdF3M8wvKb06i4sjW3xoww.jpg'
-                    className="card-img-top" alt="..." />
-                <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <p className="card-text"><small className="text-body-secondary">Last updated 3 mins ago</small></p>
-                </div>
-            </div>
-        </m.div >
+    if (information) {
+        return (
+            <m.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="d-flex w-100 justify-content-center px-3"
+                style={{ backgroundColor: 'floralwhite' }}
+            >
+                {information === null ?
+                    <CircularStatic />
+                    :
+                    <div className="card my-3" style={{ width: "100%" }}>
+                        <div className="row g-0">
+                            <div className="col-md-4">
+                                {information.profile_path ?
+                                    <img
+                                        src={`https://image.tmdb.org/t/p/original${information.profile_path}`}
+                                        className="rounded"
+                                        style={{width:"80%", height: "80vh", objectFit: "cover" }}
+                                        alt={information.name} />
+                                    : information.backdrop_path ?
+                                        <img
+                                            src={`https://image.tmdb.org/t/p/original${information.backdrop_path}`}
+                                            className="rounded"
+                                            style={{width:"80%", height: "80vh", objectFit: "cover" }}
+                                            alt={information.title} />
+                                        :
+                                        null
+                                }
+                            </div>
+                            <div className="col-md-8">
+                                <div className="card-body">
+                                    <h5 className="card-title">
+                                        {information.title}
+                                        {information.name}
+                                    </h5>
+                                    <span className="card-text">
+                                        {information.release_date}
+                                    </span>
+                                    <p className="card-text">
+                                        {information.overview}
+                                    </p>
+                                    {information.profile_path ?
+                                        <ul>
+                                            {information.known_for.map((item, i) => {
+                                                return <li key={i * 5 + "b"}>
+                                                    {item.title}
+                                                    {item.name}
+                                                    <span className="mx-2">
+                                                        {item.release_date}
+                                                    </span>
+                                                </li>
+                                            })
 
-    )
+                                            }</ul>
+                                        :
+                                        null
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </m.div >
+        )
+    }
 };
 
 export default ItemListInfo;

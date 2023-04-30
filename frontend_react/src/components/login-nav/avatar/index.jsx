@@ -8,7 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import { Link } from "react-router-dom";
 
-export default function AccountMenu({ formikLogin, onHandlerLogout }) {
+export default function AccountMenu({ formikLogin, onHandlerLogout, responseLogin }) {
 
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
@@ -37,7 +37,11 @@ export default function AccountMenu({ formikLogin, onHandlerLogout }) {
                             sx={{ width: 34, height: 34, bgcolor: "#01D277", fontSize: "1rem" }}
                         >
                             {/* avatar first letter username */}
-                            {formikLogin.values.name[0]}
+                            {responseLogin !== null ?
+                                responseLogin.username[0]
+                                :
+                                formikLogin.values.name[0]
+                            }
                         </Avatar>
                     </IconButton>
                 </Tooltip>
@@ -81,7 +85,11 @@ export default function AccountMenu({ formikLogin, onHandlerLogout }) {
                     <MenuItem className='d-flex row' onClick={handleClose}>
                         {/* avatar menu username */}
                         <p className='m-0 p-0 fw-bold'>
-                            {formikLogin.values.name}
+                            {responseLogin !== null ?
+                                responseLogin.username
+                                :
+                                formikLogin.values.name
+                            }
                         </p>
                         <p className='m-0 p-0' style={{ fontSize: '.75rem' }}>
                             View profile

@@ -18,6 +18,7 @@ const LoginNav = () => {
         hideButtonRegistration,
         hideButtonLogin,
         onHandlerLogout,
+        responseLogin,
     } = useContext(DataContext);
 
     return (
@@ -46,6 +47,7 @@ const LoginNav = () => {
             {hideButtonLogin === true ?
                 <AccountMenu
                     formikLogin={formikLogin}
+                    responseLogin={responseLogin}
                     onHandlerLogout={onHandlerLogout}
                 />
                 :

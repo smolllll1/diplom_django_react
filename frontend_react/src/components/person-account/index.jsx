@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { motion as m } from "framer-motion";
+import { DataContext } from '../data-context/data-context';
 import '../../svg/account-pipes.svg';
 
 import './person-account.css'
 
-const PersonAccount = ({ formikLogin, request }) => {
+const PersonAccount = ({ formikLogin }) => {
+
+    const { responseLogin } = useContext(DataContext)
+
     return (
         <m.div
             initial={{ opacity: 0 }}
@@ -18,13 +22,29 @@ const PersonAccount = ({ formikLogin, request }) => {
                             align-items-center avatar-person-account-circle'>
                         <p className='text-white' style={{ fontSize: "4rem" }}>
                             {/* avatar first letter Username */}
-                            {formikLogin.values.name[0]}
+                            {responseLogin !== null ?
+                                responseLogin.username[0]
+                                :
+                                formikLogin.values.name[0]
+                            }
                         </p>
                     </div>
                     <p className='fs-2 m-1 fw-bold text-white'>
                         {/* after avatar item Username */}
-                        {formikLogin.values.name}
-                        <span className='fs-5 m-2 fw-normal text-secondary'>Member since April 2023</span>
+                        {responseLogin !== null ?
+                            responseLogin.username
+                            :
+                            formikLogin.values.name
+                        }
+                        <span className='fs-5 m-3 fw-normal text-secondary'>Member since
+                            {responseLogin !== null ?
+                                <span className='mx-2'>
+                                    {responseLogin.date_joined.split('', 7)}
+                                </span>
+                                :
+                                null
+                            }
+                        </span>
                     </p>
                 </div>
                 <Stack spacing={2}

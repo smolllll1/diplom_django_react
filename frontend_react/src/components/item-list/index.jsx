@@ -3,27 +3,22 @@ import Card from 'react-bootstrap/Card';
 import CircularStatic from "../progress";
 import { motion as m } from 'framer-motion';
 import { ourContext } from "../../pages/content";
-import { GetRequest } from "../../api/get-request";
 
-import './item-list.css'
+import './item-list.css';
 
 function ItemList({ request }) {
-
-    useEffect(()=>{
-        const img = new GetRequest().getTmdbImage();
-    },[])
 
     const [property, setProperty] = useState(null)
 
     useEffect(() => {
         request.then((data) => {
-            setProperty(data.results)
-            // console.dir(data.results)
+            setProperty(data);
+            // console.dir(data)
         })
 
     }, [request]);
 
-    const {onCardsInfo} = useContext(ourContext)
+    const { onCardsInfo } = useContext(ourContext)
 
     return (
         <m.div

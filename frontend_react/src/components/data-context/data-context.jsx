@@ -20,7 +20,6 @@ const LOGIN_URL = 'login/';
 // GET URL LOGOUT
 const LOGOUT_URL = 'logout/';
 
-
 const DataProvider = ({ children }) => {
 
     // Show confetti after registration. use state - component: form-registration pege: registration
@@ -29,6 +28,10 @@ const DataProvider = ({ children }) => {
     const [hideButtonRegistration, setHideButtonRegistration] = useState(false);
     // Hide button login but show avatar and bell after login. use state - component: login-nav
     const [hideButtonLogin, setHideButtonLogin] = useState(false);
+    // Response Login backend onSubmit
+    const [responseLogin, setResponseLogin] = useState(null);
+    // Error Registration
+    const [errMsgRegistration, setErrMsgRegistration] = useState('')
 
     const navigate = useNavigate();
 
@@ -71,29 +74,41 @@ const DataProvider = ({ children }) => {
         // Submit form registration
         onSubmit: async (values) => {
 
-            if (values.terms.length !== 0) {
-                setSuccess(true);
-                setTimeout(() => {
-                    navigate('/login');
-                    setSuccess(false);
-                    setHideButtonRegistration(true);
-                }, 5000)
-                // console.log(values);
-            }
-
             await axios.post(REGISTRATION_URL, values)
                 .then(response => {
-                    console.log(response.data);
+                    // console.log(response.data);
+                    setErrMsgRegistration(response.data.message)
                 })
                 .catch(error => {
                     console.log(error);
                 });
+
+            if (values.terms.length !== 0) {
+                // if (errMsgRegistration) {
+                    setSuccess(true);
+                    setErrMsgRegistration()
+                    setTimeout(() => {
+                        setSuccess(false)
+                        navigate('/login');
+                        setHideButtonRegistration(true);
+                        cleanRegistrationValue();
+                    }, 5000)
+                // }
+            }
+
+            const cleanRegistrationValue = () => {
+                formikRegistration.values.name = "";
+                formikRegistration.values.phone = "";
+                formikRegistration.values.email = "";
+                formikRegistration.values.password = "";
+                formikRegistration.values.confirmPassword = "";
+                formikRegistration.values.terms = "";
+            };
         }
     });
 
     // formikLogin logics
     const formikLogin = useFormik({
-
         initialValues: {
             name: "",
             password: "",
@@ -116,15 +131,22 @@ const DataProvider = ({ children }) => {
         onSubmit: async (values) => {
             navigate('/users/account');
             setHideButtonLogin(true)
-            console.log(values);
+            // console.log(values);
 
             await axios.post(LOGIN_URL, values)
                 .then(response => {
-                    console.log(response.data);
+                    setResponseLogin(response.data.loginRespons)
                 })
                 .catch(error => {
                     console.log(error);
                 });
+
+            const cleanLoginValue = () => {
+                formikLogin.values.name = "";
+                formikLogin.values.password = "";
+            };
+
+            cleanLoginValue();
         }
     });
 
@@ -132,6 +154,7 @@ const DataProvider = ({ children }) => {
     const onHandlerLogout = () => {
         // console.log('isLogout');
         setHideButtonLogin(false);
+        setHideButtonRegistration(true);
 
         axios.get(LOGOUT_URL)
             .then(response => {
@@ -145,7 +168,9 @@ const DataProvider = ({ children }) => {
     return (
         <DataContext.Provider value={{
             formikRegistration: formikRegistration,
+            errMsgRegistration: errMsgRegistration,
             formikLogin: formikLogin,
+            responseLogin: responseLogin,
             success: success,
             hideButtonRegistration: hideButtonRegistration,
             hideButtonLogin: hideButtonLogin,
