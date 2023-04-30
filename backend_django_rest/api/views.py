@@ -4,6 +4,7 @@ from rest_framework import viewsets, mixins
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
+from rest_framework.exceptions import ValidationError, AuthenticationFailed, NotAuthenticated
 
 import requests
 import json
@@ -43,7 +44,8 @@ def register(request):
 
     user_exists = User.objects.filter(username=name).exists()
     if user_exists:
-        return Response({'message': 'Користувач з такими даними вже існує!'})
+        # return Response({'message': 'Користувач з такими даними вже існує!'})
+        return ValidationError({'message': 'A user with such data already exists!'})
     else:
         user = User.objects.create_user(name, email, password)
         user.save()
@@ -66,14 +68,14 @@ def loginView(request):
                 serializer = LoginSerializer(userRespons)
                 return Response({'loginRespons': serializer.data})
             else:
-                return Response({'message': 'Disabled account'})
+                return AuthenticationFailed({'message': 'Disabled account'})
         else:
-            return Response({'message': 'Invalid login'})
+            return AuthenticationFailed({'message': 'Invalid login'})
         
 @api_view(['GET'])
 def logout_view(request):
 	logout(request)
-	return Response({'message': 'Logout!'})
+	return NotAuthenticated({'message': 'Logout!'})
 
 
 
