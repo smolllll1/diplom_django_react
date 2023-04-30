@@ -6,7 +6,7 @@ import '../../svg/account-pipes.svg';
 
 import './person-account.css'
 
-const PersonAccount = ({ formikLogin }) => {
+const PersonAccount = ({ formikLogin, request }) => {
     return (
         <m.div
             initial={{ opacity: 0 }}

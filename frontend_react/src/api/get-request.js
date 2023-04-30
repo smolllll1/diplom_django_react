@@ -1,12 +1,12 @@
 class GetRequest {
     /** GET REQUEST */
 
-    // https://api.themoviedb.org/3/movie/popular?api_key=<<api_key>>&language=en-US&page=1
-    _linkTmdb = "https://api.themoviedb.org/3/";
-
     /** content page, description movies, button movies */
+    /**"proxy": "http://127.0.0.1:8000" with package.json */
+    _linkTmdb = "https://api.themoviedb.org/3/";
     async getDataMoviesPopular() {
         const data = await fetch(`${this._linkTmdb}movie/popular?api_key=4b9514bc01000261f03dfb9e5e317db3&language=en-US&page=1`);
+        // const data = await fetch(`pop_movies/`);
         if (data.status > 300 || data.status < 199) {
             throw new Error(`Виникла помилка у запиті: ${data.statusText} ${data.status} ${data.ok}`);
         } else {
@@ -15,8 +15,10 @@ class GetRequest {
     }
 
     /** content page, description people, button people */
+    /**"proxy": "http://127.0.0.1:8000" with package.json */
     async getDataPeoplePopular() {
-        const data = await fetch(`${this._linkTmdb}person/popular?api_key=4b9514bc01000261f03dfb9e5e317db3&language=en-US&page=1`);
+        // const data = await fetch(`${this._linkTmdb}person/popular?api_key=4b9514bc01000261f03dfb9e5e317db3&language=en-US&page=1`);
+        const data = await fetch("pop_people/");
         if (data.status > 300 || data.status < 199) {
             throw new Error(`Виникла помилка у запиті: ${data.statusText} ${data.status} ${data.ok}`);
         } else {
@@ -24,31 +26,31 @@ class GetRequest {
         }
     }
 
+    // Image
+    _linkTmdbImage ="https://image.tmdb.org/t/p/original"
 
-    /** backend project: content page, description people, button people */
-    // _linkDjango = "pop_people/"
-    // async getDataPeoplePopular() {
-    //     const data = await fetch(`${this._linkDjango}`);
+    async getTmdbImage() {
+        const data = await fetch(`${this._linkTmdbImage}`);
+        return data.url;
+    }
+
+    // async getDataRegistration() {
+    //     const data = await fetch(`registration/`);
     //     if (data.status > 300 || data.status < 199) {
     //         throw new Error(`Виникла помилка у запиті: ${data.statusText} ${data.status} ${data.ok}`);
     //     } else {
     //         return await data.json();
     //     }
     // }
-    
-    /** backend project: content page, description movies, button movies */
-    // _linkDjango = ""
-    // async getData() {
-    //     const data = await fetch(`${this._linkDjango}`);
+
+    // async getDataLogin() {
+    //     const data = await fetch(`login/`);
     //     if (data.status > 300 || data.status < 199) {
     //         throw new Error(`Виникла помилка у запиті: ${data.statusText} ${data.status} ${data.ok}`);
     //     } else {
     //         return await data.json();
     //     }
     // }
-    // "proxy": "http://127.0.0.1:8000",
-    // loginURL: "http://127.0.0.1:8000/login"
-
 }
 
 export { GetRequest };

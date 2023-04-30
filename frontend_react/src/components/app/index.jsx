@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ErrorBoundary } from '../error-boundary/error-boundary';
 import { AnimatePresence } from 'framer-motion'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -15,6 +15,15 @@ import { DataProvider } from '../data-context/data-context'
 
 const App = () => {
 
+  useEffect(() => {
+    // const data = new GetRequest().getDataRegistration();
+    // console.log(data);
+    // const data1 = new GetRequest().getDataLogin();
+    // console.log(data1);
+    // const data2 = new GetRequest().getTmdbImage();
+    // console.log(data2);
+  }, [])
+
   return (
     <ErrorBoundary>
       <AnimatePresence mode="wait" initial={false}>
@@ -28,10 +37,12 @@ const App = () => {
               <Route exact path="/users/account" element={<UsersAccount />} />
               <Route exact path="/settings" element={<UsersSettings />} />
               <Route exact path="/movies"
-                element={<Content request={new GetRequest().getDataMoviesPopular()} />}>
+                element={<Content 
+                request={new GetRequest().getDataMoviesPopular()} />}>
               </Route>
               <Route exact path="/people"
-                element={<Content request={new GetRequest().getDataPeoplePopular()} />}>
+                element={<Content 
+                request={new GetRequest().getDataPeoplePopular()} />}>
               </Route>
             </Routes>
             <Footer />

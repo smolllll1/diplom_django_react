@@ -1,19 +1,27 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { motion as m } from 'framer-motion';
 import { ourContext } from "../../pages/content";
 
-const ItemListInfo = ({ request }) => {
+const ItemListInfo = () => {
 
+    const [information, setInformation] = useState(null);
+    const [image, setImage] = useState(null);
     const { popularInformation } = useContext(ourContext);
-    console.log(popularInformation.id)
+    console.log(popularInformation.backdrop_path)
 
     useEffect(() => {
-        request.then((data) => {
-            // console.log(data.results)
-        });
+
+        setInformation(popularInformation);
+
+        if(popularInformation !== null) {
+            
+
+        }
+
 
         
-    }, [request]);
+        
+    }, [popularInformation]);
 
     return (
         <m.div
