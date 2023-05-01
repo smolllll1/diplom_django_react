@@ -1,17 +1,22 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from rest_framework import viewsets, mixins
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from rest_framework.views import APIView
 from rest_framework.exceptions import ValidationError, AuthenticationFailed, NotAuthenticated
-
+from backend_django_rest import key
 import requests
 import json
-from .models import Test
-from .serializers import NoteSerializer, RegisterSerializer, LoginSerializer
+from .models import People
+from .serializers import RegisterSerializer, LoginSerializer, PeopleSerializer
 
 # Create your views here.
+
+class TestPagination(PageNumberPagination):
+    page_size = 20
+    page_size_query_param = 'page_size'
+    max_page_size = 100
 
 class TestViewSet(mixins.CreateModelMixin,
                    mixins.RetrieveModelMixin,
@@ -19,22 +24,9 @@ class TestViewSet(mixins.CreateModelMixin,
                   # mixins.DestroyModelMixin,
                    mixins.ListModelMixin,
                    viewsets.GenericViewSet):
-     queryset = Test.objects.all()
-     serializer_class = NoteSerializer
-
-# @api_view(['GET'])
-# def cdgetTest(request):
-#     notes = Test.objects.all()
-#     serializer = NoteSerializer(notes, many=True)
-#     return Response(serializer.data)
-
-# @api_view(['GET'])
-# def getTes(request, pk):
-#     param = requests.GET.get('id')
-
-#     notes = Test.objects.get(id=pk)
-#     serializer = NoteSerializer(notes, many=False)
-#     return Response(serializer.data)
+     queryset = People.objects.all()
+     serializer_class = PeopleSerializer
+     pagination_class = TestPagination
 
 @api_view(['POST'])
 def register(request):
@@ -44,7 +36,6 @@ def register(request):
 
     user_exists = User.objects.filter(username=name).exists()
     if user_exists:
-        # return Response({'message': 'Користувач з такими даними вже існує!'})
         return ValidationError({'message': 'A user with such data already exists!'})
     else:
         user = User.objects.create_user(name, email, password)
@@ -81,13 +72,31 @@ def logout_view(request):
 
 @api_view(['GET'])
 def pop_movies(request, pk=1):
-    apiRequst = requests.get(f'https://api.themoviedb.org/3/movie/popular?api_key=4b9514bc01000261f03dfb9e5e317db3&language=en-US&page={pk}')
-    json_data = json.loads(apiRequst.content)
-
+    apiRequst = requests.get(f'https://api.themoviedb.org/3/movie/popular?api_key={key.api_key}&language=en-US&page={pk}')
+    json_data = json.loads(apiRequst.content) 
     return Response(json_data)
 
-@api_view(['GET'])
-def pop_piple(request, pk=1):
-    apiRequst = requests.get(f'https://api.themoviedb.org/3/person/popular?api_key=4b9514bc01000261f03dfb9e5e317db3&language=en-US&page={pk}')
+@api_view(['PUT'])
+def pop_people(request, pk=1):
+    apiRequst = requests.get(f'https://api.themoviedb.org/3/person/popular?api_key={key.api_key}&language=en-US&page={pk}')
+    json_data = json.loads(apiRequst.content)
+    x = json_data.get('results')
+
+    for i in x:
+        serializer = PeopleSerializer(data=i)
+        known_for = i.get('known_for')
+        c = People.objects.filter(known_for=known_for).exists()
+        if serializer.is_valid() and not c:
+            serializer.save()
+        else:
+             pass
+    return Response(json_data)
+
+
+@api_view(['POST'])
+def search(request):
+    message = request.data.get('message')
+    apiRequst = requests.get(f'https://api.themoviedb.org/3/search/movie?api_key={key.api_key}&query={message}')
     json_data = json.loads(apiRequst.content)
     return Response(json_data)
+    # return Response(json_data.get("results"))
