@@ -5,8 +5,8 @@ from rest_framework import routers
 
 
 router = routers.SimpleRouter()
-router.register(r'test', TestViewSet)
-router.register(r'pop_people', PeopleViewSet)
+router.register(r'test', PeopleViewSet)
+router.register(r'pop_people', TestViewSet)
 
 
 urlpatterns = [
