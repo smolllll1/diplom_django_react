@@ -1,11 +1,11 @@
 from django.urls import path, include
 from . import views
-from .views import PeopleViewSet, TestViewSet
+from .views import PeopleViewSet, TestViewSet, pop_people
 from rest_framework import routers
 
 
 router = routers.SimpleRouter()
-router.register(r'test', TestViewSet)
+router.register(r'test', pop_people)
 router.register(r'pop_people', PeopleViewSet)
 
 
