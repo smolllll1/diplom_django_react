@@ -21,3 +21,14 @@ class Registration(models.Model):
     email = models.CharField(max_length=100, validators=(email_validator, ))
     phone = models.CharField(max_length=16, validators=(phone_validator, ))
     password = models.CharField(max_length=100)
+
+class People(models.Model):
+    id_my = models.IntegerField(primary_key=True)
+    adult = models.BooleanField(default=False)
+    gender = models.IntegerField()
+    id = models.IntegerField(primary_key=False)
+    known_for = models.JSONField()
+    known_for_department = models.CharField(max_length=500)
+    name = models.CharField(max_length=500)
+    popularity = models.FloatField()
+    profile_path = models.CharField(max_length=500)
