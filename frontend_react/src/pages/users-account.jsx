@@ -1,10 +1,10 @@
 import React, { useContext, Fragment } from "react";
 import PersonAccount from "../components/person-account";
-import { DataContext } from '../components/data-context/data-context';
+import { AuthenticationData } from '../components/data/authentication-data';
 
 const UsersAccount = () => {
 
-    const { formikLogin } = useContext(DataContext);
+    const { formikLogin } = useContext(AuthenticationData);
 
     return (
         <Fragment>

@@ -2,14 +2,14 @@ import React, { useContext } from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { motion as m } from "framer-motion";
-import { DataContext } from '../data-context/data-context';
+import { AuthenticationData } from '../data/authentication-data';
 import '../../svg/account-pipes.svg';
 
 import './person-account.css'
 
 const PersonAccount = ({ formikLogin }) => {
 
-    const { responseLogin } = useContext(DataContext)
+    const { responseLogin } = useContext(AuthenticationData)
 
     return (
         <m.div

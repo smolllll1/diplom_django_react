@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { motion as m } from "framer-motion";
-import { DataContext } from "../data-context/data-context";
+import { AuthenticationData } from "../data/authentication-data";
 
 import './form-registration.css';
 
 const FormRegiatration = ({ formikRegistration }) => {
 
-    const { errMsgRegistration } = useContext(DataContext)
-   
+    const { responseRegistration } = useContext(AuthenticationData)
+
     return (
         <m.div
             initial={{ opacity: 0 }}
@@ -193,8 +193,8 @@ const FormRegiatration = ({ formikRegistration }) => {
                             </div>
                         </div>
                         <p className="text-center text-warning">
-                            {errMsgRegistration !== null ?
-                                errMsgRegistration
+                            {responseRegistration !== null ?
+                                responseRegistration
                                 :
                                 null
                             }</p>
