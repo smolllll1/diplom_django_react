@@ -4,20 +4,22 @@ import MenuList from '@mui/material/MenuList';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { motion as m } from "framer-motion";
-import { DataContext } from '../data-context/data-context';
+import { AuthenticationData } from '../data/authentication-data';
 import '../../svg/account-pipes.svg';
 
 import './person-settings.css'
 
 const PersonSettings = ({ formikLogin }) => {
 
-    const { responseLogin } = useContext(DataContext)
+    const { responseLogin } = useContext(AuthenticationData)
 
     return (
         <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}>
+            exit={{ opacity: 0 }}
+            style={{ backgroundColor: "white" }}
+            >
             <div className='d-flex row m-0'>
                 <div className='d-flex col top-person-settings align-items-center'>
                     <div className='d-flex m-3 justify-content-center 

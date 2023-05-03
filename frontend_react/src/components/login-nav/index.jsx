@@ -6,7 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountMenu from "./avatar/index";
-import { DataContext } from "../data-context/data-context";
+import { AuthenticationData } from "../data/authentication-data";
 
 import './login-nav.css'
 
@@ -19,7 +19,7 @@ const LoginNav = () => {
         hideButtonLogin,
         onHandlerLogout,
         responseLogin,
-    } = useContext(DataContext);
+    } = useContext(AuthenticationData);
 
     return (
         <Stack direction="row" spacing={2}>

@@ -3,7 +3,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import { GetRequest } from '../../api/get-request';
 import CircularStatic from "../progress";
 
-import './slider.css'
+// import './slider.css'
 
 function SliderIntervals() {
 
@@ -19,11 +19,11 @@ function SliderIntervals() {
     }, []);
 
     return (
-        <div className='slider-wrapper'>
+        <div className='slider-wrapper d-flex w-100 justify-content-end'>
             {movieseSlide === null ?
                 <CircularStatic />
                 :
-                (<Carousel>
+                (<Carousel className='w-50'>
                     <Carousel.Item interval={5000}>
                         <img
                             className="d-block w-100"

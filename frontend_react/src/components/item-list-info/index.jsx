@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { motion as m } from 'framer-motion';
-import { ourContext } from "../../pages/content";
 import CircularStatic from "../progress";
+import { ContentData } from "../data/content-data";
 
 const ItemListInfo = () => {
 
+    const { popularInformation } = useContext(ContentData)
     const [information, setInformation] = useState(null);
-    const { popularInformation } = useContext(ourContext);
 
     useEffect(() => {
         setInformation(popularInformation);
@@ -31,13 +31,13 @@ const ItemListInfo = () => {
                                     <img
                                         src={`https://image.tmdb.org/t/p/original${information.profile_path}`}
                                         className="rounded"
-                                        style={{width:"80%", height: "80vh", objectFit: "cover" }}
+                                        style={{ width: "80%", height: "80vh", objectFit: "cover" }}
                                         alt={information.name} />
                                     : information.backdrop_path ?
                                         <img
                                             src={`https://image.tmdb.org/t/p/original${information.backdrop_path}`}
                                             className="rounded"
-                                            style={{width:"80%", height: "80vh", objectFit: "cover" }}
+                                            style={{ width: "80%", height: "80vh", objectFit: "cover" }}
                                             alt={information.title} />
                                         :
                                         null

@@ -5,12 +5,11 @@ import { useNavigate } from "react-router-dom";
 import axios from "../../api/axios";
 
 // Data with Form-Registration and Form-Login inputs
-const DataContext = createContext({});
+const AuthenticationData = createContext({});
 
 // Regular Expressions
 const phoneRegExp = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
-// const nameRegExp = /^[a-zA-Zа-яА-ЯЇїІі'][a-zA-Zа-яА-ЯЇїІі' ]+[a-zA-Zа-яА-ЯЇїІі']?$/;
-const nameRegExp = /^[a-zA-Za-яА-ЯЇїІі0-9](_(?!(\.|_))|\.(?!(_|\.))|[a-zA-Za-яА-ЯЇїІі0-9]){1,18}[a-zA-Za-яА-ЯЇїІі0-9]?$/;
+const nameRegExp = /^[a-zA-Za-яА-ЯЇїІі0-9](_(?!(\.|_))|\.(?!(_|\.))|[a-zA-Za-яА-ЯЇїІі0-9]){1,20}[a-zA-Za-яА-ЯЇїІі0-9]?$/;
 const emailRegExp = /^(([^<>()[\]\\.,;:\\"]+(\.[^<>()[\]\\.,;:\\"]+)*)|(\\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 // POST URL REGISTRATION
@@ -20,7 +19,7 @@ const LOGIN_URL = 'login/';
 // GET URL LOGOUT
 const LOGOUT_URL = 'logout/';
 
-const DataProvider = ({ children }) => {
+const AuthenticationDataProvider = ({ children }) => {
 
     // Show confetti after registration. use state - component: form-registration pege: registration
     const [success, setSuccess] = useState(false);
@@ -30,6 +29,9 @@ const DataProvider = ({ children }) => {
     const [hideButtonLogin, setHideButtonLogin] = useState(false);
     // Response Login backend onSubmit
     const [responseLogin, setResponseLogin] = useState(null);
+
+    // Response Registration backend onSubmit
+    const [responseRegistration, setResponseRegistration] = useState(null);
     // Error Registration
     const [errMsgRegistration, setErrMsgRegistration] = useState('')
 
@@ -77,23 +79,25 @@ const DataProvider = ({ children }) => {
             await axios.post(REGISTRATION_URL, values)
                 .then(response => {
                     // console.log(response.data);
-                    setErrMsgRegistration(response.data.message)
+                    setResponseRegistration(response.data.message)
                 })
                 .catch(error => {
-                    console.log(error);
+                    setErrMsgRegistration(error);
                 });
 
             if (values.terms.length !== 0) {
-                // if (errMsgRegistration) {
-                    setSuccess(true);
-                    setErrMsgRegistration()
-                    setTimeout(() => {
-                        setSuccess(false)
-                        navigate('/login');
-                        setHideButtonRegistration(true);
-                        cleanRegistrationValue();
-                    }, 5000)
+                // -------------------------------NEW PAGE UNAUTHORIZED--------------------------------------------------------
+                // if (responseRegistration) {
                 // }
+                setSuccess(true);
+                setErrMsgRegistration()
+                setTimeout(() => {
+                    setSuccess(false)
+                    navigate('/login');
+                    setHideButtonRegistration(true);
+                    cleanRegistrationValue();
+                }, 5000)
+
             }
 
             const cleanRegistrationValue = () => {
@@ -138,7 +142,7 @@ const DataProvider = ({ children }) => {
                     setResponseLogin(response.data.loginRespons)
                 })
                 .catch(error => {
-                    console.log(error);
+                    console.log(error)
                 });
 
             const cleanLoginValue = () => {
@@ -166,8 +170,9 @@ const DataProvider = ({ children }) => {
     }
 
     return (
-        <DataContext.Provider value={{
+        <AuthenticationData.Provider value={{
             formikRegistration: formikRegistration,
+            responseRegistration: responseRegistration,
             errMsgRegistration: errMsgRegistration,
             formikLogin: formikLogin,
             responseLogin: responseLogin,
@@ -177,8 +182,8 @@ const DataProvider = ({ children }) => {
             onHandlerLogout: onHandlerLogout,
         }}>
             {children}
-        </DataContext.Provider>
+        </AuthenticationData.Provider>
     )
 }
 
-export { DataProvider, DataContext }
+export { AuthenticationDataProvider, AuthenticationData }
