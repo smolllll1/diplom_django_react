@@ -1,12 +1,12 @@
 from django.urls import path, include
 from . import views
-from .views import TestViewSet
+from .views import PeopleViewSet, TestViewSet
 from rest_framework import routers
 
 
 router = routers.SimpleRouter()
-# router.register(r'test', TestViewSet)
-router.register(r'pop_people', TestViewSet)
+router.register(r'test', TestViewSet)
+router.register(r'pop_people', PeopleViewSet)
 
 
 urlpatterns = [

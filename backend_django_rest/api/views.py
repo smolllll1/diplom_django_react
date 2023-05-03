@@ -8,17 +8,22 @@ from rest_framework.exceptions import ValidationError, AuthenticationFailed, Not
 from backend_django_rest import key
 import requests
 import json
-from .models import People
-from .serializers import RegisterSerializer, LoginSerializer, PeopleSerializer
+from .models import People, Test
+from .serializers import RegisterSerializer, LoginSerializer, PeopleSerializer, NoteSerializer
 
 # Create your views here.
 
-class TestPagination(PageNumberPagination):
+class DataPagination(PageNumberPagination):
     page_size = 20
     page_size_query_param = 'page_size'
     max_page_size = 100
 
-class TestViewSet(mixins.CreateModelMixin,
+class TestViewSet(viewsets.ModelViewSet):
+     queryset = Test.objects.all()
+     serializer_class = NoteSerializer
+     pagination_class = DataPagination    
+
+class PeopleViewSet(mixins.CreateModelMixin,
                    mixins.RetrieveModelMixin,
                    mixins.UpdateModelMixin,
                   # mixins.DestroyModelMixin,
@@ -26,7 +31,7 @@ class TestViewSet(mixins.CreateModelMixin,
                    viewsets.GenericViewSet):
      queryset = People.objects.all()
      serializer_class = PeopleSerializer
-     pagination_class = TestPagination
+     pagination_class = DataPagination
 
 @api_view(['POST'])
 def register(request):
@@ -80,17 +85,20 @@ def pop_movies(request, pk=1):
 def pop_people(request, pk=1):
     apiRequst = requests.get(f'https://api.themoviedb.org/3/person/popular?api_key={key.api_key}&language=en-US&page={pk}')
     json_data = json.loads(apiRequst.content)
-    x = json_data.get('results')
+    results_data = json_data.get('results')
 
-    for i in x:
-        serializer = PeopleSerializer(data=i)
-        known_for = i.get('known_for')
-        c = People.objects.filter(known_for=known_for).exists()
-        if serializer.is_valid() and not c:
+    for item_data in results_data:
+        serializer = PeopleSerializer(data=item_data)
+        known_for = item_data.get('known_for')
+        people_data = People.objects.filter(known_for=known_for).exists()
+        if serializer.is_valid() and not people_data:
             serializer.save()
         else:
              pass
     return Response(json_data)
+
+# @api_view(['POST'])
+# def search_tast(request):
 
 
 @api_view(['POST'])
