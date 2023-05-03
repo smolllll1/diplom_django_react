@@ -37,8 +37,10 @@ const Header = () => {
                         <Button type="button" className="people">People</Button>
                     </Link>
                     <Button
-                    onClick={(() => { onHandlerMore()})}
-                    >More</Button>
+                        onClick={(() => { onHandlerMore() })}
+                    >
+                        UpdataBackend
+                    </Button>
                 </Stack>
                 <SearchNav />
                 <LoginNav />
