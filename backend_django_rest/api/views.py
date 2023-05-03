@@ -81,7 +81,7 @@ def pop_movies(request, pk=1):
     json_data = json.loads(apiRequst.content) 
     return Response(json_data)
 
-@api_view(['PUT'])
+@api_view(['GET'])
 def pop_people(request, pk=1):
     apiRequst = requests.get(f'https://api.themoviedb.org/3/person/popular?api_key={key.api_key}&language=en-US&page={pk}')
     json_data = json.loads(apiRequst.content)
