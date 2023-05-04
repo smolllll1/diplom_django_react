@@ -25,7 +25,6 @@ const ButtonFilterMovies = ({
     return (
         <Stack spacing={2}
             backgroundColor="floralwhite"
-            marginTop="24px"
             justifyContent="center"
             direction="row"
             flexWrap="wrap"

@@ -41,12 +41,15 @@ const PopularPeople = () => {
             className="d-flex flex-column"
             style={{ backgroundColor: "floralwhite" }}
         >
-            <ButtonFilterPeople
-                propertyPeoplePopular={propertyPeoplePopular}
-                setFilteredPeople={setFilteredPeople}
-                genderPeople={genderPeople}
-                setGenderPeople={setGenderPeople}
-            />
+            <div className="d-flex col justify-content-around mt-3">
+                <h3 className="m-0 align-self-center">Popular People</h3>
+                <ButtonFilterPeople
+                    propertyPeoplePopular={propertyPeoplePopular}
+                    setFilteredPeople={setFilteredPeople}
+                    genderPeople={genderPeople}
+                    setGenderPeople={setGenderPeople}
+                />
+            </div>
             <div className="d-flex gap-2 py-4 justify-content-center"
                 style={{ flexWrap: "wrap" }}
             >
