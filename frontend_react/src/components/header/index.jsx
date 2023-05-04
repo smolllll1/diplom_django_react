@@ -14,7 +14,6 @@ const Header = () => {
         console.log('isMore')
     }
 
-
     return (
         <nav className="navbar navbar-expand-lg navbar-dark">
             <div className="container-fluid">

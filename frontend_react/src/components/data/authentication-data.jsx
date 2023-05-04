@@ -15,9 +15,9 @@ const emailRegExp = /^(([^<>()[\]\\.,;:\\"]+(\.[^<>()[\]\\.,;:\\"]+)*)|(\\"))@((
 // POST URL REGISTRATION
 const REGISTRATION_URL = 'registration/';
 // POST URL LOGIN
-const LOGIN_URL = 'login/';
+const LOGIN_URL = 'cooky_login/login/';
 // GET URL LOGOUT
-const LOGOUT_URL = 'logout/';
+const LOGOUT_URL = 'cooky_login/logout/';
 
 const AuthenticationDataProvider = ({ children }) => {
 
