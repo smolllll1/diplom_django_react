@@ -17,6 +17,7 @@ urlpatterns = [
     path('add_people/', views.pop_people, name='people'),
     path('add_people/<str:pk>', views.pop_people, name='people_pk'),
     path('registration/', views.register, name='registration'),
+    path('cooky_login/', include('rest_framework.urls')),
     path('login/', views.loginView, name='login'),
     path('logout/', views.logout_view, name='logout'), 
     path('search/', views.search, name='search'),   
