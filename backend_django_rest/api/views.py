@@ -8,15 +8,22 @@ from rest_framework.exceptions import ValidationError, AuthenticationFailed, Not
 from backend_django_rest import key
 import requests
 import json
-from .models import People, Test
-from .serializers import RegisterSerializer, LoginSerializer, PeopleSerializer, NoteSerializer
+# import re
+from django.db.models import Q
+from .models import People, Test, Movies
+from .serializers import RegisterSerializer, LoginSerializer, PeopleSerializer, NoteSerializer, MovieSerializer
 
 # Create your views here.
 
 class DataPagination(PageNumberPagination):
-    page_size = 20
+    page_size = 10
     page_size_query_param = 'page_size'
     max_page_size = 100
+
+    def get_paginated_response(self, data):
+        response = super().get_paginated_response(data)
+        response.data['total_pages'] = self.page.paginator.num_pages
+        return response
 
 class TestViewSet(viewsets.ModelViewSet):
      queryset = Test.objects.all()
@@ -31,6 +38,16 @@ class PeopleViewSet(mixins.CreateModelMixin,
                    viewsets.GenericViewSet):
      queryset = People.objects.all()
      serializer_class = PeopleSerializer
+     pagination_class = DataPagination
+
+class MoviesViewSet(mixins.CreateModelMixin,
+                   mixins.RetrieveModelMixin,
+                   mixins.UpdateModelMixin,
+                  # mixins.DestroyModelMixin,
+                   mixins.ListModelMixin,
+                   viewsets.GenericViewSet):
+     queryset = Movies.objects.all()
+     serializer_class = MovieSerializer
      pagination_class = DataPagination
 
 @api_view(['POST'])
@@ -74,11 +91,20 @@ def logout_view(request):
 	return NotAuthenticated({'message': 'Logout!'})
 
 
-
 @api_view(['GET'])
 def pop_movies(request, pk=1):
     apiRequst = requests.get(f'https://api.themoviedb.org/3/movie/popular?api_key={key.api_key}&language=en-US&page={pk}')
-    json_data = json.loads(apiRequst.content) 
+    json_data = json.loads(apiRequst.content)
+    results_data = json_data.get('results')
+
+    for item_data in results_data:
+        serializer = MovieSerializer(data=item_data)
+        known_for = item_data.get('title')
+        movies_data = Movies.objects.filter(title=known_for).exists()
+        if serializer.is_valid() and not movies_data:
+            serializer.save()
+        else:
+             pass
     return Response(json_data)
 
 @api_view(['GET'])
@@ -97,8 +123,18 @@ def pop_people(request, pk=1):
              pass
     return Response(json_data)
 
-# @api_view(['POST'])
-# def search_tast(request):
+@api_view(['GET'])
+def search_tast(x):
+    message = x.data.get('message')
+    q_obj = Q(title=message)
+    print(q_obj)
+    results = Movies.objects.filter(q_obj)
+    # all_objects = Movies.objects.all()
+    # pattern = r'^\w*?\d*?\s*?\S*?'
+    # match = re.search(pattern, message)
+    
+
+    return Response(results)
 
 
 @api_view(['POST'])

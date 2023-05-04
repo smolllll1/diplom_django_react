@@ -31,4 +31,22 @@ class People(models.Model):
     known_for_department = models.CharField(max_length=500)
     name = models.CharField(max_length=500)
     popularity = models.FloatField()
-    profile_path = models.CharField(max_length=500)
+    profile_path = models.CharField(max_length=500) 
+
+class Movies(models.Model):
+    id_my = models.IntegerField(primary_key=True)
+    adult = models.BooleanField(default=False)
+    backdrop_path = models.CharField(max_length=500)
+    genre_ids = models.JSONField()
+    id = models.IntegerField(primary_key=False)
+    original_language = models.CharField(max_length=500)
+    original_title = models.CharField(max_length=500)
+    overview = models.CharField(max_length=500)
+    popularity = models.FloatField()
+    poster_path = models.CharField(max_length=500)
+    release_date = models.CharField(max_length=500)
+    title = models.CharField(max_length=500)
+    video = models.BooleanField(default=False)
+    vote_average = models.FloatField()
+    vote_count = models.IntegerField()
+    
