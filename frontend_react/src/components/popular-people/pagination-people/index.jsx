@@ -18,7 +18,7 @@ const PaginationPeople = ({
         <Stack spacing={2}>
             <Pagination
                 className='d-flex justify-content-center mb-4'
-                count={5}
+                count={cardsPeople.total_pages}
                 page={pagePeople}
                 onChange={(event, newPage) => {
                     setPagePeople(newPage)
