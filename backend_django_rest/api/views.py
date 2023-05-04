@@ -126,15 +126,17 @@ def pop_people(request, pk=1):
 @api_view(['GET'])
 def search_tast(x):
     message = x.data.get('message')
-    q_obj = Q(title=message)
-    print(q_obj)
-    results = Movies.objects.filter(q_obj)
+    all_objects = Movies.objects.all()
+    pattern = r'^\w*?\d*?\s*?\S*?'
+    for i in all_objects:
+    # q_obj = Q(title=message)
+    # results = Movies.objects.filter(q_obj)
     # all_objects = Movies.objects.all()
     # pattern = r'^\w*?\d*?\s*?\S*?'
     # match = re.search(pattern, message)
     
 
-    return Response(results)
+        return Response(q_obj)
 
 
 @api_view(['POST'])
