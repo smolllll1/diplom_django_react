@@ -2,7 +2,7 @@ import React, { useState, createContext } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-import axios from "../../api/axios";
+import {axiosAuthentication} from "../../api/axios";
 
 // Data with Form-Registration and Form-Login inputs
 const AuthenticationData = createContext({});
@@ -76,7 +76,7 @@ const AuthenticationDataProvider = ({ children }) => {
         // Submit form registration
         onSubmit: async (values) => {
 
-            await axios.post(REGISTRATION_URL, values)
+            await axiosAuthentication.post(REGISTRATION_URL, values)
                 .then(response => {
                     // console.log(response.data);
                     setResponseRegistration(response.data.message)
@@ -137,7 +137,7 @@ const AuthenticationDataProvider = ({ children }) => {
             setHideButtonLogin(true)
             // console.log(values);
 
-            await axios.post(LOGIN_URL, values)
+            await axiosAuthentication.post(LOGIN_URL, values)
                 .then(response => {
                     setResponseLogin(response.data.loginRespons)
                 })
@@ -160,7 +160,7 @@ const AuthenticationDataProvider = ({ children }) => {
         setHideButtonLogin(false);
         setHideButtonRegistration(true);
 
-        axios.get(LOGOUT_URL)
+        axiosAuthentication.get(LOGOUT_URL)
             .then(response => {
                 console.log(response.data);
             })

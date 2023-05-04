@@ -4,22 +4,14 @@ import SearchNav from "../search-nav";
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import LoginNav from "../login-nav";
-import axios from "../../api/axios";
 import logo from '../../svg/logo.svg';
 import './header.css'
 
 const Header = () => {
 
+    //button More
     const onHandlerMore = () => {
-
         console.log('isMore')
-        axios.get("http://127.0.0.1:8000/test/")
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
     }
 
 
@@ -39,7 +31,7 @@ const Header = () => {
                     <Button
                         onClick={(() => { onHandlerMore() })}
                     >
-                        UpdataBackend
+                        More
                     </Button>
                 </Stack>
                 <SearchNav />

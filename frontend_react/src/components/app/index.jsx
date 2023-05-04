@@ -34,7 +34,7 @@ const App = () => {
                 <Route exact path="users/account" element={<UsersAccount />} />
                 <Route exact path="settings" element={<UsersSettings />} />
                 {/* content pages */}
-                <Route exact path="movies" element={<PopularMovies />}/>
+                <Route exact path="movies" element={<PopularMovies />} />
                 <Route exact path="people" element={<PopularPeople />} />
                 <Route exact path="information" element={<ItemListInfo />} />
                 {/* catch all missing */}

@@ -1,27 +1,37 @@
-import React, { useState, useEffect, useContext } from "react";
-import Card from 'react-bootstrap/Card';
+import React, { useState, useEffect } from "react";
 import CircularStatic from "../progress";
 import { motion as m } from 'framer-motion';
-import { ContentData } from "../data/content-data";
 import ButtonFilterPeople from "./button-filter-people";
-import { GetRequest } from "../../api/get-request";
+import { getPeoplePage } from '../../api/axios';
+import PeopleCards from "./people-cards";
+import PaginationPeople from "./pagination-people";
+import { useQuery } from "react-query";
 
 const PopularPeople = () => {
 
-    const { onCardsInfo } = useContext(ContentData);
     const [propertyPeoplePopular, setPropertyPeoplePopular] = useState([]);
     const [filteredPeople, setFilteredPeople] = useState([]);
     // 0 - all people 
     const [genderPeople, setGenderPeople] = useState(0);
+    // pagination people
+    const [pagePeople, setPagePeople] = useState(1);
 
     useEffect(() => {
-        new GetRequest().getDataPeoplePopular().then((data) => {
-            setPropertyPeoplePopular(data.results);
+        getPeoplePage(pagePeople).then((data) => {
+            setPropertyPeoplePopular(data.results)
         });
-        new GetRequest().getDataPeoplePopular().then((data) => {
-            setFilteredPeople(data.results);
-        })
-    }, []);
+    }, [pagePeople]);
+
+    const {
+        isLoading,
+        isError,
+        error,
+        data: cardsPeople,
+        isFetching,
+        isPreviousData,
+    } = useQuery(["pop_people/", pagePeople], () => getPeoplePage(pagePeople), {
+        keepPreviousData: true
+    });
 
     return (
         <m.div
@@ -44,20 +54,18 @@ const PopularPeople = () => {
                     <CircularStatic />
                     :
                     filteredPeople.map((item) => {
-                        return <Card key={item.id}
-                            style={{ width: '14rem', cursor:"pointer" }}
-                            onClick={() => onCardsInfo(item)}>
-                            <Card.Img variant="top"
-                                src={`https://image.tmdb.org/t/p/original${item.profile_path}`}
-                                alt="Card image" />
-                            <Card.Body>
-                                <Card.Title>{item.name}</Card.Title>
-                                <Card.Text>{item.release_date}</Card.Text>
-                            </Card.Body>
-                        </Card>
+                        return <PeopleCards key={item.id} item={item} />
                     })
                 }
             </div>
+            <PaginationPeople
+                pagePeople={pagePeople}
+                setPagePeople={setPagePeople}
+                cardsPeople={cardsPeople}
+                isLoading={isLoading}
+                isError={isError}
+                error={error}
+            />
         </m.div >
     )
 }
