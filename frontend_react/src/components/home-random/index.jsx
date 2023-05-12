@@ -21,7 +21,7 @@ const HomeRandom = () => {
     }, [randomImageMovies]);
     return (
         <Fragment>
-            <div className='d-flex w-100'>
+            <div className='d-flex w-100 justify-content-center'>
                 {showImageMovies ?
                     <div className='w-100 d-flex position-revative'>
                         <img src={`https://www.themoviedb.org/t/p/w1920_and_h600_multi_faces_filter(duotone,00192f,00baff)${showImageMovies}`}
