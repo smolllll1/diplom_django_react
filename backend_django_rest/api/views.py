@@ -34,8 +34,8 @@ class TestViewSet(viewsets.ModelViewSet):
     serializer_class = NoteSerializer
     pagination_class = DataPagination    
 
-@permission_classes([IsAuthenticated])
-@authentication_classes([BasicAuthentication])
+# @permission_classes([IsAuthenticated])
+# @authentication_classes([BasicAuthentication])
 class PeopleViewSet(generics.ListAPIView, mixins.CreateModelMixin,
                 mixins.RetrieveModelMixin,
                 mixins.UpdateModelMixin,
