@@ -3,7 +3,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
 const ButtonFilterPeople = ({
-    propertyPeoplePopular,
+    dataPeople,
     setFilteredPeople,
     genderPeople,
     setGenderPeople
@@ -11,52 +11,49 @@ const ButtonFilterPeople = ({
 
     useEffect(() => {
         if (genderPeople === 0) {
-            setFilteredPeople(propertyPeoplePopular);
+            setFilteredPeople(dataPeople?.results);
             return;
         };
-
-        const filtered = propertyPeoplePopular.filter((people, i) => { 
+        const filtered = dataPeople?.results.filter((people) => { 
             return people.gender === genderPeople
         });
-
         setFilteredPeople(filtered)
 
-    }, [genderPeople, setFilteredPeople, propertyPeoplePopular]);
+    }, [genderPeople, setFilteredPeople, dataPeople]);
 
     return (
         <Stack spacing={2}
-            backgroundColor="floralwhite"
             justifyContent="center"
             direction="row"
             flexWrap="wrap"
         >
             <Button onClick={() => setGenderPeople(0)}
                 style={{
+                    backgroundColor:'rgb(13, 37, 63)',
                     fontWeight: "bold",
-                    color: 'rgb(13, 37, 63)',
+                    color: '#ffffff',
                     textTransform: "capitalize",
-                    border: "1px solid rgb(13, 37, 63)",
                     margin: "2px"
                 }}
                 variant="text">All</Button>
-            <Button onClick={() => setGenderPeople(1)}
-                style={{
-                    fontWeight: "bold",
-                    color: 'darkturquoise',
-                    textTransform: "capitalize",
-                    border: "1px solid darkturquoise",
-                    margin: "2px"
-                }}
-                variant="text">Women</Button>
             <Button onClick={() => setGenderPeople(2)}
                 style={{
+                    backgroundColor:'rgb(13, 37, 63)',
                     fontWeight: "bold",
-                    color: 'darkturquoise',
+                    color: '#ffffff',
                     textTransform: "capitalize",
-                    border: "1px solid darkturquoise",
                     margin: "2px"
                 }}
                 variant="text">Men</Button>
+            <Button onClick={() => setGenderPeople(1)}
+                style={{
+                    backgroundColor:'rgb(13, 37, 63)',
+                    fontWeight: "bold",
+                    color: '#ffffff',
+                    textTransform: "capitalize",
+                    margin: "2px"
+                }}
+                variant="text">Women</Button>
         </Stack >
     );
 }

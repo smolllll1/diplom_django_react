@@ -13,8 +13,8 @@ const Footer = () => {
     } = useContext(AuthenticationData);
 
     return (
-        <footer className="h-50">
-            <nav className="d-flex justify-content-around w-100 text-white">
+        <footer className="w-100">
+            <nav className="d-flex justify-content-around w-100 text-white flex-wrap py-4">
                 <div>
                     <img src={logo} alt="logo" width={100} />
                     {hideButtonLogin === true ?
@@ -23,7 +23,7 @@ const Footer = () => {
                         >
                             <div
                                 style={{ color: 'rgb(1, 180, 228)' }}
-                                className="w-100 h-25 bg-white rounded justify-content-center mt-4 d-flex align-items-center fw-bold">
+                                className="w-100 bg-white rounded justify-content-center mt-4 d-flex align-items-center fw-bold">
                                 Hi
                                 <p className="ms-1 my-0 p-0">
                                 {responseLogin !== null ?
@@ -41,7 +41,7 @@ const Footer = () => {
                 </div>
                 <div>
                     <h3>The Basics</h3>
-                    <ul className="p-0">
+                    <ul className="p-0 list-unstyled">
                         <li>About Us</li>
                         <li>Contact Us</li>
                         <li>Support</li>
@@ -51,7 +51,7 @@ const Footer = () => {
                 </div>
                 <div>
                     <h3>Get Involved</h3>
-                    <ul className="p-0">
+                    <ul className="p-0 list-unstyled">
                         <li>Link</li>
                         <li>Link</li>
                         <li>Link</li>
@@ -59,7 +59,7 @@ const Footer = () => {
                 </div>
                 <div>
                     <h3>Community</h3>
-                    <ul className="p-0">
+                    <ul className="p-0 list-unstyled">
                         <li>Guidelines</li>
                         <li>Discussions</li>
                         <li>Leaderboard</li>
@@ -68,7 +68,7 @@ const Footer = () => {
                 </div>
                 <div>
                     <h3>Legal</h3>
-                    <ul className="p-0">
+                    <ul className="p-0 list-unstyled">
                         <li>Terms of Use</li>
                         <li>API Terms of Use</li>
                         <li>Privacy Policy</li>

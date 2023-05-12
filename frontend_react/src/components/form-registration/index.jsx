@@ -98,7 +98,7 @@ const FormRegiatration = ({ formikRegistration }) => {
                                 htmlFor="country">
                                 Country
                             </label>
-                            <select className="input-style-registration"
+                            <select className="input-style-registration w-25"
                                 name="country"
                                 value={formikRegistration.values.country}
                                 onChange={formikRegistration.handleChange}
@@ -202,13 +202,6 @@ const FormRegiatration = ({ formikRegistration }) => {
                             Start watching today!
                         </button>
                     </div>
-                </div>
-                <div className="d-flex registration-image">
-                    <img
-                        className="w-100 movie-image"
-                        src="https://image.tmdb.org/t/p/original/c3hl9E8E7b9opXDFVF5tSyk0ykr.jpg"
-                        alt="form-movie"
-                    />
                 </div>
             </form>
         </m.div>

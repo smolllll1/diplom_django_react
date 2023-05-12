@@ -12,20 +12,6 @@ footer {
     justify-content: center;
 }
 
-footer nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding-top: 80px;
-    padding-bottom: 80px;
-}
-
 footer nav div {
-    margin-right: 40px;
-    min-width: 0;
-    box-sizing: border-box;
-}
-
-ul {
-    list-style: none;
+    margin-right: 20px;
 }
