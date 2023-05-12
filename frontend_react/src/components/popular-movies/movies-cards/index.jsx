@@ -1,21 +1,27 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Card from 'react-bootstrap/Card';
 import { motion as m } from 'framer-motion';
-import { ContentData } from "../../data/content-data";
+import { Link } from 'react-router-dom';
 
 const MoviesCards = ({ item }) => {
-
-    const { onCardsInfo } = useContext(ContentData);
 
     return (
         <m.div layout>
             <Card
-                style={{ width: '14rem', cursor:"pointer" }}
-                onClick={() => onCardsInfo(item)}>
-                <Card.Img variant="top"
-                    style={{ height: "16rem", objectFit: "cover" }}
-                    src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
-                    alt="Card image" />
+                style={{
+                    width: '16rem',
+                    boxShadow: "4px 5px 5px -4px rgba(13, 37, 63)",
+                }}>
+                <Link
+                    id={item.id}
+                    to={`/pop_movies/${item.id}`}
+                    title={item.title}
+                    alt={item.title}>
+                    <Card.Img variant="top"
+                        style={{ height: "10rem", objectFit: "cover", cursor: "pointer" }}
+                        src={`http://image.tmdb.org/t/p/w500${item.backdrop_path}`}
+                        alt={item.title} />
+                </Link>
                 <Card.Body
                     style={{ height: "7rem" }}
                 >

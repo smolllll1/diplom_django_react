@@ -1,25 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-import { GetRequest } from '../../api/get-request';
+import { getMoviesPage } from '../../api/axios';
 import CircularStatic from "../progress";
-
-// import './slider.css'
 
 function SliderIntervals() {
 
     const [movieseSlide, setMovieseSlide] = useState(null);
 
     useEffect(() => {
-
-        new GetRequest().getDataMoviesPopular()
-            .then((data) => {
+        getMoviesPage().then((data) => {
                 setMovieseSlide(data.results);
             })
-
     }, []);
 
     return (
-        <div className='slider-wrapper d-flex w-100 justify-content-end'>
+        <div className='d-flex w-100 justify-content-end'>
             {movieseSlide === null ?
                 <CircularStatic />
                 :

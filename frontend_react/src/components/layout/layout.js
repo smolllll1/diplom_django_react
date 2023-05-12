@@ -10,7 +10,12 @@ const Layout = () => {
     return (
         <Fragment>
             <Header />
-            <main className="App">
+            <main className="flex-grow-1 w-100"
+                style={{
+                    minHeight: "90vh",
+                    backgroundColor: "rgba(13, 37, 63, 0.9)",
+                }}
+            >
                 <Outlet />
             </main>
             <Footer />

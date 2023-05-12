@@ -6,6 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountMenu from "./avatar/index";
+import SearchIcon from '@mui/icons-material/Search';
 import { AuthenticationData } from "../data/authentication-data";
 
 import './login-nav.css'
@@ -60,6 +61,14 @@ const LoginNav = () => {
                 :
                 <div className="me-5 px-2"></div>
             }
+            <Link to={"search"}>
+                <IconButton size="large"
+                    aria-label="search"
+                    style={{ color: "white" }}
+                >
+                    <SearchIcon />
+                </IconButton>
+            </Link>
         </Stack>
     )
 }

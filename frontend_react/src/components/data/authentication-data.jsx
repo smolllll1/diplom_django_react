@@ -2,7 +2,7 @@ import React, { useState, createContext } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-import {axiosAuthentication} from "../../api/axios";
+import { axiosBaseUrl } from "../../api/axios";
 
 // Data with Form-Registration and Form-Login inputs
 const AuthenticationData = createContext({});
@@ -27,13 +27,19 @@ const AuthenticationDataProvider = ({ children }) => {
     const [hideButtonRegistration, setHideButtonRegistration] = useState(false);
     // Hide button login but show avatar and bell after login. use state - component: login-nav
     const [hideButtonLogin, setHideButtonLogin] = useState(false);
-    // Response Login backend onSubmit
-    const [responseLogin, setResponseLogin] = useState(null);
 
     // Response Registration backend onSubmit
     const [responseRegistration, setResponseRegistration] = useState(null);
     // Error Registration
-    const [errMsgRegistration, setErrMsgRegistration] = useState('')
+    const [errMsgRegistration, setErrMsgRegistration] = useState('');
+    // Response Login backend onSubmit
+    const [responseLogin, setResponseLogin] = useState(null);
+    // Error Registration
+    const [errMsgLogin, setErrMsgLogin] = useState('');
+    // Response Logout backend onSubmit
+    const [responseLogout, setResponseLogout] = useState(null);
+    // Error Logout
+    const [errMsgLogout, setErrMsgLogout] = useState('')
 
     const navigate = useNavigate();
 
@@ -76,7 +82,7 @@ const AuthenticationDataProvider = ({ children }) => {
         // Submit form registration
         onSubmit: async (values) => {
 
-            await axiosAuthentication.post(REGISTRATION_URL, values)
+            await axiosBaseUrl.post(REGISTRATION_URL, values)
                 .then(response => {
                     // console.log(response.data);
                     setResponseRegistration(response.data.message)
@@ -137,12 +143,14 @@ const AuthenticationDataProvider = ({ children }) => {
             setHideButtonLogin(true)
             // console.log(values);
 
-            await axiosAuthentication.post(LOGIN_URL, values)
+            await axiosBaseUrl.post(LOGIN_URL, values)
                 .then(response => {
                     setResponseLogin(response.data.loginRespons)
+                    console.log(response.data.loginRespons)
                 })
                 .catch(error => {
-                    console.log(error)
+                    setErrMsgLogin(error.message)
+                    console.log(error.massege)
                 });
 
             const cleanLoginValue = () => {
@@ -160,26 +168,32 @@ const AuthenticationDataProvider = ({ children }) => {
         setHideButtonLogin(false);
         setHideButtonRegistration(true);
 
-        axiosAuthentication.get(LOGOUT_URL)
+        axiosBaseUrl.get(LOGOUT_URL)
             .then(response => {
-                console.log(response.data);
+                setResponseLogout(response.data)
             })
             .catch(error => {
-                console.log(error);
+                setErrMsgLogout(error.message);
             });
     }
 
     return (
         <AuthenticationData.Provider value={{
+            // Registration
             formikRegistration: formikRegistration,
             responseRegistration: responseRegistration,
             errMsgRegistration: errMsgRegistration,
+            hideButtonRegistration: hideButtonRegistration,
+            // Login
             formikLogin: formikLogin,
             responseLogin: responseLogin,
+            errMsgLogin: errMsgLogin,
             success: success,
-            hideButtonRegistration: hideButtonRegistration,
             hideButtonLogin: hideButtonLogin,
+            // Logout
             onHandlerLogout: onHandlerLogout,
+            responseLogout: responseLogout,
+            errMsgLogout: errMsgLogout,
         }}>
             {children}
         </AuthenticationData.Provider>

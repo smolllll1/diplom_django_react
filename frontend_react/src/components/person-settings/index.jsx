@@ -5,6 +5,7 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { motion as m } from "framer-motion";
 import { AuthenticationData } from '../data/authentication-data';
+import { NavLink } from 'react-router-dom';
 import '../../svg/account-pipes.svg';
 
 import './person-settings.css'
@@ -19,7 +20,7 @@ const PersonSettings = ({ formikLogin }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             style={{ backgroundColor: "white" }}
-            >
+        >
             <div className='d-flex row m-0'>
                 <div className='d-flex col top-person-settings align-items-center'>
                     <div className='d-flex m-3 justify-content-center 
@@ -56,16 +57,36 @@ const PersonSettings = ({ formikLogin }) => {
                             }}>
                             Settings
                         </li>
-                        <MenuItem>item0</MenuItem>
-                        <MenuItem>item1</MenuItem>
-                        <MenuItem>item2</MenuItem>
-                        <MenuItem>item3</MenuItem>
-                        <MenuItem>item4</MenuItem>
-                        <MenuItem>item5</MenuItem>
-                        <MenuItem>item6</MenuItem>
-                        <MenuItem>item7</MenuItem>
-                        <MenuItem>item8</MenuItem>
-                        <MenuItem>item9</MenuItem>
+                        <NavLink to={"item1"}>
+                            <MenuItem>item1</MenuItem>
+                        </NavLink>
+                        <NavLink>
+                            <MenuItem>item2</MenuItem>
+                        </NavLink>
+                        <NavLink>
+                            <MenuItem>item3</MenuItem>
+                        </NavLink>
+                        <NavLink>
+                            <MenuItem>item4</MenuItem>
+                        </NavLink>
+                        <NavLink>
+                            <MenuItem>item5</MenuItem>
+                        </NavLink>
+                        <NavLink>
+                            <MenuItem>item6</MenuItem>
+                        </NavLink>
+                        <NavLink>
+                            <MenuItem>item7</MenuItem>
+                        </NavLink>
+                        <NavLink>
+                            <MenuItem>item8</MenuItem>
+                        </NavLink>
+                        <NavLink>
+                            <MenuItem>item9</MenuItem>
+                        </NavLink>
+                        <NavLink>
+                            <MenuItem>Delete Account</MenuItem>
+                        </NavLink>
                     </MenuList>
                 </Paper>
             </Stack>
