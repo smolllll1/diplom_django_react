@@ -1,15 +1,19 @@
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from rest_framework import viewsets, mixins
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.request import Request
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.exceptions import ValidationError, AuthenticationFailed, NotAuthenticated
+from rest_framework.authentication import BasicAuthentication, SessionAuthentication
 from backend_django_rest import key
 import requests
 import json
-# import re
-from django.db.models import Q
+from rest_framework import filters
+from rest_framework import generics
 from .models import People, Test, Movies
 from .serializers import RegisterSerializer, LoginSerializer, PeopleSerializer, NoteSerializer, MovieSerializer
 
@@ -26,29 +30,35 @@ class DataPagination(PageNumberPagination):
         return response
 
 class TestViewSet(viewsets.ModelViewSet):
-     queryset = Test.objects.all()
-     serializer_class = NoteSerializer
-     pagination_class = DataPagination    
+    queryset = Test.objects.all()
+    serializer_class = NoteSerializer
+    pagination_class = DataPagination    
 
-class PeopleViewSet(mixins.CreateModelMixin,
-                   mixins.RetrieveModelMixin,
-                   mixins.UpdateModelMixin,
+@permission_classes([IsAuthenticated])
+@authentication_classes([BasicAuthentication])
+class PeopleViewSet(generics.ListAPIView, mixins.CreateModelMixin,
+                mixins.RetrieveModelMixin,
+                mixins.UpdateModelMixin,
                   # mixins.DestroyModelMixin,
-                   mixins.ListModelMixin,
-                   viewsets.GenericViewSet):
-     queryset = People.objects.all()
-     serializer_class = PeopleSerializer
-     pagination_class = DataPagination
+                mixins.ListModelMixin,
+                viewsets.GenericViewSet):
+    queryset = People.objects.all()
+    serializer_class = PeopleSerializer
+    pagination_class = DataPagination
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name']
 
-class MoviesViewSet(mixins.CreateModelMixin,
-                   mixins.RetrieveModelMixin,
-                   mixins.UpdateModelMixin,
+class MoviesViewSet(generics.ListAPIView, mixins.CreateModelMixin,
+                mixins.RetrieveModelMixin,
+                mixins.UpdateModelMixin,
                   # mixins.DestroyModelMixin,
-                   mixins.ListModelMixin,
-                   viewsets.GenericViewSet):
-     queryset = Movies.objects.all()
-     serializer_class = MovieSerializer
-     pagination_class = DataPagination
+                mixins.ListModelMixin,
+                viewsets.GenericViewSet):
+    queryset = Movies.objects.all()
+    serializer_class = MovieSerializer
+    pagination_class = DataPagination
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['title']
 
 @api_view(['POST'])
 def register(request):
@@ -67,10 +77,31 @@ def register(request):
             data = serializer.data
             data['id'] = user.id
         return Response({'registrationRespons': data})
+    
+# @api_view(['GET'])
+# def user_profile(request):
+#     user = request.user
+#     data = {
+#         'id': user.id,
+#         'username': user.username,
+#         'email': user.email,
+#         'date_joined': user.date_joined
+#     }
+#     return Response(data)
 
-@api_view(['POST'])
+@api_view()
+@permission_classes([IsAuthenticated])
+@authentication_classes([BasicAuthentication])
+def user(request: Request):
+    return Response({
+        'data': LoginSerializer(request.user).data
+    })
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+@authentication_classes([BasicAuthentication])
 def loginView(request):
-        username = request.data.get('name')
+        username = request.data.get('username')
         password = request.data.get('password')
 
         user = authenticate(username=username, password=password)
@@ -81,14 +112,16 @@ def loginView(request):
                 serializer = LoginSerializer(userRespons)
                 return Response({'loginRespons': serializer.data})
             else:
-                return AuthenticationFailed({'message': 'Disabled account'})
+                return Response({'message': 'Disabled account'})
         else:
-            return AuthenticationFailed({'message': 'Invalid login'})
+            return Response({'message': 'Invalid login'})
         
-@api_view(['GET'])
+@api_view()
+@permission_classes([IsAuthenticated])
+@authentication_classes([BasicAuthentication])
 def logout_view(request):
 	logout(request)
-	return NotAuthenticated({'message': 'Logout!'})
+	return Response({'message': 'Logout!'})
 
 
 @api_view(['GET'])
@@ -122,22 +155,6 @@ def pop_people(request, pk=1):
         else:
              pass
     return Response(json_data)
-
-@api_view(['GET'])
-def search_tast(x):
-    message = x.data.get('message')
-    all_objects = Movies.objects.all()
-    pattern = r'^\w*?\d*?\s*?\S*?'
-    for i in all_objects:
-    # q_obj = Q(title=message)
-    # results = Movies.objects.filter(q_obj)
-    # all_objects = Movies.objects.all()
-    # pattern = r'^\w*?\d*?\s*?\S*?'
-    # match = re.search(pattern, message)
-    
-
-        return Response(q_obj)
-
 
 @api_view(['POST'])
 def search(request):
