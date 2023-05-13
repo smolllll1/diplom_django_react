@@ -28,7 +28,7 @@ const LoginNav = () => {
                 && hideButtonRegistration === false
                 && hideButtonLogin === false
                 ?
-                <Link to={'/registration'}>
+                <Link to={'registration'}>
                     <Button type="button" id="registration-btn">Registration</Button>
                 </Link>
                 :
@@ -55,7 +55,7 @@ const LoginNav = () => {
                 null
             }
             {hideButtonLogin === false ?
-                <Link to={'/login'}>
+                <Link to={'login'}>
                     <Button type="button">Login</Button>
                 </Link>
                 :

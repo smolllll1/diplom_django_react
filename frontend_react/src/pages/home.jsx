@@ -1,12 +1,17 @@
 import React, { useContext } from "react";
-import {HomeRandom} from "../components/home-random";
-// import IndividualIntervalsExample from "../components/slider";
+import { motion as m } from "framer-motion";
+import { HomeRandom } from "../components/home-random";
+import IndividualIntervalsExample from "../components/slider";
 import { AuthenticationData } from "../components/data/authentication-data";
 
 const Home = () => {
     const { responseLogout } = useContext(AuthenticationData);
     return (
-        <div className="w-100 vh-100">
+        <m.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="w-100">
             {responseLogout ?
                 <div className="w-100 text-white text-center py-4"
                     style={{ backgroundColor: 'rgb(1, 180, 228)' }}
@@ -18,8 +23,8 @@ const Home = () => {
                 null
             }
             <HomeRandom />
-            {/* <IndividualIntervalsExample /> */}
-        </div>
+            <IndividualIntervalsExample />
+        </m.div>
     )
 }
 

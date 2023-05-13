@@ -1,0 +1,11 @@
+/* PAGE ABOUT US */
+
+/* top block */
+.top-about {
+    flex-wrap: wrap;
+    background-color: rgb(13, 37, 63);
+    background-image: url(../../svg/about_us_pipes.svg);
+    position: relative;
+    background-position: center;
+    background-size: cover;
+}

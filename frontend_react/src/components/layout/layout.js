@@ -10,9 +10,8 @@ const Layout = () => {
     return (
         <Fragment>
             <Header />
-            <main className="flex-grow-1 w-100"
+            <main className="flex-grow-1 w-100 justify-content-center"
                 style={{
-                    minHeight: "90vh",
                     backgroundColor: "rgba(13, 37, 63, 0.9)",
                 }}
             >

@@ -12,10 +12,9 @@ const ContentDataProvider = ({ children }) => {
     // const [allPeopleId, setAllPeopleId] = useState([]);
     // console.log(allPeopleId)
 
-    // base data default page 1 for home page random
-    const [dataDefaultMovies, setDataDefaultMovies] = useState([]);
-
-    // pagination
+    // popular movies (home pege: section random)
+    const [dataPopularMovies, setDataPopularMovies] = useState([]);
+    // pagination (people page, movies page)
     const [pagePeople, setPagePeople] = useState(location.search ?
         parseInt(location?.search.split("=")[1]) : 1);
     const [pageMovies, setPageMovies] = useState(location.search ?
@@ -24,7 +23,7 @@ const ContentDataProvider = ({ children }) => {
 
     useEffect(() => {
         getMoviesPage().then((data) => {
-            setDataDefaultMovies(data.results);
+            setDataPopularMovies(data.results);
         });
         // getAllPeopleId().then((data) => {
         //     setAllPeopleId(data.results)
@@ -54,8 +53,8 @@ const ContentDataProvider = ({ children }) => {
     return (
         <ContentData.Provider
             value={{
-                // movies default page 1 (home page)
-                dataDefaultMovies: dataDefaultMovies,
+                // popular movies
+                dataPopularMovies: dataPopularMovies,
                 // movies pagination (movies page)
                 pageMovies: pageMovies,
                 setPageMovies: setPageMovies,

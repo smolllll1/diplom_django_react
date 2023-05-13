@@ -8,9 +8,9 @@ import { ContentData } from "../data/content-data";
 import CircularStatic from "../progress";
 
 const HomeRandom = () => {
-    const { dataDefaultMovies } = useContext(ContentData);
+    const { dataPopularMovies } = useContext(ContentData);
 
-    const endUrlMovies = dataDefaultMovies.map((item) => {
+    const endUrlMovies = dataPopularMovies.map((item) => {
         return (item.backdrop_path);
     })
     const [showImageMovies, setShowImageMovies] = useState(endUrlMovies[0]);
@@ -21,7 +21,7 @@ const HomeRandom = () => {
     }, [randomImageMovies]);
     return (
         <Fragment>
-            <div className='d-flex w-100 justify-content-center'>
+            <section className='d-flex w-100 justify-content-center'>
                 {showImageMovies ?
                     <div className='w-100 d-flex position-revative'>
                         <img src={`https://www.themoviedb.org/t/p/w1920_and_h600_multi_faces_filter(duotone,00192f,00baff)${showImageMovies}`}
@@ -39,7 +39,7 @@ const HomeRandom = () => {
                     :
                     <CircularStatic />
                 }
-            </div>
+            </section>
         </Fragment>
     );
 }

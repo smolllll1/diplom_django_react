@@ -9,21 +9,27 @@ function SliderIntervals() {
 
     useEffect(() => {
         getMoviesPage().then((data) => {
-                setMovieseSlide(data.results);
-            })
+            setMovieseSlide(data.results);
+        })
     }, []);
 
     return (
-        <div className='d-flex w-100 justify-content-end'>
+        <section className='d-flex row w-100 mx-0'>
+            <div className='my-0'
+            style={{backgroundColor: "rgb(1, 180, 228)"}}
+            >
+                <h2 className='text-secondary my-2'>Trending</h2>
+            </div>
             {movieseSlide === null ?
                 <CircularStatic />
                 :
-                (<Carousel className='w-50'>
+                (<Carousel className='w-100 px-0'>
                     <Carousel.Item interval={5000}>
                         <img
                             className="d-block w-100"
-                            src={`https://image.tmdb.org/t/p/original/9n2tJBplPbgR2ca05hS5CKXwP2c.jpg`}
+                            src={`https://www.themoviedb.org/t/p/w1920_and_h427_multi_faces/3n2TjKw3HrwDqgVgcynvantOfS3.jpg`}
                             alt="First slide"
+                            style={{ width:"100%", height:"50vh", objectFit:"cover"}}
                         />
                         <Carousel.Caption>
                             <h3>"The Super Mario Bros. Movie"</h3>
@@ -32,8 +38,9 @@ function SliderIntervals() {
                     <Carousel.Item interval={5000}>
                         <img
                             className="d-block w-100"
-                            src="https://image.tmdb.org/t/p/original/ovM06PdF3M8wvKb06i4sjW3xoww.jpg"
+                            src="https://www.themoviedb.org/t/p/w1920_and_h427_multi_faces/jWYzdSv85nncRxfDwYSQKKlnuhG.jpg"
                             alt="Second slide"
+                            style={{ width:"100%", height:"50vh", objectFit:"cover"}}
                         />
                         <Carousel.Caption>
                             <h3>"Avatar: The Way of Water"</h3>
@@ -42,8 +49,9 @@ function SliderIntervals() {
                     <Carousel.Item interval={5000}>
                         <img
                             className="d-block w-100"
-                            src="https://image.tmdb.org/t/p/original/c3hl9E8E7b9opXDFVF5tSyk0ykr.jpg"
+                            src="https://www.themoviedb.org/t/p/w1920_and_h427_multi_faces/xkiv3e1daoqil5MRJitCJcwUgk2.jpg"
                             alt="Third slide"
+                            style={{ width:"100%", height:"50vh", objectFit:"cover"}}
                         />
                         <Carousel.Caption>
                             <h3>"Momias"</h3>
@@ -52,7 +60,7 @@ function SliderIntervals() {
                 </Carousel>
                 )
             }
-        </div>
+        </section >
     );
 }
 

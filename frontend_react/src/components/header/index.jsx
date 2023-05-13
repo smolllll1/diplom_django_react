@@ -3,16 +3,12 @@ import { Link } from "react-router-dom";
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import LoginNav from "../login-nav";
+import MoreMenuButton from "../more-menu";
 import logo from '../../svg/logo.svg';
 
 import './header.css'
 
 const Header = () => {
-
-    //button More
-    const onHandlerMore = () => {
-        console.log('isMore')
-    }
 
     return (
         <header className="w-100">
@@ -28,11 +24,7 @@ const Header = () => {
                         <Link to={"pop_people"}>
                             <Button type="button" className="people">People</Button>
                         </Link>
-                        <Button
-                            onClick={(() => { onHandlerMore() })}
-                        >
-                            More
-                        </Button>
+                        <MoreMenuButton />
                     </Stack>
                     <LoginNav />
                 </div>

@@ -6,10 +6,11 @@ import {
   Route,
 } from "react-router-dom";
 import Home from '../../pages/home';
+import {About} from '../../pages/about';
 import Registration from '../../pages/registration';
 import Login from '../../pages/login';
 import { MoviesPages } from '../../pages/movies-pages';
-import {MoviesListInfo} from '../movies-list-info';
+import { MoviesListInfo } from '../movies-list-info';
 import { PeoplePages } from '../../pages/people-pages';
 import { PeopleListInfo } from '../people-list-info';
 import Search from "../../pages/search";
@@ -32,6 +33,7 @@ const App = () => {
               <Routes>
                 <Route path="/" element={<Layout />}>
                   <Route index element={<Home />} />
+                  <Route exact path="about" element={<About />} />
                   {/* public routes */}
                   <Route exact path="registration" element={<Registration />} />
                   <Route exact path="login" element={<Login />} />

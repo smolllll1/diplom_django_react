@@ -17,9 +17,9 @@ const SearchValueProvider = ({ children }) => {
 
         // Submit form search
         onSubmit: async (values) => {
-            // console.log(values);
+            console.log(values);
 
-            await axiosBaseUrl.post(SEARCH_URL, values)
+            await axiosBaseUrl.get(SEARCH_URL, values)
                 .then(response => {
                     console.log(response.data)
                 })

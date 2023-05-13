@@ -14,45 +14,37 @@ const ButtonFilterPeople = ({
             setFilteredPeople(dataPeople?.results);
             return;
         };
-        const filtered = dataPeople?.results.filter((people) => { 
+        const filtered = dataPeople?.results.filter((people) => {
             return people.gender === genderPeople
         });
         setFilteredPeople(filtered)
 
     }, [genderPeople, setFilteredPeople, dataPeople]);
 
+    const useStyleBtnPeople = {
+        button: {
+            backgroundColor: 'rgb(13, 37, 63)',
+            color: '#ffffff',
+            textTransform: "capitalize",
+            ':hover': {
+                color: "rgb(13, 37, 63)",
+            },
+        }
+    }
+
     return (
-        <Stack spacing={2}
+        <Stack spacing={1}
             justifyContent="center"
             direction="row"
-            flexWrap="wrap"
-        >
+            flexWrap="wrap">
             <Button onClick={() => setGenderPeople(0)}
-                style={{
-                    backgroundColor:'rgb(13, 37, 63)',
-                    fontWeight: "bold",
-                    color: '#ffffff',
-                    textTransform: "capitalize",
-                    margin: "2px"
-                }}
+                sx={useStyleBtnPeople.button}
                 variant="text">All</Button>
             <Button onClick={() => setGenderPeople(2)}
-                style={{
-                    backgroundColor:'rgb(13, 37, 63)',
-                    fontWeight: "bold",
-                    color: '#ffffff',
-                    textTransform: "capitalize",
-                    margin: "2px"
-                }}
+                sx={useStyleBtnPeople.button}
                 variant="text">Men</Button>
             <Button onClick={() => setGenderPeople(1)}
-                style={{
-                    backgroundColor:'rgb(13, 37, 63)',
-                    fontWeight: "bold",
-                    color: '#ffffff',
-                    textTransform: "capitalize",
-                    margin: "2px"
-                }}
+                sx={useStyleBtnPeople.button}
                 variant="text">Women</Button>
         </Stack >
     );

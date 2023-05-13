@@ -21,110 +21,54 @@ const ButtonFilterMovies = ({
 
     }, [activeGenre, setFilteredMovies, dataMovies]);
 
+    const useStyleBtnMovies = {
+        button: {
+            backgroundColor: "rgb(1, 180, 228)",
+            color: '#ffffff',
+            textTransform: "capitalize",
+            ':hover': {
+                color: "rgb(144, 206, 161)",
+            },
+        }
+    }
     return (
-        <Stack spacing={2}
+        <Stack spacing={1}
             justifyContent="center"
             direction="row"
             flexWrap="wrap"
         >
             <Button onClick={() => setActiveGenre(0)}
-                style={{
-                    backgroundColor:"rgb(1, 180, 228)",
-                    fontWeight: "bold",
-                    color: '#ffffff',
-                    textTransform: "capitalize",
-                    margin: "2px"
-                }}
+                sx={useStyleBtnMovies.button}
                 variant="text">All</Button>
             <Button onClick={() => setActiveGenre(28)}
-                style={{
-                    backgroundColor:"rgb(1, 180, 228)",
-                    fontWeight: "bold",
-                    color: '#ffffff',
-                    textTransform: "capitalize",
-                    margin: "2px"
-                }}
+                sx={useStyleBtnMovies.button}
                 variant="text">Action</Button>
             <Button onClick={() => setActiveGenre(12)}
-                style={{
-                    backgroundColor:"rgb(1, 180, 228)",
-                    fontWeight: "bold",
-                    color: '#ffffff',
-                    textTransform: "capitalize",
-                    margin: "2px"
-                }}
+                sx={useStyleBtnMovies.button}
                 variant="text">Adventure</Button>
             <Button onClick={() => setActiveGenre(16)}
-                style={{
-                    backgroundColor:"rgb(1, 180, 228)",
-                    fontWeight: "bold",
-                    color: '#ffffff',
-                    textTransform: "capitalize",
-                    margin: "2px"
-                }}
+                sx={useStyleBtnMovies.button}
                 variant="text">Animation</Button>
             <Button onClick={() => setActiveGenre(35)}
-                style={{
-                    backgroundColor:"rgb(1, 180, 228)",
-                    fontWeight: "bold",
-                    color: '#ffffff',
-                    textTransform: "capitalize",
-                    margin: "2px"
-                }}
+                sx={useStyleBtnMovies.button}
                 variant="text">Comedy</Button>
             <Button onClick={() => setActiveGenre(80)}
-                style={{
-                    backgroundColor:"rgb(1, 180, 228)",
-                    fontWeight: "bold",
-                    color: '#ffffff',
-                    textTransform: "capitalize",
-                    margin: "2px"
-                }}
+                sx={useStyleBtnMovies.button}
                 variant="text">Crime</Button>
             <Button onClick={() => setActiveGenre(18)}
-                style={{
-                    backgroundColor:"rgb(1, 180, 228)",
-                    fontWeight: "bold",
-                    color: '#ffffff',
-                    textTransform: "capitalize",
-                    margin: "2px"
-                }}
+                sx={useStyleBtnMovies.button}
                 variant="text">Drama</Button>
             <Button onClick={() => setActiveGenre(10751)}
-                style={{
-                    backgroundColor:"rgb(1, 180, 228)",
-                    fontWeight: "bold",
-                    color: '#ffffff',
-                    textTransform: "capitalize",
-                    margin: "2px"
-                }}
+                sx={useStyleBtnMovies.button}
                 variant="text">Family</Button>
             <Button onClick={() => setActiveGenre(14)}
-                style={{
-                    backgroundColor:"rgb(1, 180, 228)",
-                    fontWeight: "bold",
-                    color: '#ffffff',
-                    textTransform: "capitalize",
-                    margin: "2px"
-                }}
+                sx={useStyleBtnMovies.button}
                 variant="text">Fantasy</Button>
             <Button onClick={() => setActiveGenre(36)}
-                style={{
-                    backgroundColor:"rgb(1, 180, 228)",
-                    fontWeight: "bold",
-                    color: '#ffffff',
-                    textTransform: "capitalize",
-                    margin: "2px"
-                }}
+                sx={useStyleBtnMovies.button}
                 variant="text">History</Button>
             <Button onClick={() => setActiveGenre(27)}
-                style={{
-                    backgroundColor:"rgb(1, 180, 228)",
-                    fontWeight: "bold",
-                    color: '#ffffff',
-                    textTransform: "capitalize",
-                    margin: "2px"
-                }}
+                sx={useStyleBtnMovies.button}
                 variant="text">Horror</Button>
         </Stack >
     );

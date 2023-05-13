@@ -3,7 +3,11 @@ import { motion as m } from 'framer-motion';
 
 const NotFound = () => {
     return (
-        <m.div className='text-center'
+        <m.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className='text-center'
             style={{
                 height: '80vh',
                 backgroundColor: "white"

@@ -23,7 +23,7 @@ const PersonAccount = ({ formikLogin }) => {
                         <p className='text-white' style={{ fontSize: "4rem" }}>
                             {/* avatar first letter Username */}
                             {responseLogin !== null ?
-                                responseLogin.username[0]
+                                responseLogin?.username[0]
                                 :
                                 formikLogin.values.name[0]
                             }
@@ -32,14 +32,14 @@ const PersonAccount = ({ formikLogin }) => {
                     <p className='fs-2 m-1 fw-bold text-white'>
                         {/* after avatar item Username */}
                         {responseLogin !== null ?
-                            responseLogin.username
+                            responseLogin?.username
                             :
                             formikLogin.values.name
                         }
                         <span className='fs-5 m-3 fw-normal text-secondary'>Member since
                             {responseLogin !== null ?
                                 <span className='mx-2'>
-                                    {responseLogin.date_joined.split('', 7)}
+                                    {responseLogin?.date_joined.split('', 7)}
                                 </span>
                                 :
                                 null
