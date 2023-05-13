@@ -1,4 +1,5 @@
 
+import statistics
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from rest_framework import viewsets, mixins
@@ -47,6 +48,7 @@ class PeopleViewSet(generics.ListAPIView, mixins.CreateModelMixin,
     pagination_class = DataPagination
     filter_backends = [filters.SearchFilter]
     search_fields = ['name']
+    lookup_field = 'id'
 
 class MoviesViewSet(generics.ListAPIView, mixins.CreateModelMixin,
                 mixins.RetrieveModelMixin,
@@ -59,6 +61,7 @@ class MoviesViewSet(generics.ListAPIView, mixins.CreateModelMixin,
     pagination_class = DataPagination
     filter_backends = [filters.SearchFilter]
     search_fields = ['title']
+    lookup_field = 'id'
 
 @api_view(['POST'])
 def register(request):
@@ -125,7 +128,7 @@ def logout_view(request):
 
 
 @api_view(['GET'])
-def pop_movies(request, pk=1):
+def add_movies(request, pk=1):
     apiRequst = requests.get(f'https://api.themoviedb.org/3/movie/popular?api_key={key.api_key}&language=en-US&page={pk}')
     json_data = json.loads(apiRequst.content)
     results_data = json_data.get('results')
@@ -141,7 +144,7 @@ def pop_movies(request, pk=1):
     return Response(json_data)
 
 @api_view(['GET'])
-def pop_people(request, pk=1):
+def add_people(request, pk=1):
     apiRequst = requests.get(f'https://api.themoviedb.org/3/person/popular?api_key={key.api_key}&language=en-US&page={pk}')
     json_data = json.loads(apiRequst.content)
     results_data = json_data.get('results')
@@ -156,10 +159,31 @@ def pop_people(request, pk=1):
              pass
     return Response(json_data)
 
-@api_view(['POST'])
-def search(request):
-    message = request.data.get('message')
-    apiRequst = requests.get(f'https://api.themoviedb.org/3/search/movie?api_key={key.api_key}&query={message}')
-    json_data = json.loads(apiRequst.content)
-    return Response(json_data)
+# @api_view(['POST'])
+# def search(request):
+#     message = request.data.get('message')
+#     apiRequst = requests.get(f'https://api.themoviedb.org/3/search/movie?api_key={key.api_key}&query={message}')
+#     json_data = json.loads(apiRequst.content)
+#     return Response(json_data)
     # return Response(json_data.get("results"))
+
+# @api_view(['GET'])
+# def pop_people_id(request, id=1):
+#     try:
+#         person = People.objects.get(id=id)
+#     except People.DoesNotExist:
+#         return Response(status=statistics.HTTP_404_NOT_FOUND)
+
+#     serializer = PeopleSerializer(person)
+#     return Response(serializer.data)
+
+# @api_view(['GET'])
+# def pop_movies_id(request, id=1):
+#     try:
+#         person = Movies.objects.get(id=id)
+#     except People.DoesNotExist:
+#         return Response(status=statistics.HTTP_404_NOT_FOUND)
+
+#     serializer = MovieSerializer(person)
+#     return Response(serializer.data)
+        
