@@ -1,16 +1,36 @@
 import React, { useContext } from "react";
+import { getAllPeopleId } from '../../api/axios';
 import { motion as m } from 'framer-motion';
 import CircularStatic from "../progress";
 import { ContentData } from "../data/content-data";
-import { useParams } from "react-router-dom";
+import { useQuery } from "react-query";
+import Alert from 'react-bootstrap/Alert';
 import ScrollInfoMovies from "./scroll-info-movies";
 
 const PeopleListInfo = () => {
 
-    // url person id
-    const { personId } = useParams();
-    // click cards people
-    const { dataPeople } = useContext(ContentData)
+    // click cards people id
+    const { isCardsPeopleId } = useContext(ContentData);
+
+    // cards people
+    const {
+        isLoading,
+        isError,
+        error,
+        data: listInfoPeople,
+    } = useQuery(["pop_people", isCardsPeopleId], () => getAllPeopleId(isCardsPeopleId ? isCardsPeopleId : 224513), {
+        keepPreviousData: true
+    });
+
+    if (isLoading) return <div className="text-center vh-100 mt-5">
+        <CircularStatic />
+    </div>;
+    if (isError) return <div className="vh-100 text-secondary text-center mt-5">
+        <Alert variant="danger">
+            Something went wrong! Error: {error.message}
+        </Alert>
+    </div>;
+
     // simple (not property biography)
     const biography = [
         {
@@ -26,17 +46,18 @@ const PeopleListInfo = () => {
         }
     ];
 
-    if (personId) {
+    if (listInfoPeople) {
         return (
             <m.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 className="d-flex w-100 justify-content-center px-3"
-                style={{ backgroundColor: 'rgb(1, 180, 228)' }}
-            >
-                {personId === null ?
-                    <CircularStatic />
+                style={{ backgroundColor: 'rgb(1, 180, 228)' }}>
+                {isLoading === true ?
+                    <div className="mt-5">
+                        <CircularStatic />
+                    </div>
                     :
                     <div className="card my-3"
                         style={{
@@ -46,32 +67,19 @@ const PeopleListInfo = () => {
                             boxShadow: "4px 5px 5px -4px rgba(13, 37, 63)",
                         }}>
                         <div className="row g-0">
-                            <div className="col-md-4 d-flex vh-100 justify-content-center align-items-center">
+                            <div className="col-md-4 d-flex justify-content-center align-items-center">
                                 <div className="w-75 h-75 d-flex">
-                                    {dataPeople?.results.filter((item) => {
-                                        return item.id.toString() === personId;
-                                    })
-                                        .map((item, i) => {
-                                            return <img key={item.id * i + "s"}
-                                                src={`https://image.tmdb.org/t/p/original${item.profile_path}`}
-                                                className="rounded"
-                                                style={{ width: "100%", objectFit: "cover" }}
-                                                alt={item.name} />
-                                        })}
+                                    <img src={`https://image.tmdb.org/t/p/original${listInfoPeople?.profile_path}`}
+                                        className="rounded"
+                                        style={{ width: "100%", objectFit: "cover" }}
+                                        alt={listInfoPeople?.name} />
                                 </div>
                             </div>
                             <div className="col-md-8 d-flex text-body">
                                 <div className="card-body d-flex row">
-                                    {dataPeople?.results.filter((item) => {
-                                        return item.id === parseInt(personId);
-                                    })
-                                        .map((item, i) => {
-                                            return <h2 key={item.id * i + "g"}
-                                                className="card-title fw-bold">
-                                                {item.name}
-                                            </h2>
-                                        })
-                                    }
+                                    <h2 className="card-title fw-bold">
+                                        {listInfoPeople?.name}
+                                    </h2>
                                     <h5 className="card-title">
                                         Biography
                                     </h5>
@@ -86,16 +94,7 @@ const PeopleListInfo = () => {
                                         Known For
                                     </h3>
                                     <div className="d-flex w-100">
-                                        {dataPeople?.results.filter((item) => {
-                                            return item.id === parseInt(personId)
-                                        })
-                                            .map((item, i) => {
-                                                return <ScrollInfoMovies
-                                                    key={item.id * i + "f"}
-                                                    item={item}
-                                                />
-                                            })
-                                        }
+                                        <ScrollInfoMovies listInfoPeople={listInfoPeople} />
                                     </div>
                                 </div>
                             </div>

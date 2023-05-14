@@ -33,19 +33,25 @@ const ButtonFilterPeople = ({
     }
 
     return (
-        <Stack spacing={1}
-            justifyContent="center"
+        <Stack justifyContent="center"
             direction="row"
-            flexWrap="wrap">
+            flexWrap="wrap"
+            gap="6px">
             <Button onClick={() => setGenderPeople(0)}
                 sx={useStyleBtnPeople.button}
-                variant="text">All</Button>
+                variant="text">
+                All
+            </Button>
             <Button onClick={() => setGenderPeople(2)}
                 sx={useStyleBtnPeople.button}
-                variant="text">Men</Button>
+                variant="text">
+                Men
+            </Button>
             <Button onClick={() => setGenderPeople(1)}
                 sx={useStyleBtnPeople.button}
-                variant="text">Women</Button>
+                variant="text">
+                Women
+            </Button>
         </Stack >
     );
 }

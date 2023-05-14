@@ -2,13 +2,9 @@ import React, { useState, Fragment } from "react";
 import CircularStatic from "../progress";
 import ButtonFilterMovies from "./button-filter-movies";
 import MoviesCards from "./movies-cards";
-import { ContentData } from "../data/content-data";
-import { useContext } from "react";
 
-const PopularMovies = () => {
+const PopularMovies = ({dataMovies}) => {
 
-    //array objects data movies 
-    const { dataMovies } = useContext(ContentData);
     // genre filter movies
     const [filteredMovies, setFilteredMovies] = useState([]);
     // 0 - all genres 
@@ -25,19 +21,17 @@ const PopularMovies = () => {
                     setActiveGenre={setActiveGenre} />
             </div>
             {dataMovies === null ?
-                <CircularStatic />
+                <div className="text-center vh-100 mt-5">
+                    <CircularStatic />
+                </div>
                 :
                 <div className="w-100 d-flex gap-2 py-4 justify-content-center"
                     style={{ flexWrap: "wrap" }}>
-                    {filteredMovies === null ?
-                        null
-                        :
-                        filteredMovies?.map((item, i) => {
-                            return <MoviesCards 
-                            key={item.id*i+"r"} 
-                            item={item} 
-                            />
-                        })
+                    {filteredMovies?.map((item, i) => {
+                        return <MoviesCards
+                            key={item.id * i + "r"}
+                            item={item} />
+                    })
                     }
                 </div>
             }
