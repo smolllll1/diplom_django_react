@@ -92,19 +92,21 @@ def register(request):
 #     }
 #     return Response(data)
 
-@api_view()
+@api_view(['POST'])
 @permission_classes([IsAuthenticated])
 @authentication_classes([BasicAuthentication])
 def user(request: Request):
+    print(request.data)
     return Response({
-        'data': LoginSerializer(request.user).data
+        'loginRespons': LoginSerializer(request.user).data
     })
 
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-@authentication_classes([BasicAuthentication])
+@api_view(['POST'])
+# @permission_classes([IsAuthenticated])
+# @authentication_classes([BasicAuthentication])
 def loginView(request):
-        username = request.data.get('username')
+        print(request.data)
+        username = request.data.get('name')
         password = request.data.get('password')
 
         user = authenticate(username=username, password=password)
@@ -120,8 +122,8 @@ def loginView(request):
             return Response({'message': 'Invalid login'})
         
 @api_view()
-@permission_classes([IsAuthenticated])
-@authentication_classes([BasicAuthentication])
+# @permission_classes([IsAuthenticated])
+# @authentication_classes([BasicAuthentication])
 def logout_view(request):
 	logout(request)
 	return Response({'message': 'Logout!'})
@@ -135,8 +137,8 @@ def add_movies(request, pk=1):
 
     for item_data in results_data:
         serializer = MovieSerializer(data=item_data)
-        known_for = item_data.get('title')
-        movies_data = Movies.objects.filter(title=known_for).exists()
+        known_for = item_data.get('id')
+        movies_data = Movies.objects.filter(id=known_for).exists()
         if serializer.is_valid() and not movies_data:
             serializer.save()
         else:
@@ -151,8 +153,8 @@ def add_people(request, pk=1):
 
     for item_data in results_data:
         serializer = PeopleSerializer(data=item_data)
-        known_for = item_data.get('known_for')
-        people_data = People.objects.filter(known_for=known_for).exists()
+        known_for = item_data.get('id')
+        people_data = People.objects.filter(id=known_for).exists()
         if serializer.is_valid() and not people_data:
             serializer.save()
         else:

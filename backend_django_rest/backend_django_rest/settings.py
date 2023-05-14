@@ -64,6 +64,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "backend_django_rest.urls"
+CSRF_COOKIE_HTTPONLY = True
 
 TEMPLATES = [
     {
@@ -152,7 +153,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PARSER_CLASSES': [
         'rest_framework.parsers.JSONParser',
     ],
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_AUTHENTICATION': {
+        'rest_framework.authentication.SessionAuthentication': {'csrf_cookie_httponly': True}}
 }
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
