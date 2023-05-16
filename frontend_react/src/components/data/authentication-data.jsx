@@ -15,33 +15,31 @@ const emailRegExp = /^(([^<>()[\]\\.,;:\\"]+(\.[^<>()[\]\\.,;:\\"]+)*)|(\\"))@((
 // POST URL REGISTRATION
 const REGISTRATION_URL = 'registration/';
 // POST URL LOGIN
-const LOGIN_URL = 'cooky_login/login/';
+const LOGIN_URL = 'login/';
 // GET URL LOGOUT
-const LOGOUT_URL = 'cooky_login/logout/';
+const LOGOUT_URL = 'logout/';
 
 const AuthenticationDataProvider = ({ children }) => {
 
-    // Show confetti after registration. use state - component: form-registration pege: registration
+    const navigate = useNavigate();
+
+    // Show confetti after registration. in folder component: form-registration use pege: registration, fn submit registration
     const [success, setSuccess] = useState(false);
-    // Hide button registration after registration. use state - component: login-nav 
-    const [hideButtonRegistration, setHideButtonRegistration] = useState(false);
-    // Hide button login but show avatar and bell after login. use state - component: login-nav
-    const [hideButtonLogin, setHideButtonLogin] = useState(false);
 
     // Response Registration backend onSubmit
     const [responseRegistration, setResponseRegistration] = useState(null);
     // Error Registration
     const [errMsgRegistration, setErrMsgRegistration] = useState('');
-    // Response Login backend onSubmit
-    const [responseLogin, setResponseLogin] = useState(null);
-    // Error Registration
+
+    // Response Login backend onSubmit Login localStorage
+    const responseLogin = JSON.parse(localStorage.getItem('user'));
+    // Error Login
     const [errMsgLogin, setErrMsgLogin] = useState('');
+
     // Response Logout backend onSubmit
     const [responseLogout, setResponseLogout] = useState(null);
     // Error Logout
-    const [errMsgLogout, setErrMsgLogout] = useState('')
-
-    const navigate = useNavigate();
+    const [errMsgLogout, setErrMsgLogout] = useState('');
 
     // formikRegistration logics
     const formikRegistration = useFormik({
@@ -81,29 +79,22 @@ const AuthenticationDataProvider = ({ children }) => {
 
         // Submit form registration
         onSubmit: async (values) => {
-
             await axiosBaseUrl.post(REGISTRATION_URL, values)
                 .then(response => {
-                    // console.log(response.data);
-                    setResponseRegistration(response.data.message)
+                    setResponseRegistration(response.data);
                 })
                 .catch(error => {
-                    setErrMsgRegistration(error);
+                    setErrMsgRegistration(error.message);
                 });
 
             if (values.terms.length !== 0) {
-                // -------------------------------NEW PAGE UNAUTHORIZED--------------------------------------------------------
-                // if (responseRegistration) {
-                // }
                 setSuccess(true);
                 setErrMsgRegistration()
                 setTimeout(() => {
                     setSuccess(false)
                     navigate('/login');
-                    setHideButtonRegistration(true);
                     cleanRegistrationValue();
                 }, 5000)
-
             }
 
             const cleanRegistrationValue = () => {
@@ -139,19 +130,21 @@ const AuthenticationDataProvider = ({ children }) => {
 
         // Submit form login
         onSubmit: async (values) => {
-            navigate('/users/account');
-            setHideButtonLogin(true)
-            // console.log(values);
-
-            await axiosBaseUrl.post(LOGIN_URL, values)
-                .then(response => {
-                    setResponseLogin(response.data.loginRespons)
-                    console.log(response.data.loginRespons)
+            try {
+                const response = await axiosBaseUrl({
+                    method: "post", url: LOGIN_URL,
+                    auth: {
+                        username: values.name,
+                        password: values.password
+                    },
                 })
-                .catch(error => {
-                    setErrMsgLogin(error.message)
-                    console.log(error.massege)
-                });
+                if (response.status === 200) {
+                    localStorage.setItem("user", JSON.stringify(response.data.loginRespons));
+                    navigate(`/users/account/${response.data.loginRespons?.username}`);
+                }
+            } catch (error) {
+                setErrMsgLogin(error.message);
+            };
 
             const cleanLoginValue = () => {
                 formikLogin.values.name = "";
@@ -161,43 +154,55 @@ const AuthenticationDataProvider = ({ children }) => {
             cleanLoginValue();
         }
     });
+    console.log(responseLogin.username)
 
     // avatar menu press logout show button login 
     const onHandlerLogout = () => {
-        // console.log('isLogout');
-        setHideButtonLogin(false);
-        setHideButtonRegistration(true);
-
         axiosBaseUrl.get(LOGOUT_URL)
             .then(response => {
-                setResponseLogout(response.data)
+                setResponseLogout(response.data);
             })
             .catch(error => {
                 setErrMsgLogout(error.message);
             });
+
+        localStorage.removeItem('user');
+    }
+
+    const onHandlerDeleteAccount = () => {
+        console.log("delete");
+        // axiosBaseUrl
+        //     .delete(LOGIN_URL[responseLogin.username])
+        //     .then(response => {
+        //         console.log(response.status)
+        //     })
+        //     .catch(error => {
+        //         console.log(error)
+        //     })
     }
 
     return (
         <AuthenticationData.Provider value={{
+            // Show confetti after registration
+            success: success,
             // Registration
             formikRegistration: formikRegistration,
             responseRegistration: responseRegistration,
             errMsgRegistration: errMsgRegistration,
-            hideButtonRegistration: hideButtonRegistration,
             // Login
             formikLogin: formikLogin,
             responseLogin: responseLogin,
             errMsgLogin: errMsgLogin,
-            success: success,
-            hideButtonLogin: hideButtonLogin,
             // Logout
             onHandlerLogout: onHandlerLogout,
             responseLogout: responseLogout,
             errMsgLogout: errMsgLogout,
+            // Person settings component
+            onHandlerDeleteAccount: onHandlerDeleteAccount,
         }}>
             {children}
         </AuthenticationData.Provider>
     )
 }
 
-export { AuthenticationDataProvider, AuthenticationData }
+export { AuthenticationDataProvider, AuthenticationData };

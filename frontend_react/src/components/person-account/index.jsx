@@ -1,15 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { motion as m } from "framer-motion";
-import { AuthenticationData } from '../data/authentication-data';
 import '../../svg/account-pipes.svg';
 
 import './person-account.css'
 
-const PersonAccount = ({ formikLogin }) => {
-
-    const { responseLogin } = useContext(AuthenticationData)
+const PersonAccount = ({ responseLogin }) => {
 
     return (
         <m.div
@@ -22,20 +19,12 @@ const PersonAccount = ({ formikLogin }) => {
                             align-items-center avatar-person-account-circle'>
                         <p className='text-white' style={{ fontSize: "4rem" }}>
                             {/* avatar first letter Username */}
-                            {responseLogin !== null ?
-                                responseLogin?.username[0]
-                                :
-                                formikLogin.values.name[0]
-                            }
+                            {responseLogin?.username[0]}
                         </p>
                     </div>
                     <p className='fs-2 m-1 fw-bold text-white'>
                         {/* after avatar item Username */}
-                        {responseLogin !== null ?
-                            responseLogin?.username
-                            :
-                            formikLogin.values.name
-                        }
+                        {responseLogin?.username}
                         <span className='fs-5 m-3 fw-normal text-secondary'>Member since
                             {responseLogin !== null ?
                                 <span className='mx-2'>

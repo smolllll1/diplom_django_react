@@ -15,3 +15,12 @@ footer {
 footer nav div {
     margin-right: 20px;
 }
+
+footer section {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    color: #ffffff;
+    opacity: 0.1;
+    font-size: 0.7em;
+}

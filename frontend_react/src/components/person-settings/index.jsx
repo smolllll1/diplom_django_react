@@ -10,10 +10,19 @@ import '../../svg/account-pipes.svg';
 
 import './person-settings.css'
 
-const PersonSettings = ({ formikLogin }) => {
+const PersonSettings = () => {
 
-    const { responseLogin } = useContext(AuthenticationData)
+    const { responseLogin, onHandlerDeleteAccount } = useContext(AuthenticationData)
 
+    const useStyleMenuSettings = {
+        li: {
+            color: 'gray',
+            textTransform: "capitalize",
+            ':hover': {
+                color: "#01D277",
+            },
+        }
+    }
     return (
         <m.div
             initial={{ opacity: 0 }}
@@ -27,20 +36,12 @@ const PersonSettings = ({ formikLogin }) => {
                         avatar-person-settings-circle'>
                         <p className='text-white' style={{ fontSize: "2rem" }}>
                             {/* avatar first letter Username */}
-                            {responseLogin !== null ?
-                                responseLogin.username[0]
-                                :
-                                formikLogin.values.name[0]
-                            }
+                            {responseLogin?.username[0]}
                         </p>
                     </div>
                     <h2 className='m-1 fw-bold text-white'>
                         {/* after avatar item Username */}
-                        {responseLogin !== null ?
-                            responseLogin.username
-                            :
-                            formikLogin.values.name
-                        }
+                        {responseLogin?.username}
                     </h2>
                 </div>
             </div>
@@ -57,36 +58,48 @@ const PersonSettings = ({ formikLogin }) => {
                             }}>
                             Settings
                         </li>
-                        <NavLink to={"item1"}>
-                            <MenuItem>item1</MenuItem>
+                        <NavLink to={"edit-profile"}>
+                            <MenuItem sx={useStyleMenuSettings.li}>
+                                Edit Profile
+                            </MenuItem>
                         </NavLink>
                         <NavLink>
-                            <MenuItem>item2</MenuItem>
+                            <MenuItem sx={useStyleMenuSettings.li}>
+                                Account Settings</MenuItem>
                         </NavLink>
                         <NavLink>
-                            <MenuItem>item3</MenuItem>
+                            <MenuItem sx={useStyleMenuSettings.li}>
+                                Streaming Services</MenuItem>
                         </NavLink>
                         <NavLink>
-                            <MenuItem>item4</MenuItem>
+                            <MenuItem sx={useStyleMenuSettings.li}>
+                                Notifications</MenuItem>
                         </NavLink>
                         <NavLink>
-                            <MenuItem>item5</MenuItem>
+                            <MenuItem sx={useStyleMenuSettings.li}>
+                                Blocked Users</MenuItem>
                         </NavLink>
                         <NavLink>
-                            <MenuItem>item6</MenuItem>
+                            <MenuItem sx={useStyleMenuSettings.li}>
+                                Import List
+                            </MenuItem>
                         </NavLink>
                         <NavLink>
-                            <MenuItem>item7</MenuItem>
+                            <MenuItem sx={useStyleMenuSettings.li}>
+                                Sharing Settings</MenuItem>
                         </NavLink>
                         <NavLink>
-                            <MenuItem>item8</MenuItem>
+                            <MenuItem sx={useStyleMenuSettings.li}>
+                                Sessions</MenuItem>
                         </NavLink>
-                        <NavLink>
-                            <MenuItem>item9</MenuItem>
+                        <NavLink to={"*"}>
+                            <MenuItem sx={useStyleMenuSettings.li}>
+                                API</MenuItem>
                         </NavLink>
-                        <NavLink>
-                            <MenuItem>Delete Account</MenuItem>
-                        </NavLink>
+                        <MenuItem sx={useStyleMenuSettings.li}
+                            onClick={(() => { onHandlerDeleteAccount() })}>
+                            Delete Account
+                        </MenuItem>
                     </MenuList>
                 </Paper>
             </Stack>
