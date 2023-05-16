@@ -171,7 +171,7 @@ const AuthenticationDataProvider = ({ children }) => {
 
     const onHandlerDeleteAccount = () => {
         console.log("delete");
-        // axiosBaseUrl
+        // axios
         //     .delete(LOGIN_URL[responseLogin.username])
         //     .then(response => {
         //         console.log(response.status)
