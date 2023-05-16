@@ -14,27 +14,21 @@ import './login-nav.css'
 const LoginNav = () => {
 
     const {
-        formikLogin,
-        success,
-        hideButtonRegistration,
-        hideButtonLogin,
         onHandlerLogout,
+        responseLogout,
         responseLogin,
     } = useContext(AuthenticationData);
 
     return (
         <Stack direction="row" spacing={2}>
-            {success === false
-                && hideButtonRegistration === false
-                && hideButtonLogin === false
-                ?
+            {!responseLogin && !responseLogout ?
                 <Link to={'registration'}>
                     <Button type="button" id="registration-btn">Registration</Button>
                 </Link>
                 :
                 null
             }
-            {hideButtonLogin === true ?
+            {responseLogin ?
                 <IconButton
                     size="large"
                     aria-label="show 0 new notifications">
@@ -45,18 +39,19 @@ const LoginNav = () => {
                 :
                 null
             }
-            {hideButtonLogin === true ?
+            {responseLogin ?
                 <AccountMenu
-                    formikLogin={formikLogin}
                     responseLogin={responseLogin}
                     onHandlerLogout={onHandlerLogout}
                 />
                 :
                 null
             }
-            {hideButtonLogin === false ?
+            {!responseLogin ?
                 <Link to={'login'}>
-                    <Button type="button">Login</Button>
+                    <Button type="button">
+                        Login
+                    </Button>
                 </Link>
                 :
                 <div className="me-5 px-2"></div>
@@ -64,8 +59,7 @@ const LoginNav = () => {
             <Link to={"search"}>
                 <IconButton size="large"
                     aria-label="search"
-                    style={{ color: "white" }}
-                >
+                    style={{ color: "white" }}>
                     <SearchIcon />
                 </IconButton>
             </Link>

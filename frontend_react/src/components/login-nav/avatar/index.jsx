@@ -8,7 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import { Link } from "react-router-dom";
 
-export default function AccountMenu({ formikLogin, onHandlerLogout, responseLogin }) {
+export default function AccountMenu({ onHandlerLogout, responseLogin }) {
 
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
@@ -37,11 +37,7 @@ export default function AccountMenu({ formikLogin, onHandlerLogout, responseLogi
                             sx={{ width: 34, height: 34, bgcolor: "#01D277", fontSize: "1rem" }}
                         >
                             {/* avatar first letter username */}
-                            {responseLogin !== null ?
-                                responseLogin.username[0]
-                                :
-                                formikLogin.values.name[0]
-                            }
+                            {responseLogin?.username[0]}
                         </Avatar>
                     </IconButton>
                 </Tooltip>
@@ -81,15 +77,11 @@ export default function AccountMenu({ formikLogin, onHandlerLogout, responseLogi
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                <Link to={'/users/account'} className="underline-avatar">
+                <Link to={`users/account/${responseLogin?.username}`} className="underline-avatar">
                     <MenuItem className='d-flex row' onClick={handleClose}>
                         {/* avatar menu username */}
                         <p className='m-0 p-0 fw-bold'>
-                            {responseLogin !== null ?
-                                responseLogin.username
-                                :
-                                formikLogin.values.name
-                            }
+                            {responseLogin?.username}
                         </p>
                         <p className='m-0 p-0' style={{ fontSize: '.75rem' }}>
                             View profile
@@ -97,7 +89,7 @@ export default function AccountMenu({ formikLogin, onHandlerLogout, responseLogi
                     </MenuItem>
                 </Link>
                 <Divider />
-                <Link to={'/settings'} className="underline-avatar">
+                <Link to={'settings'} className="underline-avatar">
                     <MenuItem
                         onClick={handleClose}
                     >

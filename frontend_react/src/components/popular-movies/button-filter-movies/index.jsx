@@ -32,11 +32,10 @@ const ButtonFilterMovies = ({
         }
     }
     return (
-        <Stack spacing={1}
-            justifyContent="center"
+        <Stack justifyContent="center"
             direction="row"
             flexWrap="wrap"
-        >
+            gap="6px">
             <Button onClick={() => setActiveGenre(0)}
                 sx={useStyleBtnMovies.button}
                 variant="text">All</Button>

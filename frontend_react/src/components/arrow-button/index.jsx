@@ -21,9 +21,7 @@ const ArrowButton = () => {
                     fontSize: "1rem"
                 }}
             >
-                <p className='m-0'>top
-                <span className='m-0'>&#8593;</span>
-                </p>
+                <p className='m-0 fs-1'>&#8593;</p>
             </a>
         </div>
     );

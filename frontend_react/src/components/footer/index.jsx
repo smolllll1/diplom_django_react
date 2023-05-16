@@ -7,36 +7,37 @@ import './footer.css';
 
 const Footer = () => {
 
-    const { hideButtonLogin,
-        formikLogin,
-        responseLogin,
-    } = useContext(AuthenticationData);
+    const { responseLogin } = useContext(AuthenticationData);
 
     return (
-        <footer className="w-100">
+        <footer className="d-flex row w-100">
             <nav className="d-flex justify-content-around w-100 text-white flex-wrap py-4">
                 <div>
                     <img src={logo} alt="logo" width={100} />
-                    {hideButtonLogin === true ?
-                        <Link to="users/account"
-                            style={{ textDecoration: 'none' }}
-                        >
+                    {responseLogin ?
+                        <Link to={`users/account/${responseLogin?.username}`}
+                            style={{ textDecoration: 'none' }}>
                             <div
                                 style={{ color: 'rgb(1, 180, 228)' }}
                                 className="w-100 bg-white rounded justify-content-center mt-4 d-flex align-items-center fw-bold">
                                 Hi
                                 <p className="ms-1 my-0 p-0">
-                                {responseLogin !== null ?
-                                    responseLogin.username
-                                    :
-                                    formikLogin.values.name
-                                }
+                                    {responseLogin?.username}
                                 </p>
                                 !
                             </div>
                         </Link>
                         :
-                        null
+                        <Link to="registration"
+                            style={{ textDecoration: 'none' }}>
+                            <div
+                                style={{ color: 'rgb(1, 180, 228)' }}
+                                className="w-100 bg-white rounded justify-content-center mt-4 d-flex align-items-center fw-bold">
+                                <p className="ms-1 my-0 p-0">
+                                    JOIN THE COMMUNITY
+                                </p>
+                            </div>
+                        </Link>
                     }
                 </div>
                 <div>
@@ -75,6 +76,7 @@ const Footer = () => {
                     </ul>
                 </div>
             </nav>
+            <section>Build 2023 (april)</section>
         </footer>
     )
 }

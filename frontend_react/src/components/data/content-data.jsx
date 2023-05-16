@@ -1,6 +1,4 @@
-import React, { useState, createContext, useEffect } from 'react';
-import { getPeoplePage, getMoviesPage } from '../../api/axios';
-import { useQuery } from "react-query";
+import React, { useState, createContext } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const ContentData = createContext();
@@ -9,66 +7,50 @@ const ContentDataProvider = ({ children }) => {
 
     const location = useLocation();
 
-    // const [allPeopleId, setAllPeopleId] = useState([]);
-    // console.log(allPeopleId)
+    // click cards (people-list-info page, movies-list-info page)
+    const [isCardsPeopleId, setIsCardsPeopleId] = useState(parseInt(location?.pathname.split("/")[2]));
+    const [isCardsMoviesId, setIsCardsMoviesId] = useState(parseInt(location?.pathname.split("/")[2]));
 
-    // popular movies (home pege: section random)
-    const [dataPopularMovies, setDataPopularMovies] = useState([]);
     // pagination (people page, movies page)
-    const [pagePeople, setPagePeople] = useState(location.search ?
-        parseInt(location?.search.split("=")[1]) : 1);
-    const [pageMovies, setPageMovies] = useState(location.search ?
-        parseInt(location?.search.split("=")[1]) : 1);
+    const [isPagePeople, setIsPagePeople] = useState(location.search ? parseInt(location?.search.split("=")[1]) : 1);
+    const [isPageMovies, setIsPageMovies] = useState(location.search ? parseInt(location?.search.split("=")[1]) : 1);
 
+    // handler click cards people (value === id)
+    const onHandlerCardsInfoPeople = (value) => {
+        setIsCardsPeopleId(value);
+    };
 
-    useEffect(() => {
-        getMoviesPage().then((data) => {
-            setDataPopularMovies(data.results);
-        });
-        // getAllPeopleId().then((data) => {
-        //     setAllPeopleId(data.results)
-        // });
-    }, []);
+    // handler click cards movies (value === id)
+    const onHandlerCardsInfoMovies = (value) => {
+        setIsCardsMoviesId(value);
+    };
 
-    // pagination people
-    const {
-        isLoadingPeople,
-        isErrorPeople,
-        errorPeople,
-        data: dataPeople,
-    } = useQuery(["pop_people/", pagePeople], () => getPeoplePage(pagePeople), {
-        keepPreviousData: true
-    });
+    // handler chenge pagination people (value === number page)
+    const onHandlerPaginationPeople = (value) => {
+        setIsPagePeople(value);
+    };
 
-    // pagination movies
-    const {
-        isLoadingMovies,
-        isErrorMovies,
-        errorMovies,
-        data: dataMovies,
-    } = useQuery(["pop_movies/", pageMovies], () => getMoviesPage(pageMovies), {
-        keepPreviousData: true
-    });
+    // handler chenge pagination movies (value === number page)
+    const onHandlerPaginationMovies = (value) => {
+        setIsPageMovies(value);
+    };
 
     return (
         <ContentData.Provider
             value={{
-                // popular movies
-                dataPopularMovies: dataPopularMovies,
                 // movies pagination (movies page)
-                pageMovies: pageMovies,
-                setPageMovies: setPageMovies,
-                dataMovies: dataMovies,
-                isLoadingMovies: isLoadingMovies,
-                isErrorMovies: isErrorMovies,
-                errorMovies: errorMovies,
+                onHandlerPaginationMovies: onHandlerPaginationMovies,
+                isPageMovies: isPageMovies,
                 // people pagination (people page)
-                pagePeople: pagePeople,
-                setPagePeople: setPagePeople,
-                dataPeople: dataPeople,
-                isLoadingPeople: isLoadingPeople,
-                isErrorPeople: isErrorPeople,
-                errorPeople: errorPeople,
+                onHandlerPaginationPeople: onHandlerPaginationPeople,
+                isPagePeople: isPagePeople,
+                // people cards (people list info component} 
+                onHandlerCardsInfoPeople: onHandlerCardsInfoPeople,
+                isCardsPeopleId: isCardsPeopleId,
+                // movies cards (movies list info component}
+                onHandlerCardsInfoMovies: onHandlerCardsInfoMovies,
+                isCardsMoviesId: isCardsMoviesId,
+
             }}>
             {children}
         </ContentData.Provider>

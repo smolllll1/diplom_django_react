@@ -1,12 +1,9 @@
 import React from 'react';
 import { ErrorBoundary } from '../error-boundary/error-boundary';
 import { AnimatePresence } from 'framer-motion'
-import {
-  Routes,
-  Route,
-} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from '../../pages/home';
-import {About} from '../../pages/about';
+import { About } from '../../pages/about';
 import Registration from '../../pages/registration';
 import Login from '../../pages/login';
 import { MoviesPages } from '../../pages/movies-pages';
@@ -37,7 +34,7 @@ const App = () => {
                   {/* public routes */}
                   <Route exact path="registration" element={<Registration />} />
                   <Route exact path="login" element={<Login />} />
-                  <Route exact path="users/account" element={<UsersAccount />} />
+                  <Route exact path="users/account/:usersId" element={<UsersAccount />} />
                   <Route exact path="settings" element={<UsersSettings />} />
                   <Route exact path="search" element={<Search />} />
                   {/* content pages */}

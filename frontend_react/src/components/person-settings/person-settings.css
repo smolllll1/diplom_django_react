@@ -1,4 +1,8 @@
 /* PAGE PERSON SETTINGS */
+ul>a {
+    text-decoration: none;
+    color: gray;
+}
 
 /* top block settings */
 .top-person-settings {
