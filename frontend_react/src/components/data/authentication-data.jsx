@@ -15,9 +15,9 @@ const emailRegExp = /^(([^<>()[\]\\.,;:\\"]+(\.[^<>()[\]\\.,;:\\"]+)*)|(\\"))@((
 // POST URL REGISTRATION
 const REGISTRATION_URL = 'registration/';
 // POST URL LOGIN
-const LOGIN_URL = 'cooky_login/login/';
+const LOGIN_URL = 'login/';
 // GET URL LOGOUT
-const LOGOUT_URL = 'cooky_login/logout/';
+const LOGOUT_URL = 'logout/';
 
 const AuthenticationDataProvider = ({ children }) => {
 
@@ -143,7 +143,7 @@ const AuthenticationDataProvider = ({ children }) => {
             setHideButtonLogin(true)
             // console.log(values);
 
-            await axiosBaseUrl.post(LOGIN_URL, values)
+            await axiosBaseUrl.get(LOGIN_URL, values)
                 .then(response => {
                     setResponseLogin(response.data.loginRespons)
                     console.log(response.data.loginRespons)
