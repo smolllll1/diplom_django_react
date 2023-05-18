@@ -130,16 +130,6 @@ const AuthenticationDataProvider = ({ children }) => {
 
         // Submit form login
         onSubmit: async (values) => {
-<<<<<<< HEAD
-            navigate('/users/account');
-            setHideButtonLogin(true)
-            // console.log(values);
-
-            await axiosBaseUrl.get(LOGIN_URL, values)
-                .then(response => {
-                    setResponseLogin(response.data.loginRespons)
-                    console.log(response.data.loginRespons)
-=======
             try {
                 const response = await axiosBaseUrl({
                     method: "post", url: LOGIN_URL,
@@ -147,7 +137,6 @@ const AuthenticationDataProvider = ({ children }) => {
                         username: values.name,
                         password: values.password
                     },
->>>>>>> 3e4793d6c4b3aa5ef23a17d219b7fab0f40cc2ae
                 })
                 if (response.status === 200) {
                     localStorage.setItem("user", JSON.stringify(response.data.loginRespons));
