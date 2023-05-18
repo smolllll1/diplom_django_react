@@ -1,6 +1,5 @@
 
-import statistics
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from rest_framework import viewsets, mixins
 from rest_framework.pagination import PageNumberPagination
@@ -8,14 +7,14 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.request import Request
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
-from rest_framework.exceptions import ValidationError, AuthenticationFailed, NotAuthenticated
-from rest_framework.authentication import BasicAuthentication, SessionAuthentication
+from rest_framework.exceptions import ValidationError
+from rest_framework.authentication import BasicAuthentication
 from backend_django_rest import key
 import requests
 import json
 from rest_framework import filters
 from rest_framework import generics
-from .models import People, Test, Movies
+from .models import People, Movies, Test
 from .serializers import RegisterSerializer, LoginSerializer, PeopleSerializer, NoteSerializer, MovieSerializer
 
 # Create your views here.
@@ -25,18 +24,30 @@ class DataPagination(PageNumberPagination):
     page_size_query_param = 'page_size'
     max_page_size = 100
 
+class SearchPagination(PageNumberPagination):
+    page_size = 10000
+    page_size_query_param = 'page_size'
+    max_page_size = 1
+
     def get_paginated_response(self, data):
         response = super().get_paginated_response(data)
         response.data['total_pages'] = self.page.paginator.num_pages
         return response
 
-class TestViewSet(viewsets.ModelViewSet):
-    queryset = Test.objects.all()
-    serializer_class = NoteSerializer
-    pagination_class = DataPagination    
+class SearchPeopleViewSet(viewsets.ModelViewSet):
+    queryset = People.objects.all()
+    serializer_class = PeopleSerializer
+    pagination_class = SearchPagination 
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name']  
 
-# @permission_classes([IsAuthenticated])
-# @authentication_classes([BasicAuthentication])
+class SearchMoviesViewSet(viewsets.ModelViewSet):
+    queryset = Movies.objects.all()
+    serializer_class = MovieSerializer
+    pagination_class = SearchPagination 
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['title']  
+
 class PeopleViewSet(generics.ListAPIView, mixins.CreateModelMixin,
                 mixins.RetrieveModelMixin,
                 mixins.UpdateModelMixin,
@@ -45,10 +56,11 @@ class PeopleViewSet(generics.ListAPIView, mixins.CreateModelMixin,
                 viewsets.GenericViewSet):
     queryset = People.objects.all()
     serializer_class = PeopleSerializer
-    pagination_class = DataPagination
     filter_backends = [filters.SearchFilter]
     search_fields = ['name']
     lookup_field = 'id'
+    pagination_class = DataPagination
+    
 
 class MoviesViewSet(generics.ListAPIView, mixins.CreateModelMixin,
                 mixins.RetrieveModelMixin,
@@ -80,50 +92,44 @@ def register(request):
             data = serializer.data
             data['id'] = user.id
         return Response({'registrationRespons': data})
-    
-# @api_view(['GET'])
-# def user_profile(request):
-#     user = request.user
-#     data = {
-#         'id': user.id,
-#         'username': user.username,
-#         'email': user.email,
-#         'date_joined': user.date_joined
-#     }
-#     return Response(data)
 
-@api_view(['POST'])
+@api_view(['POST', 'DELETE'])
 @permission_classes([IsAuthenticated])
 @authentication_classes([BasicAuthentication])
 def user(request: Request):
-    print(request.data)
-    return Response({
-        'loginRespons': LoginSerializer(request.user).data
-    })
+    if request.method == 'POST':
+        get_user = request.user
+        last_login = get_user.last_login
+        format_last_sesion = last_login.strftime('%d-%m-%Y, %H:%M')
+        last_login_serializer = NoteSerializer(data={'name': f'{get_user}', 'title': f'{format_last_sesion}'})
+        filter_name = Test.objects.filter(name=get_user)
+        first_filter_name = filter_name.first()
+        if filter_name and last_login_serializer.is_valid():
+            if len(filter_name) < 5:
+                last_login_serializer.save() 
+            if len(filter_name) == 5:  
+                first_filter_name.delete()
+                last_login_serializer.save() 
+        if not filter_name and last_login_serializer.is_valid():
+            last_login_serializer.save()  
+        atribyt = [f'{i}' for i in filter_name]
+        add_last_login = LoginSerializer(request.user).data            
+        add_last_login['last_login'] = atribyt
 
-@api_view(['POST'])
-# @permission_classes([IsAuthenticated])
-# @authentication_classes([BasicAuthentication])
-def loginView(request):
-        print(request.data)
-        username = request.data.get('name')
-        password = request.data.get('password')
+        return Response({
+            'loginRespons': add_last_login
+        })
+    if request.method == 'DELETE':
+            username = request.data.get('name')
+            try:
+                user = User.objects.get(username=username)
+                user.delete()
+                return Response({'message': 'User deleted successfully'})
+            except User.DoesNotExist:
+                return Response({'message': 'User not found'}, status=404)
 
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                userRespons = request.user
-                serializer = LoginSerializer(userRespons)
-                return Response({'loginRespons': serializer.data})
-            else:
-                return Response({'message': 'Disabled account'})
-        else:
-            return Response({'message': 'Invalid login'})
         
 @api_view()
-# @permission_classes([IsAuthenticated])
-# @authentication_classes([BasicAuthentication])
 def logout_view(request):
 	logout(request)
 	return Response({'message': 'Logout!'})
