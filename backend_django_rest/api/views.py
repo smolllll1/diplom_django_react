@@ -1,5 +1,5 @@
 
-from django.contrib.auth import logout
+from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.models import User
 from rest_framework import viewsets, mixins
 from rest_framework.pagination import PageNumberPagination
@@ -98,11 +98,14 @@ def register(request):
 @authentication_classes([BasicAuthentication])
 def user(request: Request):
     if request.method == 'POST':
-        get_user = request.user
-        last_login = get_user.last_login
+        username = request.user
+        password = request.user.password
+        user = authenticate(username=username, password=password)
+        login(request, user)
+        last_login = username.last_login
         format_last_sesion = last_login.strftime('%d-%m-%Y, %H:%M')
-        last_login_serializer = NoteSerializer(data={'name': f'{get_user}', 'title': f'{format_last_sesion}'})
-        filter_name = Test.objects.filter(name=get_user)
+        last_login_serializer = NoteSerializer(data={'name': f'{username}', 'title': f'{format_last_sesion}'})
+        filter_name = Test.objects.filter(name=username)
         first_filter_name = filter_name.first()
         if filter_name and last_login_serializer.is_valid():
             if len(filter_name) < 5:
@@ -128,7 +131,7 @@ def user(request: Request):
             except User.DoesNotExist:
                 return Response({'message': 'User not found'}, status=404)
 
-        
+
 @api_view()
 def logout_view(request):
 	logout(request)
