@@ -15,16 +15,6 @@ const PersonSettings = () => {
     const navigate = useNavigate();
     const { responseLogin, onHandlerDeleteAccount } = useContext(AuthenticationData)
 
-    const useStyleMenuSettings = {
-        li: {
-            color: 'gray',
-            textTransform: "capitalize",
-            ':hover': {
-                color: "#01D277",
-            },
-        }
-    }
-
     return (
         <m.div
             initial={{ opacity: 0 }}
@@ -66,47 +56,35 @@ const PersonSettings = () => {
                             }}>
                             Settings
                         </li>
-                        <Link to={"/updated"}>
-                            <MenuItem sx={useStyleMenuSettings.li}>
-                                Edit Profile
-                            </MenuItem>
-                        </Link>
-                        <Link>
-                            <MenuItem sx={useStyleMenuSettings.li}>
-                                Account Settings</MenuItem>
-                        </Link>
-                        <Link>
-                            <MenuItem sx={useStyleMenuSettings.li}>
-                                Streaming Services</MenuItem>
-                        </Link>
-                        <Link>
-                            <MenuItem sx={useStyleMenuSettings.li}>
-                                Notifications</MenuItem>
-                        </Link>
-                        <Link>
-                            <MenuItem sx={useStyleMenuSettings.li}>
-                                Blocked Users</MenuItem>
-                        </Link>
-                        <Link>
-                            <MenuItem sx={useStyleMenuSettings.li}>
-                                Import List
-                            </MenuItem>
-                        </Link>
-                        <Link>
-                            <MenuItem sx={useStyleMenuSettings.li}>
-                                Sharing Settings</MenuItem>
-                        </Link>
-                        <Link>
-                            <MenuItem sx={useStyleMenuSettings.li}>
-                                Sessions</MenuItem>
-                        </Link>
-                        <Link to={"*"}>
-                            <MenuItem sx={useStyleMenuSettings.li}>
-                                API</MenuItem>
-                        </Link>
-                        <MenuItem sx={useStyleMenuSettings.li}
-                            onClick={(() => { onHandlerDeleteAccount(); navigate(`/`) })}>
-                            Delete Account
+                        <MenuItem className='setting-link'>
+                            <Link>Edit Profile</Link>
+                        </MenuItem>
+                        <MenuItem className='setting-link'>
+                            <Link>Account Settings</Link>
+                        </MenuItem>
+                        <MenuItem className='setting-link'>
+                            <Link>Streaming Services</Link>
+                        </MenuItem>
+                        <MenuItem className='setting-link'>
+                            <Link>Notifications</Link>
+                        </MenuItem>
+                        <MenuItem className='setting-link'>
+                            <Link>Blocked Users</Link>
+                        </MenuItem>
+                        <MenuItem className='setting-link'>
+                            <Link>Import List</Link>
+                        </MenuItem>
+                        <MenuItem className='setting-link'>
+                            <Link>Sharing Settings</Link>
+                        </MenuItem>
+                        <MenuItem className='setting-link'>
+                            <Link>Sessions</Link>
+                        </MenuItem>
+                        <MenuItem className='setting-link'>
+                            <Link>API</Link>
+                        </MenuItem>
+                        <MenuItem className='setting-link' onClick={onHandlerDeleteAccount}>
+                            <Link to={`/`}>Delete Account</Link>
                         </MenuItem>
                     </MenuList>
                 </Paper>

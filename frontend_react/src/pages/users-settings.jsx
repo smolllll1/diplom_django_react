@@ -10,4 +10,4 @@ const UsersSettings = () => {
     )
 }
 
-export default UsersSettings;
+export { UsersSettings };

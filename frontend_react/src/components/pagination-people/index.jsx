@@ -24,6 +24,7 @@ const PaginationPeople = (
     // setTimeout pagination
     const [showPaginationPeople, setShowPaginationPeople] = useState(true);
 
+    console.log(showPaginationPeople)
     useEffect(() => {
         if (location.search) {
             const page = parseInt(location.search.split('=')[1]);

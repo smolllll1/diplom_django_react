@@ -7,7 +7,6 @@ import * as Yup from "yup";
 const NotificationData = createContext({});
 
 // Regular Expressions
-const subjectRegExp = /^[a-zA-Za-яА-ЯЇїІі0-9](_(?!(\.|_))|\.(?!(_|\.))|[a-zA-Za-яА-ЯЇїІі0-9]){1,40}[a-zA-Za-яА-ЯЇїІі0-9]?$/;
 const emailRegExp = /^(([^<>()[\]\\.,;:\\"]+(\.[^<>()[\]\\.,;:\\"]+)*)|(\\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 // POST URL ABOUT
@@ -36,7 +35,6 @@ const NotificationDataProvider = ({ children }) => {
             subject: Yup.string()
                 .min(2, 'Subject is short')
                 .max(40, 'Subject must be 40 characters or less.')
-                .matches(subjectRegExp, 'Subject is not valid')
                 .required('Subject is required'),
             notification: Yup.string()
                 .required('Notification is required'),
@@ -55,16 +53,15 @@ const NotificationDataProvider = ({ children }) => {
                     setErrMsgNotification(error.message);
                 });
 
-
-            const cleanNotificationValue = () => {
-                formikNotification.values.email = "";
-                formikNotification.values.subject = "";
-                formikNotification.values.notification = "";
-            };
-
             cleanNotificationValue();
         }
     });
+
+    const cleanNotificationValue = () => {
+        formikNotification.values.email = "";
+        formikNotification.values.subject = "";
+        formikNotification.values.notification = "";
+    };
 
     return (
         <NotificationData.Provider
@@ -72,6 +69,7 @@ const NotificationDataProvider = ({ children }) => {
                 formikNotification: formikNotification,
                 responseNotification: responseNotification,
                 errMsgNotification: errMsgNotification,
+                cleanNotificationValue: cleanNotificationValue,
             }}
         >
             {children}

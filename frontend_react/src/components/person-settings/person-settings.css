@@ -1,7 +1,12 @@
 /* PAGE PERSON SETTINGS */
-ul>a {
+.setting-link>a {
+    width: 100%;
     text-decoration: none;
     color: gray;
+}
+
+.setting-link>a:hover {
+    color: #01D277;
 }
 
 /* top block settings */

@@ -13,30 +13,28 @@ const Footer = () => {
         <footer className="d-flex row w-100">
             <nav className="d-flex justify-content-around w-100 text-white flex-wrap py-4">
                 <div>
-                    <img src={logo} alt="logo" width={100} />
+                    <Link to={`/`}>
+                        <img src={logo} alt="logo" width={100} />
+                    </Link>
                     {responseLogin ?
-                        <Link to={`users/account/${responseLogin?.username}`}
-                            style={{ textDecoration: 'none' }}>
-                            <div style={{ color: 'rgb(1, 180, 228)' }}
-                                className="w-100 bg-white rounded justify-content-center mt-4 p-2 d-flex align-items-center fw-bold">
-                                Hi
-                                <p className="ms-1 my-0 p-0">
+                        <div className="w-100 bg-white rounded justify-content-center mt-4 p-2 d-flex align-items-center fw-bold">
+                            Hi
+                            <p className="ms-1 my-0 p-0">
+                                <Link to={`users/account/${responseLogin?.username}`}
+                                    style={{ textDecoration: 'none', color: 'rgb(1, 180, 228)' }}>
                                     {responseLogin?.username}
-                                </p>
-                                !
-                            </div>
-                        </Link>
+                                </Link>
+                            </p>
+                            !
+                        </div>
                         :
-                        <Link to="registration"
-                            style={{ textDecoration: 'none' }}>
-                            <div className="w-100 bg-white rounded justify-content-center mt-4 p-2 d-flex align-items-center fw-bold">
-                                <p className="ms-1 my-0 p-0"
-                                    style={{ color: 'rgb(1, 180, 228)' }}
-                                >
+                        <div className="w-100 bg-white rounded justify-content-center mt-4 p-2 d-flex align-items-center fw-bold">
+                            <p className="ms-1 my-0 p-0">
+                                <Link to="registration" style={{ textDecoration: 'none', color: 'rgb(1, 180, 228)' }}>
                                     JOIN THE COMMUNITY
-                                </p>
-                            </div>
-                        </Link>
+                                </Link>
+                            </p>
+                        </div>
                     }
                 </div>
                 <div>

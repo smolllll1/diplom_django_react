@@ -1,28 +1,28 @@
 import React from 'react';
-import { ErrorBoundary } from '../error-boundary/error-boundary';
-import { AnimatePresence } from 'framer-motion'
 import { Routes, Route } from "react-router-dom";
-import Home from '../../pages/home';
+import { AnimatePresence } from 'framer-motion';
+import { ErrorBoundary } from '../error-boundary/error-boundary';
+import { Home } from '../../pages/home';
 import { About } from '../../pages/about';
 import { Contacts } from '../../pages/contacts';
-import Registration from '../../pages/registration';
-import Login from '../../pages/login';
-import { MoviesPages } from '../../pages/movies-pages';
+import { Registration } from '../../pages/registration';
+import { Login } from '../../pages/login';
+import {MoviesPages} from '../../pages/movies-pages';
 import { MoviesListInfo } from '../movies-list-info';
 import { PeoplePages } from '../../pages/people-pages';
 import { PeopleListInfo } from '../people-list-info';
-import Search from "../../pages/search";
-import UsersAccount from '../../pages/users-account';
-import UsersSettings from '../../pages/users-settings';
+import { Search } from "../../pages/search";
+import { UsersAccount } from '../../pages/users-account';
+import { UsersSettings } from '../../pages/users-settings';
 import { Updated } from '../../pages/updated';
 import { PrivacyPolicy } from '../../pages/privacy-policy';
 import { TermsUse } from '../../pages/terms';
-import NotFound from '../../pages/not-found';
+import { NotFound } from '../../pages/not-found';
 import { AuthenticationDataProvider } from '../data/authentication-data';
 import { ContentDataProvider } from '../data/content-data';
 import { NotificationDataProvider } from '../data/notification-data';
 import { SearchValueProvider } from '../data/search-value';
-import Layout from '../layout/layout';
+import { Layout } from '../layout/layout';
 
 const App = () => {
 

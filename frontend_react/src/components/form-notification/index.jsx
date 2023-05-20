@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useContext } from 'react';
-import ButtonSend from 'react-bootstrap/Button';
-import Button from '@mui/material/Button';
+import Button from 'react-bootstrap/Button';
+import ButtonContactUs from '@mui/material/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import { NotificationData } from '../data/notification-data';
@@ -28,12 +28,11 @@ const FormNotification = () => {
     return (
         <Fragment>
             <div className='d-flex my-3 justify-content-center'>
-                <Button className="fs-5"
+                <ButtonContactUs className="fs-5"
                     onClick={handleShow}
-                    sx={useStyleBtnContactUs.btn}
-                >
+                    sx={useStyleBtnContactUs.btn}>
                     Contact Us
-                </Button>
+                </ButtonContactUs>
             </div>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
@@ -42,20 +41,39 @@ const FormNotification = () => {
                 <Modal.Body>
                     <Form onSubmit={formikNotification.handleSubmit}>
                         {/* Email input field */}
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Label>Contact Email</Form.Label>
+                        <Form.Group className={`mb-3 ${formikNotification.touched.email
+                            && formikNotification.errors.email
+                            ? "text-danger"
+                            : ""}`}>
+                            <Form.Label htmlFor="email">
+                                {formikNotification.touched.email
+                                    && formikNotification.errors.email
+                                    ? formikNotification.errors.email
+                                    : "Contact Email"
+                                }
+                            </Form.Label>
                             <Form.Control
                                 type="email"
                                 name="email"
                                 placeholder="Enter your email"
-                                autoFocus
+                                // autoFocus
                                 value={formikNotification.values.email}
                                 onChange={formikNotification.handleChange}
                                 onBlur={formikNotification.handleBlur}
                             />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-                            <Form.Label>Subject</Form.Label>
+                        {/* Subject input field */}
+                        <Form.Group className={`mb-3 ${formikNotification.touched.subject
+                            && formikNotification.errors.subject
+                            ? "text-danger"
+                            : ""}`}>
+                            <Form.Label htmlFor="subject">
+                                {formikNotification.touched.subject
+                                    && formikNotification.errors.subject
+                                    ? formikNotification.errors.subject
+                                    : "Subject"
+                                }
+                            </Form.Label>
                             <Form.Control
                                 type="text"
                                 name="subject"
@@ -65,11 +83,18 @@ const FormNotification = () => {
                                 onBlur={formikNotification.handleBlur}
                             />
                         </Form.Group>
-                        <Form.Group
-                            className="mb-3"
-                            controlId="exampleForm.ControlTextarea1"
-                        >
-                            <Form.Label>Email Content</Form.Label>
+                        {/* Notification input field */}
+                        <Form.Group className={`mb-3 ${formikNotification.touched.notification
+                            && formikNotification.errors.notification
+                            ? "text-danger"
+                            : ""}`}>
+                            <Form.Label htmlFor="notification">
+                                {formikNotification.touched.notification
+                                    && formikNotification.errors.notification
+                                    ? formikNotification.errors.notification
+                                    : "Email Content"
+                                }
+                            </Form.Label>
                             <Form.Control as="textarea" rows={3}
                                 type="text"
                                 name="notification"
@@ -79,13 +104,16 @@ const FormNotification = () => {
                                 onBlur={formikNotification.handleBlur}
                             />
                         </Form.Group>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={handleClose}>
+                                Close
+                            </Button>
+                            <Button variant="primary" type="submit">
+                                Send
+                            </Button>
+                        </Modal.Footer>
                     </Form>
                 </Modal.Body>
-                <Modal.Footer>
-                    <ButtonSend variant="primary" type="submit" onClick={handleClose}>
-                        Send
-                    </ButtonSend>
-                </Modal.Footer>
             </Modal>
         </Fragment>
     );
