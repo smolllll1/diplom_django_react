@@ -3,7 +3,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import { getMoviesPage } from '../../api/axios';
 import CircularStatic from "../progress";
 
-function SliderIntervals() {
+function SliderHomePage() {
 
     const [movieseSlide, setMovieseSlide] = useState([]);
 
@@ -71,6 +71,6 @@ function SliderIntervals() {
     );
 }
 
-export default SliderIntervals;
+export {SliderHomePage};
 
 // src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}

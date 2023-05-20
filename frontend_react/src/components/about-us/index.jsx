@@ -2,7 +2,7 @@ import React from 'react';
 import { motion as m } from "framer-motion";
 import Figure from 'react-bootstrap/Figure';
 import { SliderAbout } from '../slider-about';
-import { FormSendMessage } from "../form-about-message";
+import { FormNotification } from "../form-notification";
 
 import "./about-us.css";
 
@@ -42,7 +42,6 @@ const AboutUs = () => {
             </section>
             <section className='w-100 m-0 d-flex row justify-content-center align-items-center'>
                 {advantages.map((item) => {
-                    console.log(item)
                     return <div key={item.id} className='w-50'>
                         <h1 className='text-center text-white fst-italic fw-bold fs-1'>{item.titleTop}</h1>
                         <p className='text-white text-center'>{item.paragraphFirst}</p>
@@ -57,7 +56,7 @@ const AboutUs = () => {
                     </div>
                 })
                 }
-                <FormSendMessage />
+                <FormNotification />
             </section>
             <SliderAbout />
         </m.div >

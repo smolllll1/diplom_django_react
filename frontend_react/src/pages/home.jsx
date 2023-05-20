@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { motion as m } from "framer-motion";
 import { HomeRandom } from "../components/home-random";
-import IndividualIntervalsExample from "../components/slider";
+import {SliderHomePage} from "../components/slider-home";
 import { AuthenticationData } from "../components/data/authentication-data";
 
 const Home = () => {
@@ -23,7 +23,7 @@ const Home = () => {
                 null
             }
             <HomeRandom />
-            <IndividualIntervalsExample />
+            <SliderHomePage />
         </m.div>
     )
 }
