@@ -24,8 +24,6 @@ from datetime import timedelta
 SECRET_KEY = SECRET_KEY
 
 CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
-# CSRF_COOKIE_SECURE = False
-# CSRF_COOKIE_HTTPONLY = False
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

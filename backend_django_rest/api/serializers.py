@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class NoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Test
-        fields = '__all__'
+        fields = ['name', 'title']
 
 class RegisterSerializer(serializers.ModelSerializer):
 
@@ -24,6 +24,7 @@ class PeopleSerializer(serializers.ModelSerializer):
     class Meta:
         model = People
         fields = ['adult', 'gender', 'id', 'known_for', 'known_for_department', 'name', 'popularity', 'profile_path']
+
 
 class MovieSerializer(serializers.ModelSerializer):
     class Meta:
