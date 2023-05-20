@@ -1,11 +1,12 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import AboutUs from '../components/about-us';
+
 const About = () => {
     return (
-        <Fragment>
+        <Fragment >
             <AboutUs />
         </Fragment>
     );
 }
 
-export  {About};
+export { About };

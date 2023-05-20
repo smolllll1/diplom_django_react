@@ -1,24 +1,12 @@
 import React from 'react';
 import { motion as m } from "framer-motion";
 import Figure from 'react-bootstrap/Figure';
-import Button from '@mui/material/Button';
 import { SliderAbout } from '../slider-about';
+import { FormSendMessage } from "../form-about-message";
 
 import "./about-us.css";
 
 const AboutUs = () => {
-
-    const useStyleBtnContactUs = {
-        btn: {
-            backgroundColor: "floralwhite",
-            color: 'red',
-            textTransform: "capitalize",
-            '&:hover': {
-                backgroundColor: "red",
-                color: "floralwhite"
-            },
-        }
-    }
 
     const advantages = [
         {
@@ -69,15 +57,7 @@ const AboutUs = () => {
                     </div>
                 })
                 }
-                <div className='d-flex my-3 justify-content-center'>
-                    <Button className="fs-5"
-                        // variant="contained"
-                        onClick={() => { }}
-                        sx={useStyleBtnContactUs.btn}
-                    >
-                        Contact Us
-                    </Button>
-                </div>
+                <FormSendMessage />
             </section>
             <SliderAbout />
         </m.div >
