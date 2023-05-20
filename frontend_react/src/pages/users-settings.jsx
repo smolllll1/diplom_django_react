@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import PersonSettings from "../components/person-settings";
+import { PersonSettings } from "../components/person-settings";
 
 const UsersSettings = () => {
 

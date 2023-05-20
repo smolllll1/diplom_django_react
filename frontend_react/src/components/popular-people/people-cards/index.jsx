@@ -25,16 +25,10 @@ const PeopleCards = ({ item }) => {
                             style={{ cursor: "pointer" }}
                             src={`https://image.tmdb.org/t/p/original${item.profile_path}`}
                             alt={item.name}
-                            onClick={() => { onHandlerCardsInfoPeople(item.id) }}
-                        />
+                            onClick={() => { onHandlerCardsInfoPeople(item.id) }} />
                     </Link>
                     <Card.Body>
-                        <Card.Title
-                            style={{
-                                fontSize: "1rem",
-                                fontWeight: "bold"
-                            }}
-                        >{item.name}</Card.Title>
+                        <Card.Title style={{ fontSize: "0.875rem" }}>{item.name}</Card.Title>
                         <Card.Text>{item.release_date}</Card.Text>
                     </Card.Body>
                 </Card>

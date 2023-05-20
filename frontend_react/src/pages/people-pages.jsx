@@ -25,7 +25,7 @@ const PeoplePages = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="d-flex flex-column"
+            className="d-flex flex-column w-100"
             style={{ backgroundColor: 'rgb(1, 180, 228)' }}>
             <PopularPeople dataPeople={dataPeople} />
             <PaginationPeople

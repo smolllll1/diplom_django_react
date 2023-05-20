@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { motion as m } from "framer-motion";
@@ -12,19 +13,27 @@ const PersonAccount = ({ responseLogin }) => {
         <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}>
+            exit={{ opacity: 0 }}
+            style={{ width: "100%" }}
+        >
             <div className='d-flex row m-0'>
                 <div className='d-flex col top-person-account align-items-center'>
                     <div className='d-flex m-5 justify-content-center 
                             align-items-center avatar-person-account-circle'>
-                        <p className='text-white' style={{ fontSize: "4rem" }}>
-                            {/* avatar first letter Username */}
-                            {responseLogin?.username[0]}
-                        </p>
+                        <Link to={"#"}
+                            style={{ textDecoration: 'none' }}>
+                            <p className='text-white py-3 px-5' style={{ fontSize: "4rem" }}>
+                                {/* avatar first letter Username */}
+                                {responseLogin?.username[0]}
+                            </p>
+                        </Link>
                     </div>
                     <p className='fs-2 m-1 fw-bold text-white'>
-                        {/* after avatar item Username */}
-                        {responseLogin?.username}
+                        <Link to={"#"}
+                            style={{ textDecoration: 'none', color: "white" }}>
+                            {/* after avatar item Username */}
+                            {responseLogin?.username}
+                        </Link>
                         <span className='fs-5 m-3 fw-normal text-secondary'>Member since
                             {responseLogin !== null ?
                                 <span className='mx-2'>
@@ -61,7 +70,7 @@ const PersonAccount = ({ responseLogin }) => {
                     </div>
                 </div>
             </div>
-        </m.div>
+        </m.div >
     )
 }
 

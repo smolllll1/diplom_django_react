@@ -26,7 +26,7 @@ const ButtonFilterPeople = ({
             backgroundColor: 'rgb(13, 37, 63)',
             color: '#ffffff',
             textTransform: "capitalize",
-            ':hover': {
+            '&:hover': {
                 color: "rgb(13, 37, 63)",
             },
         }

@@ -1,21 +1,42 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
 import Stack from '@mui/material/Stack';
 import { ContentData } from '../data/content-data';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import Alert from 'react-bootstrap/Alert';
 import CircularStatic from "../progress";
 
-const PaginationPeople = ({
-    isPagePeople,
-    dataPeople,
-    isLoading,
-    isError,
-    error
-}) => {
+const PaginationPeople = (
+    {
+        isPagePeople,
+        dataPeople,
+        isLoading,
+        isError,
+        error
+    }
+) => {
 
-    const { onHandlerPaginationPeople } = useContext(ContentData);
+    const location = useLocation();
+    const { onHandlerPaginationPeople, setIsPagePeople } = useContext(ContentData);
+    // visited pages
+    const [visitedPagesPeople, setVisitedPagesPeople] = useState([isPagePeople]);
+    // setTimeout pagination
+    const [showPaginationPeople, setShowPaginationPeople] = useState(true);
+
+    useEffect(() => {
+        if (location.search) {
+            const page = parseInt(location.search.split('=')[1]);
+            setIsPagePeople(page);
+        } else {
+            setIsPagePeople(1);
+        }
+        if (dataPeople) {
+            setTimeout(() => {
+                setShowPaginationPeople(false)
+            }, 2000)
+        }
+    }, [location.search, setIsPagePeople, dataPeople]);
 
     if (isLoading) return <div className="text-center mt-5">
         <CircularStatic />
@@ -28,31 +49,36 @@ const PaginationPeople = ({
 
     return (
         <Stack spacing={2}>
-            <Pagination
-                className='d-flex justify-content-center mb-4'
-                count={dataPeople?.total_pages}
-                page={isPagePeople}
-                onChange={(_, newPage) => {
-                    onHandlerPaginationPeople(newPage)
-                }}
-                renderItem={(item) => (
-                    <PaginationItem
-                        component={NavLink}
-                        to={`/pop_people${item.page === 1 ? "" : `?page=${item.page}`}`}
-                        {...item}
-                    />
-                )}
-                showFirstButton
-                showLastButton
-                siblingCount={1}
-                shape='rounded'
-                sx={{
-                    "a.MuiPaginationItem-rounded.Mui-selected": {
-                        bgcolor: "rgb(13, 37, 63)",
-                        color: "#ffffff",
-                    }
-                }}
-            />
+            {showPaginationPeople === false ?
+                <Pagination
+                    className='d-flex justify-content-center mb-4'
+                    count={dataPeople?.total_pages}
+                    page={isPagePeople}
+                    onChange={(_, value) => {
+                        onHandlerPaginationPeople(value);
+                        setVisitedPagesPeople([...visitedPagesPeople, value]);
+                    }}
+                    renderItem={(item) => (
+                        <PaginationItem
+                            component={NavLink}
+                            to={item.page === 1 ? "" : `?page=${item.page}`}
+                            {...item}
+                        />
+                    )}
+                    showFirstButton
+                    showLastButton
+                    siblingCount={1}
+                    shape='rounded'
+                    sx={{
+                        "a.MuiPaginationItem-rounded.Mui-selected": {
+                            bgcolor: "rgb(13, 37, 63)",
+                            color: "#ffffff",
+                        }
+                    }}
+                />
+                :
+                null
+            }
         </Stack>
     );
 }

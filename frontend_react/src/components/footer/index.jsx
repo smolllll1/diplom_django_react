@@ -17,9 +17,8 @@ const Footer = () => {
                     {responseLogin ?
                         <Link to={`users/account/${responseLogin?.username}`}
                             style={{ textDecoration: 'none' }}>
-                            <div
-                                style={{ color: 'rgb(1, 180, 228)' }}
-                                className="w-100 bg-white rounded justify-content-center mt-4 d-flex align-items-center fw-bold">
+                            <div style={{ color: 'rgb(1, 180, 228)' }}
+                                className="w-100 bg-white rounded justify-content-center mt-4 p-2 d-flex align-items-center fw-bold">
                                 Hi
                                 <p className="ms-1 my-0 p-0">
                                     {responseLogin?.username}
@@ -30,10 +29,10 @@ const Footer = () => {
                         :
                         <Link to="registration"
                             style={{ textDecoration: 'none' }}>
-                            <div
-                                style={{ color: 'rgb(1, 180, 228)' }}
-                                className="w-100 bg-white rounded justify-content-center mt-4 d-flex align-items-center fw-bold">
-                                <p className="ms-1 my-0 p-0">
+                            <div className="w-100 bg-white rounded justify-content-center mt-4 p-2 d-flex align-items-center fw-bold">
+                                <p className="ms-1 my-0 p-0"
+                                    style={{ color: 'rgb(1, 180, 228)' }}
+                                >
                                     JOIN THE COMMUNITY
                                 </p>
                             </div>
@@ -43,36 +42,42 @@ const Footer = () => {
                 <div>
                     <h3>The Basics</h3>
                     <ul className="p-0 list-unstyled">
-                        <li>About Us</li>
-                        <li>Contact Us</li>
-                        <li>Support</li>
-                        <li>API</li>
-                        <li>Service</li>
+                        <li><Link to={"/about"} className="text-decoration-none text-white">About Us</Link></li>
+                        <li><Link to={"/contacts"} className="text-decoration-none text-white">Contact Us</Link></li>
+                        <li><Link to={"updated"} className="text-decoration-none text-white">Support</Link></li>
+                        <li><Link to={"updated"} className="text-decoration-none text-white">API</Link></li>
+                        <li><Link to={"updated"} className="text-decoration-none text-white">Service</Link></li>
                     </ul>
                 </div>
                 <div>
                     <h3>Get Involved</h3>
                     <ul className="p-0 list-unstyled">
-                        <li>Link</li>
-                        <li>Link</li>
-                        <li>Link</li>
+                        <li><Link to={"updated"} className="text-decoration-none text-white">Contribution Bible
+                        </Link>
+                        </li>
+                        <li><Link to={"updated"} className="text-decoration-none text-white">Add New Movie
+                        </Link>
+                        </li>
                     </ul>
                 </div>
                 <div>
                     <h3>Community</h3>
                     <ul className="p-0 list-unstyled">
-                        <li>Guidelines</li>
-                        <li>Discussions</li>
-                        <li>Leaderboard</li>
-                        <li>Twitter</li>
+                        <li><Link to={"updated"} className="text-decoration-none text-white">Guidelines</Link></li>
+                        <li><Link to={"updated"} className="text-decoration-none text-white">Discussions</Link></li>
+                        <li><Link to={"updated"} className="text-decoration-none text-white">Leaderboard</Link></li>
+                        <li><Link to={"updated"} className="text-decoration-none text-white">Twitter</Link></li>
                     </ul>
                 </div>
                 <div>
                     <h3>Legal</h3>
                     <ul className="p-0 list-unstyled">
-                        <li>Terms of Use</li>
-                        <li>API Terms of Use</li>
-                        <li>Privacy Policy</li>
+                        <li><Link to={"terms"} className="text-decoration-none text-white">Terms of Use</Link></li>
+                        <li><Link to={"updated"} className="text-decoration-none text-white">API Terms of Use</Link>
+                        </li>
+                        <li><Link to={"privacy-policy"} className="text-decoration-none text-white">Privacy Policy
+                        </Link>
+                        </li>
                     </ul>
                 </div>
             </nav>

@@ -13,7 +13,7 @@ const FormRegiatration = ({ formikRegistration }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="d-flex align-items-center justify-content-center wrapper-registration">
+            className="d-flex w-100 align-items-center justify-content-center wrapper-registration">
             <form className="m-3 d-flex form-registration"
                 onSubmit={formikRegistration.handleSubmit}
             >

@@ -9,7 +9,8 @@ const NotFound = () => {
             exit={{ opacity: 0 }}
             className='text-center'
             style={{
-                height: '80vh',
+                width:"100%",
+                height: '100vh',
                 backgroundColor: "white"
             }}
         >

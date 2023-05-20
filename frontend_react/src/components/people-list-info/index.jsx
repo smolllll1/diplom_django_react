@@ -6,9 +6,11 @@ import { ContentData } from "../data/content-data";
 import { useQuery } from "react-query";
 import Alert from 'react-bootstrap/Alert';
 import ScrollInfoMovies from "./scroll-info-movies";
+import { Link, useNavigate } from "react-router-dom";
 
 const PeopleListInfo = () => {
 
+    const navigate = useNavigate();
     // click cards people id
     const { isCardsPeopleId } = useContext(ContentData);
 
@@ -59,42 +61,57 @@ const PeopleListInfo = () => {
                         <CircularStatic />
                     </div>
                     :
-                    <div className="card my-3"
+                    <div className="card my-3 p-0 w-100"
                         style={{
-                            width: "100%",
                             backgroundColor: '#ffffff',
                             borderStyle: "none",
                             boxShadow: "4px 5px 5px -4px rgba(13, 37, 63)",
                         }}>
                         <div className="row g-0">
-                            <div className="col-md-4 d-flex justify-content-center align-items-center">
-                                <div className="w-75 h-75 d-flex">
-                                    <img src={`https://image.tmdb.org/t/p/original${listInfoPeople?.profile_path}`}
-                                        className="rounded"
-                                        style={{ width: "100%", objectFit: "cover" }}
-                                        alt={listInfoPeople?.name} />
+                            <div className="col-md-4 p-5 d-flex justify-content-center">
+                                <div className="w-100">
+                                    <Link onClick={() => { navigate(-1) }}>
+                                        <img src={`https://image.tmdb.org/t/p/original${listInfoPeople?.profile_path}`}
+                                            className="rounded"
+                                            style={{ width: "100%", height:"100%", objectFit: "cover" }}
+                                            alt={listInfoPeople?.name} />
+                                    </Link>
                                 </div>
                             </div>
-                            <div className="col-md-8 d-flex text-body">
-                                <div className="card-body d-flex row">
-                                    <h2 className="card-title fw-bold">
-                                        {listInfoPeople?.name}
-                                    </h2>
-                                    <h5 className="card-title">
-                                        Biography
-                                    </h5>
-                                    {biography.map((item) => {
-                                        return <div key={item.id}>
-                                            <p>{item.paragraphFirst}</p>
-                                            <p>{item.paragraphSecond}</p>
+                            <div className="col-md-8 d-flex justify-content-center align-items-center">
+                                <div className="w-100 d-flex row">
+                                    <div className="card-body">
+                                        <h2 className="card-title fw-bold">
+                                            {listInfoPeople.gender === 2 ?
+                                                <Link onClick={() => { navigate(-1) }}
+                                                    className="text-decoration-none"
+                                                    style={{ color: "#01b4e4" }} >
+                                                    {listInfoPeople?.name}
+                                                </Link>
+                                                :
+                                                <Link onClick={() => { navigate(-1) }}
+                                                    className="text-decoration-none"
+                                                    style={{ color: "deeppink" }} >
+                                                    {listInfoPeople?.name}
+                                                </Link>
+                                            }
+                                        </h2>
+                                        <h5 className="card-title">
+                                            Biography
+                                        </h5>
+                                        {biography.map((item) => {
+                                            return <div key={item.id}>
+                                                <p>{item.paragraphFirst}</p>
+                                                <p>{item.paragraphSecond}</p>
+                                            </div>
+                                        })
+                                        }
+                                        <h3 className="card-title mb-0 mt-2">
+                                            Known For
+                                        </h3>
+                                        <div>
+                                            <ScrollInfoMovies listInfoPeople={listInfoPeople} />
                                         </div>
-                                    })
-                                    }
-                                    <h3 className="card-title m-0">
-                                        Known For
-                                    </h3>
-                                    <div className="d-flex w-100">
-                                        <ScrollInfoMovies listInfoPeople={listInfoPeople} />
                                     </div>
                                 </div>
                             </div>

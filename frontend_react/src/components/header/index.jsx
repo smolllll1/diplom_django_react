@@ -18,7 +18,7 @@ const Header = () => {
                         <img src={logo} alt="logo" width={100} />
                     </Link>
                     <Stack className="button-nav" direction="row" spacing={2}>
-                        <Link to={"pop_movies"} replace>
+                        <Link to={"pop_movies"}>
                             <Button type="button">Movies</Button>
                         </Link>
                         <Link to={"pop_people"}>

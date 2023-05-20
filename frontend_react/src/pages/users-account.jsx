@@ -13,7 +13,7 @@ const UsersAccount = () => {
             {usersId === responseLogin?.username ?
                 <PersonAccount responseLogin={responseLogin} />
                 :
-                <div className="bg-white py-5 ps-5">
+                <div className="w-100 bg-white py-5 ps-5">
                     <h4>Oops! We can't find the page you're looking for</h4>
                     <p>You tried to request a page that doesn't exist.</p>
                 </div>

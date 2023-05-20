@@ -46,11 +46,14 @@ export default function MoreMenuButton() {
           className="text-decoration-none text-secondary">
           <MenuItem onClick={handleClose}>About Us</MenuItem>
         </Link>
-        <Link
-          className="text-secondary">
+        <Link to={"contacts"}
+          className="text-decoration-none text-secondary">
           <MenuItem onClick={handleClose}>Contact Us</MenuItem>
         </Link>
-        <MenuItem onClick={handleClose}>Support</MenuItem>
+        <Link to={"updated"}
+          className="text-decoration-none text-secondary">
+          <MenuItem onClick={handleClose}>Support</MenuItem>
+        </Link>
       </Menu>
     </div>
   );

@@ -26,7 +26,7 @@ const ButtonFilterMovies = ({
             backgroundColor: "rgb(1, 180, 228)",
             color: '#ffffff',
             textTransform: "capitalize",
-            ':hover': {
+            '&:hover': {
                 color: "rgb(144, 206, 161)",
             },
         }

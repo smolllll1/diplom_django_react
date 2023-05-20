@@ -33,7 +33,7 @@ const ContentDataProvider = ({ children }) => {
     // handler chenge pagination movies (value === number page)
     const onHandlerPaginationMovies = (value) => {
         setIsPageMovies(value);
-    };
+    }
 
     return (
         <ContentData.Provider
@@ -41,16 +41,17 @@ const ContentDataProvider = ({ children }) => {
                 // movies pagination (movies page)
                 onHandlerPaginationMovies: onHandlerPaginationMovies,
                 isPageMovies: isPageMovies,
+                setIsPageMovies: setIsPageMovies,
                 // people pagination (people page)
                 onHandlerPaginationPeople: onHandlerPaginationPeople,
                 isPagePeople: isPagePeople,
+                setIsPagePeople: setIsPagePeople,
                 // people cards (people list info component} 
                 onHandlerCardsInfoPeople: onHandlerCardsInfoPeople,
                 isCardsPeopleId: isCardsPeopleId,
                 // movies cards (movies list info component}
                 onHandlerCardsInfoMovies: onHandlerCardsInfoMovies,
                 isCardsMoviesId: isCardsMoviesId,
-
             }}>
             {children}
         </ContentData.Provider>

@@ -154,7 +154,6 @@ const AuthenticationDataProvider = ({ children }) => {
             cleanLoginValue();
         }
     });
-    // console.log(responseLogin.username)
 
     // avatar menu press logout show button login 
     const onHandlerLogout = () => {
