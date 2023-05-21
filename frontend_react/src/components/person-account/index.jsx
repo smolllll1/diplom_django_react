@@ -20,18 +20,16 @@ const PersonAccount = ({ responseLogin }) => {
                 <div className='d-flex col top-person-account align-items-center'>
                     <div className='d-flex m-5 justify-content-center 
                             align-items-center avatar-person-account-circle'>
-                        <Link to={"#"}
-                            style={{ textDecoration: 'none' }}>
-                            <p className='text-white py-3 px-5' style={{ fontSize: "4rem" }}>
-                                {/* avatar first letter Username */}
+                        <p style={{ fontSize: "4rem" }}>
+                            {/* avatar first letter Username */}
+                            <Link className='text-white py-3 px-4' to={"#"} style={{ textDecoration: 'none' }}>
                                 {responseLogin?.username[0]}
-                            </p>
-                        </Link>
+                            </Link>
+                        </p>
                     </div>
                     <p className='fs-2 m-1 fw-bold text-white'>
-                        <Link to={"#"}
-                            style={{ textDecoration: 'none', color: "white" }}>
-                            {/* after avatar item Username */}
+                        {/* after avatar item Username */}
+                        <Link to={"#"} style={{ textDecoration: 'none', color: "white" }}>
                             {responseLogin?.username}
                         </Link>
                         <span className='fs-5 m-3 fw-normal text-secondary'>Member since

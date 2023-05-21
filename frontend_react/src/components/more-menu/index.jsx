@@ -4,6 +4,8 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
+import "./more-menu.css"
+
 export default function MoreMenuButton() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -14,6 +16,14 @@ export default function MoreMenuButton() {
     setAnchorEl(null);
   };
 
+  const myStyleMenuItem = {
+    li: {
+      '&:hover': {
+        backgroundColor: "rgba(13, 37, 63, .8)",
+      }
+    },
+  }
+  
   return (
     <div>
       <Button
@@ -42,18 +52,21 @@ export default function MoreMenuButton() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <Link to={"about"}
-          className="text-decoration-none text-secondary">
-          <MenuItem onClick={handleClose}>About Us</MenuItem>
-        </Link>
-        <Link to={"contacts"}
-          className="text-decoration-none text-secondary">
-          <MenuItem onClick={handleClose}>Contact Us</MenuItem>
-        </Link>
-        <Link to={"updated"}
-          className="text-decoration-none text-secondary">
-          <MenuItem onClick={handleClose}>Support</MenuItem>
-        </Link>
+        <MenuItem sx={myStyleMenuItem.li} onClick={handleClose}>
+          <Link to={"about"} className="text-decoration-none more-menu-link">
+            About Us
+          </Link>
+        </MenuItem>
+        <MenuItem sx={myStyleMenuItem.li} onClick={handleClose}>
+          <Link to={"contacts"} className="text-decoration-none more-menu-link">
+            Contact Us
+          </Link>
+        </MenuItem>
+        <MenuItem sx={myStyleMenuItem.li} onClick={handleClose}>
+          <Link to={"updated"} className="text-decoration-none more-menu-link">
+            Support
+          </Link>
+        </MenuItem>
       </Menu>
     </div>
   );

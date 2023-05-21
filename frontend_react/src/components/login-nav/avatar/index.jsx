@@ -21,6 +21,14 @@ export default function AccountMenu({ onHandlerLogout, responseLogin }) {
         setAnchorEl(null);
     };
 
+    const myStyleMenuItem = {
+        li: {
+            '&:hover': {
+                backgroundColor: "rgba(13, 37, 63, .8)",
+            }
+        }
+    }
+
     return (
         <Fragment>
             <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -77,33 +85,25 @@ export default function AccountMenu({ onHandlerLogout, responseLogin }) {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                <Link to={`users/account/${responseLogin?.username}`} className="underline-avatar">
-                    <MenuItem className='d-flex row' onClick={handleClose}>
-                        {/* avatar menu username */}
-                        <p className='m-0 p-0 fw-bold'>
+                <MenuItem sx={myStyleMenuItem.li} onClick={handleClose}>
+                    {/* avatar menu username */}
+                    <p className='m-0 p-0 fw-bold'>
+                        <Link to={`users/account/${responseLogin?.username}`}
+                            className="underline-avatar">
                             {responseLogin?.username}
-                        </p>
-                        <p className='m-0 p-0' style={{ fontSize: '.75rem' }}>
-                            View profile
-                        </p>
-                    </MenuItem>
-                </Link>
+                            <br />
+                            <span className='m-0 p-0 pt-3' style={{ fontSize: '.75rem' }}>View profile</span>
+                        </Link>
+                    </p>
+                </MenuItem>
                 <Divider />
-                <Link to={'settings'} className="underline-avatar">
-                    <MenuItem
-                        onClick={handleClose}
-                    >
-                        Settings
-                    </MenuItem>
-                </Link>
+                <MenuItem sx={myStyleMenuItem.li} onClick={handleClose}>
+                    <Link to={'settings'} className="underline-avatar">Settings</Link>
+                </MenuItem>
                 <Divider />
-                <Link to={'/'} className="underline-avatar">
-                    <MenuItem
-                        onClick={(() => { onHandlerLogout(); handleClose(); })}
-                    >
-                        Logout
-                    </MenuItem>
-                </Link>
+                <MenuItem sx={myStyleMenuItem.li} onClick={(() => { onHandlerLogout(); handleClose(); })}>
+                    <Link to={'/'} className="underline-avatar">Logout</Link>
+                </MenuItem>
             </Menu>
         </Fragment >
     );

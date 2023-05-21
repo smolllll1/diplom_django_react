@@ -17,7 +17,8 @@ const Footer = () => {
                         <img src={logo} alt="logo" width={100} />
                     </Link>
                     {responseLogin ?
-                        <div className="w-100 bg-white rounded justify-content-center mt-4 p-2 d-flex align-items-center fw-bold">
+                        <div className="w-100 bg-white rounded justify-content-center mt-4 p-2 d-flex align-items-center fw-bold"
+                            style={{ color: 'rgb(1, 180, 228)' }}>
                             Hi
                             <p className="ms-1 my-0 p-0">
                                 <Link to={`users/account/${responseLogin?.username}`}
