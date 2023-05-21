@@ -8,12 +8,12 @@ import { AuthenticationData } from '../data/authentication-data';
 import { Link, useNavigate } from 'react-router-dom';
 import '../../svg/account-pipes.svg';
 
-import './person-settings.css'
+import './person-settings.css';
 
-const PersonSettings = () => {
+const PersonSettings = ({ responseLogin }) => {
 
     const navigate = useNavigate();
-    const { responseLogin, onHandlerDeleteAccount } = useContext(AuthenticationData)
+    const { onHandlerDeleteAccount } = useContext(AuthenticationData)
 
     return (
         <m.div
