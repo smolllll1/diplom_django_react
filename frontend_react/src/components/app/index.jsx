@@ -42,7 +42,7 @@ const App = () => {
                     <Route exact path="registration" element={<Registration />} />
                     <Route exact path="login" element={<Login />} />
                     <Route exact path="users/account/:usersId" element={<UsersAccount />} />
-                    <Route exact path="settings" element={<UsersSettings />} />
+                    <Route exact path="settings/:usersId" element={<UsersSettings />} />
                     <Route exact path="search" element={<Search />} />
                     {/* content pages */}
                     <Route exact path="pop_movies" element={<MoviesPages />} />

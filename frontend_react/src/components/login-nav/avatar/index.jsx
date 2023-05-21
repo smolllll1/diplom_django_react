@@ -98,7 +98,7 @@ export default function AccountMenu({ onHandlerLogout, responseLogin }) {
                 </MenuItem>
                 <Divider />
                 <MenuItem sx={myStyleMenuItem.li} onClick={handleClose}>
-                    <Link to={'settings'} className="underline-avatar">Settings</Link>
+                    <Link to={`settings/${responseLogin?.username}`} className="underline-avatar">Settings</Link>
                 </MenuItem>
                 <Divider />
                 <MenuItem sx={myStyleMenuItem.li} onClick={(() => { onHandlerLogout(); handleClose(); })}>

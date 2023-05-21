@@ -79,23 +79,24 @@ const AuthenticationDataProvider = ({ children }) => {
 
         // Submit form registration
         onSubmit: async (values) => {
+            console.log(values)
             await axiosBaseUrl.post(REGISTRATION_URL, values)
                 .then(response => {
                     setResponseRegistration(response.data);
+                    setSuccess(true)
+                    setTimeout(() => {
+                        setSuccess(false)
+                        navigate('/login');
+                        cleanRegistrationValue();
+                    }, 5000)
                 })
                 .catch(error => {
                     setErrMsgRegistration(error.message);
+                    setTimeout(() => {
+                        navigate('/login');
+                        cleanRegistrationValue();
+                    }, 3000)
                 });
-
-            if (values.terms.length !== 0) {
-                setSuccess(true);
-                setErrMsgRegistration()
-                setTimeout(() => {
-                    setSuccess(false)
-                    navigate('/login');
-                    cleanRegistrationValue();
-                }, 5000)
-            }
 
             const cleanRegistrationValue = () => {
                 formikRegistration.values.name = "";
@@ -104,9 +105,12 @@ const AuthenticationDataProvider = ({ children }) => {
                 formikRegistration.values.password = "";
                 formikRegistration.values.confirmPassword = "";
                 formikRegistration.values.terms = "";
+                setErrMsgRegistration("");
             };
         }
     });
+    console.log(responseRegistration)
+    console.log(errMsgRegistration)
 
     // formikLogin logics
     const formikLogin = useFormik({

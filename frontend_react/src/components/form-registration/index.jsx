@@ -6,7 +6,7 @@ import './form-registration.css';
 
 const FormRegiatration = ({ formikRegistration }) => {
 
-    const { responseRegistration } = useContext(AuthenticationData)
+    const { errMsgRegistration } = useContext(AuthenticationData)
 
     return (
         <m.div
@@ -192,12 +192,13 @@ const FormRegiatration = ({ formikRegistration }) => {
                                 </p>
                             </div>
                         </div>
-                        <p className="text-center text-warning">
-                            {responseRegistration !== null ?
-                                responseRegistration
-                                :
-                                null
-                            }</p>
+                        {errMsgRegistration ?
+                            <p className="text-center text-warning">
+                                User with such data already exists
+                            </p>
+                            :
+                            null
+                        }
                         <button type="submit" className="w-100 submit-register">
                             Start watching today!
                         </button>
