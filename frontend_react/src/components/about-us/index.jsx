@@ -46,7 +46,7 @@ const AboutUs = () => {
                         <h1 className='text-center text-white fst-italic fw-bold fs-1'>{item.titleTop}</h1>
                         <p className='text-white text-center'>{item.paragraphFirst}</p>
                         <h3 className='text-white text-center'>{item.titleBottom}</h3>
-                        <ol>
+                        <ol className='advantage-item'>
                             <li>{item.itemFirst}</li>
                             <li>{item.itemSecond}</li>
                             <li>{item.itemThird}</li>
