@@ -88,7 +88,7 @@ def register(request):
 
     user_exists = User.objects.filter(username=name).exists()
     if user_exists:
-        return Response({'message': 'A user with such data already exists!'})
+        return ValidationError({'message': 'A user with such data already exists!'})
     else:
         user = User.objects.create_user(name, email, password)
         user.save()
