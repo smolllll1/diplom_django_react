@@ -18,4 +18,4 @@ const Registration = () => {
     )
 }
 
-export {Registration};
+export { Registration };

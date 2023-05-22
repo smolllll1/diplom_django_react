@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { motion as m } from "framer-motion";
-import '../../svg/account-pipes.svg';
 
 import './person-account.css'
 

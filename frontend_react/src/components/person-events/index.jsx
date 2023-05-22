@@ -1,18 +1,16 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { motion as m } from "framer-motion";
-import { AuthenticationData } from '../data/authentication-data';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 
-import './person-settings.css';
+import './person-events.css';
 
-const PersonSettings = ({ responseLogin }) => {
+const PersonEvents = ({ responseLogin }) => {
 
     const navigate = useNavigate();
-    const { onHandlerDeleteAccount } = useContext(AuthenticationData)
 
     return (
         <m.div
@@ -21,9 +19,9 @@ const PersonSettings = ({ responseLogin }) => {
             exit={{ opacity: 0 }}
             style={{ backgroundColor: "white", width: "100%" }}>
             <section className='d-flex m-0'>
-                <div className='d-flex col top-person-settings align-items-center'>
+                <div className='d-flex col top-person-events align-items-center'>
                     <div className='d-flex m-3 justify-content-center 
-                        avatar-person-settings-circle'
+                        avatar-person-events-circle'
                         style={{ cursor: "pointer" }}
                         onClick={() => { navigate(`/users/account/${responseLogin?.username}`) }}
                     >
@@ -53,37 +51,18 @@ const PersonSettings = ({ responseLogin }) => {
                                     fontSize: '1.2rem',
                                     letterSpacing: '0.00938em',
                                 }}>
-                                Settings
+                                Events
                             </li>
-                            <MenuItem className='setting-link'>
-                                <Link to={"edit-profile"}>Edit Profile</Link>
+                            <MenuItem className='events-link'>
+                                <Link to={"recent"}>Recent</Link>
                             </MenuItem>
-                            <MenuItem className='setting-link'>
-                                <Link to={"account"}>Account Settings</Link>
+                            <MenuItem className='events-link'>
+                                <Link to={"notifications"}>
+                                    Notifications
+                                </Link>
                             </MenuItem>
-                            <MenuItem className='setting-link'>
-                                <Link to={"streaming"}>Streaming Services</Link>
-                            </MenuItem>
-                            <MenuItem className='setting-link'>
-                                <Link to={"notifications"}>Notifications</Link>
-                            </MenuItem>
-                            <MenuItem className='setting-link'>
-                                <Link to={"blocked-users"}>Blocked Users</Link>
-                            </MenuItem>
-                            <MenuItem className='setting-link'>
-                                <Link to={"import-list"}>Import List</Link>
-                            </MenuItem>
-                            <MenuItem className='setting-link'>
-                                <Link to={"sharing"}>Sharing Settings</Link>
-                            </MenuItem>
-                            <MenuItem className='setting-link'>
-                                <Link to={"sessions"}>Sessions</Link>
-                            </MenuItem>
-                            <MenuItem className='setting-link'>
-                                <Link to={"api"}>API</Link>
-                            </MenuItem>
-                            <MenuItem className='setting-link' onClick={onHandlerDeleteAccount}>
-                                <Link to={`/`}>Delete Account</Link>
+                            <MenuItem className='events-link'>
+                                <Link to={"emails"}>Emails</Link>
                             </MenuItem>
                         </MenuList>
                     </Paper>
@@ -96,4 +75,4 @@ const PersonSettings = ({ responseLogin }) => {
     )
 }
 
-export { PersonSettings };
+export { PersonEvents };

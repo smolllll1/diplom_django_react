@@ -1,17 +1,17 @@
-/* PAGE PERSON SETTINGS */
+/* PAGE PERSON EVENTS */
 
-.setting-link>a {
+.events-link>a {
     width: 100%;
     text-decoration: none;
     color: gray;
 }
 
-.setting-link>a:hover {
+.events-link>a:hover {
     color: #01D277;
 }
 
-/* top block settings */
-.top-person-settings {
+/* top block events */
+.top-person-events {
     flex-wrap: wrap;
     background-color: rgb(13, 37, 63);
     background-image: url(../../svg/green-pipes.svg);
@@ -20,8 +20,8 @@
     background-size: cover;
 }
 
-/* avatar circle settings */
-.avatar-person-settings-circle {
+/* avatar circle events */
+.avatar-person-events-circle {
     min-width: 50px;
     width: 50px;
     height: 50px;

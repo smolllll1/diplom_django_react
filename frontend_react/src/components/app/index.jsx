@@ -14,6 +14,7 @@ import { PeopleListInfo } from '../people-list-info';
 import { Search } from "../../pages/search";
 import { UsersAccount } from '../../pages/users-account';
 import { UsersSettings } from '../../pages/users-settings';
+import { UsersEvents } from '../../pages/users-events';
 import { Updated } from '../../pages/updated';
 import { PrivacyPolicy } from '../../pages/privacy-policy';
 import { TermsUse } from '../../pages/terms';
@@ -37,12 +38,35 @@ const App = () => {
                   <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
                     <Route exact path="about" element={<About />} />
-                    <Route exact path="contacts" element={<Contacts />} />
+                    <Route exact path="contacts/*" element={<Contacts />}>
+                      {/* h2 to be replaced by components in the future */}
+                      <Route exact path="logos-attribution" element={<h2>Logos & Attribution</h2>} />
+                      <Route exact path="general" element={<h2>General</h2>} />
+                      <Route exact path="account" element={<h2>Account</h2>} />
+                      <Route exact path="website" element={<h2>Website</h2>} />
+                    </Route>
                     {/* public routes */}
                     <Route exact path="registration" element={<Registration />} />
                     <Route exact path="login" element={<Login />} />
                     <Route exact path="users/account/:usersId" element={<UsersAccount />} />
-                    <Route exact path="settings/:usersId" element={<UsersSettings />} />
+                    <Route exact path="events/:usersId/*" element={<UsersEvents />}>
+                      {/* h2 to be replaced by components in the future */}
+                      <Route exact path="recent" element={<h2>Recent</h2>} />
+                      <Route exact path="notifications" element={<h2>Notifications</h2>} />
+                      <Route exact path="emails" element={<h2>Emails</h2>} />
+                    </Route>
+                    <Route exact path="settings/:usersId/*" element={<UsersSettings />}>
+                      {/* h2 to be replaced by components in the future */}
+                      <Route exact path="edit-profile" element={<h2>Edit Profile</h2>} />
+                      <Route exact path="account" element={<h2>Account Settings</h2>} />
+                      <Route exact path="streaming" element={<h2>Streaming Services</h2>} />
+                      <Route exact path="notifications" element={<h2>Notifications</h2>} />
+                      <Route exact path="blocked-users" element={<h2>Blocked Users</h2>} />
+                      <Route exact path="import-list" element={<h2>Import List</h2>} />
+                      <Route exact path="sharing" element={<h2>Sharing Settings</h2>} />
+                      <Route exact path="sessions" element={<h2>Sessions</h2>} />
+                      <Route exact path="api" element={<h2>API</h2>} />
+                    </Route>
                     <Route exact path="search" element={<Search />} />
                     {/* content pages */}
                     <Route exact path="pop_movies" element={<MoviesPages />} />

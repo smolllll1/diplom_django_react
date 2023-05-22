@@ -24,7 +24,7 @@ export default function AccountMenu({ onHandlerLogout, responseLogin }) {
     const myStyleMenuItem = {
         li: {
             '&:hover': {
-                backgroundColor: "rgba(13, 37, 63, .8)",
+                backgroundColor: "rgb(13, 37, 63)",
             }
         }
     }
@@ -85,14 +85,14 @@ export default function AccountMenu({ onHandlerLogout, responseLogin }) {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                <MenuItem sx={myStyleMenuItem.li} onClick={handleClose}>
+                <MenuItem onClick={handleClose}>
                     {/* avatar menu username */}
                     <p className='m-0 p-0 fw-bold'>
                         <Link to={`users/account/${responseLogin?.username}`}
-                            className="underline-avatar">
+                            className="text-decoration-none text-secondary">
                             {responseLogin?.username}
                             <br />
-                            <span className='m-0 p-0 pt-3' style={{ fontSize: '.75rem' }}>View profile</span>
+                            <span className='m-0 p-0 pt-3 view-profile' style={{ fontSize: '.75rem' }}>View profile</span>
                         </Link>
                     </p>
                 </MenuItem>

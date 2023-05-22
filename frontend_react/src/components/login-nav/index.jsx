@@ -29,6 +29,7 @@ const LoginNav = () => {
                 null
             }
             {responseLogin ?
+            <Link to={`events/${responseLogin?.username}`}>
                 <IconButton
                     size="large"
                     aria-label="show 0 new notifications">
@@ -36,34 +37,37 @@ const LoginNav = () => {
                         <NotificationsIcon className="bell" />
                     </Badge>
                 </IconButton>
-                :
-                null
-            }
-            {responseLogin ?
-                <AccountMenu
-                    responseLogin={responseLogin}
-                    onHandlerLogout={onHandlerLogout}
-                />
-                :
-                null
-            }
-            {!responseLogin ?
-                <Link to={'login'}>
-                    <Button type="button">
-                        Login
-                    </Button>
                 </Link>
                 :
-                <div className="me-5 px-2"></div>
+null
             }
-            <Link to={"search"}>
-                <IconButton size="large"
-                    aria-label="search"
-                    style={{ color: "white" }}>
-                    <SearchIcon />
-                </IconButton>
-            </Link>
-        </Stack>
+{
+    responseLogin ?
+        <AccountMenu
+            responseLogin={responseLogin}
+            onHandlerLogout={onHandlerLogout}
+        />
+        :
+        null
+}
+{
+    !responseLogin ?
+    <Link to={'login'}>
+        <Button type="button">
+            Login
+        </Button>
+    </Link>
+    :
+    <div className="me-5 px-2"></div>
+}
+<Link to={"search"}>
+    <IconButton size="large"
+        aria-label="search"
+        style={{ color: "white" }}>
+        <SearchIcon />
+    </IconButton>
+</Link>
+        </Stack >
     )
 }
 

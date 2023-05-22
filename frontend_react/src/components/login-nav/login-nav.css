@@ -1,7 +1,8 @@
 /* LOGIN REGISTRATION BUTTONS */
 
 /* component <AccountMenu/> Link: Username, Settings, Logout*/
-.underline-avatar {
+.underline-avatar,
+.view-profile {
     text-decoration: none;
     color: rgba(128, 128, 128, .8);
 }

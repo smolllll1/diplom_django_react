@@ -1,16 +1,16 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 
-import "./contacts.css"
+import "./our-contacts.css"
 
 const OurContacts = () => {
 
     return (
-        <div className='w-100'
+        <section className='w-100 d-flex'
             style={{ backgroundColor: "#ffffff" }}>
             <Stack direction="row" spacing={2} sx={{ borderTop: '10px' }}>
                 <Paper className='mt-3 mb-3 mx-5' style={{ width: "300px" }}>
@@ -29,21 +29,24 @@ const OurContacts = () => {
                             <Link to={"/about"}>Our History</Link>
                         </MenuItem>
                         <MenuItem className='contacts-link'>
-                            <Link>Logos & Attribution</Link>
+                            <Link to={"logos-attribution"}>Logos & Attribution</Link>
                         </MenuItem>
                         <MenuItem className='contacts-link'>
-                            <Link>General</Link>
+                            <Link to={"general"}>General</Link>
                         </MenuItem>
                         <MenuItem className='contacts-link'>
-                            <Link>Account</Link>
+                            <Link to={"account"}>Account</Link>
                         </MenuItem>
                         <MenuItem className='contacts-link'>
-                            <Link>Website FAQ</Link>
+                            <Link to={"website"}>Website</Link>
                         </MenuItem>
                     </MenuList>
                 </Paper>
             </Stack>
-        </div>
+            <div className='w-100 mt-3 mb-3 me-5'>
+                <Outlet />
+            </div>
+        </section>
     );
 }
 

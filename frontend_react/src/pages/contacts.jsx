@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion as m } from "framer-motion";
-import { OurContacts } from '../components/contacts';
+import { OurContacts } from '../components/our-contacts';
 
 const Contacts = () => {
 
