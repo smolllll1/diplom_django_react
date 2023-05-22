@@ -15,6 +15,8 @@ import { Search } from "../../pages/search";
 import { UsersAccount } from '../../pages/users-account';
 import { UsersSettings } from '../../pages/users-settings';
 import { UsersEvents } from '../../pages/users-events';
+import { UsersRecent } from '../users-recent';
+import { UsersNotification } from '../users-notification';
 import { Updated } from '../../pages/updated';
 import { PrivacyPolicy } from '../../pages/privacy-policy';
 import { TermsUse } from '../../pages/terms';
@@ -51,8 +53,8 @@ const App = () => {
                     <Route exact path="users/account/:usersId" element={<UsersAccount />} />
                     <Route exact path="events/:usersId/*" element={<UsersEvents />}>
                       {/* h2 to be replaced by components in the future */}
-                      <Route exact path="recent" element={<h2>Recent</h2>} />
-                      <Route exact path="notifications" element={<h2>Notifications</h2>} />
+                      <Route exact path="recent" element={<UsersRecent />} />
+                      <Route exact path="notifications" element={<UsersNotification />} />
                       <Route exact path="emails" element={<h2>Emails</h2>} />
                     </Route>
                     <Route exact path="settings/:usersId/*" element={<UsersSettings />}>

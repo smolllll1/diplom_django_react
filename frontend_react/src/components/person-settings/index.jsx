@@ -42,52 +42,54 @@ const PersonSettings = ({ responseLogin }) => {
                 </div>
             </section>
             <section className='d-flex '>
-                <Stack direction="row" spacing={2} sx={{ borderTop: '10px' }}>
-                    <Paper className='mt-3 mb-3 mx-5' style={{ width: "300px" }}>
-                        <MenuList className='p-0'>
-                            <li className='px-3 py-2 rounded-top'
-                                style={{
-                                    backgroundColor: '#01D277',
-                                    color: 'white',
-                                    lineHeight: "2.5",
-                                    fontSize: '1.2rem',
-                                    letterSpacing: '0.00938em',
-                                }}>
-                                Settings
-                            </li>
-                            <MenuItem className='setting-link'>
-                                <Link to={"edit-profile"}>Edit Profile</Link>
-                            </MenuItem>
-                            <MenuItem className='setting-link'>
-                                <Link to={"account"}>Account Settings</Link>
-                            </MenuItem>
-                            <MenuItem className='setting-link'>
-                                <Link to={"streaming"}>Streaming Services</Link>
-                            </MenuItem>
-                            <MenuItem className='setting-link'>
-                                <Link to={"notifications"}>Notifications</Link>
-                            </MenuItem>
-                            <MenuItem className='setting-link'>
-                                <Link to={"blocked-users"}>Blocked Users</Link>
-                            </MenuItem>
-                            <MenuItem className='setting-link'>
-                                <Link to={"import-list"}>Import List</Link>
-                            </MenuItem>
-                            <MenuItem className='setting-link'>
-                                <Link to={"sharing"}>Sharing Settings</Link>
-                            </MenuItem>
-                            <MenuItem className='setting-link'>
-                                <Link to={"sessions"}>Sessions</Link>
-                            </MenuItem>
-                            <MenuItem className='setting-link'>
-                                <Link to={"api"}>API</Link>
-                            </MenuItem>
-                            <MenuItem className='setting-link' onClick={onHandlerDeleteAccount}>
-                                <Link to={`/`}>Delete Account</Link>
-                            </MenuItem>
-                        </MenuList>
-                    </Paper>
-                </Stack>
+                <div>
+                    <Stack direction="row" spacing={2} sx={{ borderTop: '10px' }}>
+                        <Paper className='mt-3 mb-3 mx-5' style={{ width: "300px" }}>
+                            <MenuList className='p-0'>
+                                <li className='px-3 py-2 rounded-top'
+                                    style={{
+                                        backgroundColor: '#01D277',
+                                        color: 'white',
+                                        lineHeight: "2.5",
+                                        fontSize: '1.2rem',
+                                        letterSpacing: '0.00938em',
+                                    }}>
+                                    Settings
+                                </li>
+                                <MenuItem className='setting-link'>
+                                    <Link to={"edit-profile"}>Edit Profile</Link>
+                                </MenuItem>
+                                <MenuItem className='setting-link'>
+                                    <Link to={"account"}>Account Settings</Link>
+                                </MenuItem>
+                                <MenuItem className='setting-link'>
+                                    <Link to={"streaming"}>Streaming Services</Link>
+                                </MenuItem>
+                                <MenuItem className='setting-link'>
+                                    <Link to={"notifications"}>Notifications</Link>
+                                </MenuItem>
+                                <MenuItem className='setting-link'>
+                                    <Link to={"blocked-users"}>Blocked Users</Link>
+                                </MenuItem>
+                                <MenuItem className='setting-link'>
+                                    <Link to={"import-list"}>Import List</Link>
+                                </MenuItem>
+                                <MenuItem className='setting-link'>
+                                    <Link to={"sharing"}>Sharing Settings</Link>
+                                </MenuItem>
+                                <MenuItem className='setting-link'>
+                                    <Link to={"sessions"}>Sessions</Link>
+                                </MenuItem>
+                                <MenuItem className='setting-link'>
+                                    <Link to={"api"}>API</Link>
+                                </MenuItem>
+                                <MenuItem className='setting-link' onClick={onHandlerDeleteAccount}>
+                                    <Link to={`/`}>Delete Account</Link>
+                                </MenuItem>
+                            </MenuList>
+                        </Paper>
+                    </Stack>
+                </div>
                 <div className='w-100 mt-3 mb-3 me-5'>
                     <Outlet />
                 </div>
