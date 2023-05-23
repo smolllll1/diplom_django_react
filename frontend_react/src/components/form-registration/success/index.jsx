@@ -33,7 +33,7 @@ const Success = ({ formikRegistration }) => {
                     Please confirm the registration!
                 </p>
             </div>
-            <Confetti gravity={0.2} numberOfPieces={pieces} style={{ maxWidth: "100%" }} />
+            <Confetti gravity={0.2} numberOfPieces={pieces} style={{ width: "100%" }} />
         </m.div >
     )
 }

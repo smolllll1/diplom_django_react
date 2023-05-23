@@ -4,11 +4,11 @@ import { AuthenticationData } from '../components/data/authentication-data';
 
 const Login = () => {
 
-    const { formikLogin } = useContext(AuthenticationData);
+    const { formikLogin, errMsgLogin } = useContext(AuthenticationData);
 
     return (
         <Fragment>
-            <FormLogin formikLogin={formikLogin} />
+            <FormLogin formikLogin={formikLogin} errMsgLogin={errMsgLogin}/>
         </Fragment>
     )
 }

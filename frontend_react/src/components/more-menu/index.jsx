@@ -19,7 +19,7 @@ export default function MoreMenuButton() {
   const myStyleMenuItem = {
     li: {
       '&:hover': {
-        backgroundColor: "rgba(13, 37, 63, .8)",
+        backgroundColor: "rgb(13, 37, 63)",
       }
     },
   }

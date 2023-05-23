@@ -23,3 +23,13 @@ export const getAllMoviesId = async (idParam) => {
   const response = await axiosBaseUrl.get(`pop_movies/${idParam}`);
   return response.data;
 };
+// search people request
+export const getSearchPeople = async (Param) => {
+  const response = await axiosBaseUrl.get(`search_people/?search=${Param}`);
+  return response.data;
+};
+// search movies request
+export const getSearchMovies = async (Param) => {
+  const response = await axiosBaseUrl.get(`search_movies/?search=${Param}`);
+  return response.data;
+};

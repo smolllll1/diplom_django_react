@@ -194,7 +194,7 @@ const FormRegiatration = ({ formikRegistration }) => {
                         </div>
                         {errMsgRegistration ?
                             <p className="text-center text-warning">
-                                User with such data already exists
+                                {errMsgRegistration}
                             </p>
                             :
                             null

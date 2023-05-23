@@ -3,7 +3,7 @@ import { motion as m } from "framer-motion";
 
 import './form-login.css';
 
-const FormLogin = ({ formikLogin }) => {
+const FormLogin = ({ formikLogin, errMsgLogin }) => {
 
     return (
         <m.div
@@ -66,7 +66,11 @@ const FormLogin = ({ formikLogin }) => {
                                 onBlur={formikLogin.handleBlur}
                             />
                         </div>
-                        <p>Error</p>
+                        {errMsgLogin ?
+                            <p className="text-center text-danger mb-0">{errMsgLogin}</p>
+                            :
+                            null
+                        }
                         <button className="w-50 submit-login" type="submit">
                             Login
                         </button>

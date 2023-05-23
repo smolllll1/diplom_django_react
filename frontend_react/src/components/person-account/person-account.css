@@ -4,7 +4,7 @@
 .top-person-account {
     flex-wrap: wrap;
     background-color: rgb(13, 37, 63);
-    background-image: url(../../svg/account-pipes.svg);
+    background-image: url(../../svg/green-pipes.svg);
     position: relative;
     background-position: center;
     background-size: cover;

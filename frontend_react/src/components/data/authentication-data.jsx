@@ -79,7 +79,6 @@ const AuthenticationDataProvider = ({ children }) => {
 
         // Submit form registration
         onSubmit: async (values) => {
-            console.log(values)
             await axiosBaseUrl.post(REGISTRATION_URL, values)
                 .then(response => {
                     setResponseRegistration(response.data);
@@ -89,16 +88,15 @@ const AuthenticationDataProvider = ({ children }) => {
                         navigate('/login');
                         cleanRegistrationValue();
                     }, 5000)
-                })
-                .catch(error => {
-                    setErrMsgRegistration(error.message);
+                }).catch(error => {
+                    setErrMsgRegistration("A user with such data already exists");
                     setTimeout(() => {
                         navigate('/login');
                         cleanRegistrationValue();
-                    }, 3000)
+                    }, 2000)
                 });
 
-            const cleanRegistrationValue = () => {
+            function cleanRegistrationValue() {
                 formikRegistration.values.name = "";
                 formikRegistration.values.phone = "";
                 formikRegistration.values.email = "";
@@ -106,11 +104,10 @@ const AuthenticationDataProvider = ({ children }) => {
                 formikRegistration.values.confirmPassword = "";
                 formikRegistration.values.terms = "";
                 setErrMsgRegistration("");
+                setResponseRegistration(null);
             };
         }
     });
-    console.log(responseRegistration)
-    console.log(errMsgRegistration)
 
     // formikLogin logics
     const formikLogin = useFormik({
@@ -145,23 +142,30 @@ const AuthenticationDataProvider = ({ children }) => {
                 if (response.status === 200) {
                     localStorage.setItem("user", JSON.stringify(response.data.loginRespons));
                     navigate(`/users/account/${response.data.loginRespons?.username}`);
+                    setTimeout(() => {
+                        cleanLoginValue();
+                        setErrMsgLogin('');
+                    }, 2000)
                 }
             } catch (error) {
-                setErrMsgLogin(error.message);
+                setErrMsgLogin("No such user exists");
+                setTimeout(() => {
+                    navigate('/registration');
+                    cleanLoginValue();
+                    setErrMsgLogin('');
+                }, 2000)
             };
 
-            const cleanLoginValue = () => {
+            function cleanLoginValue() {
                 formikLogin.values.name = "";
                 formikLogin.values.password = "";
             };
-
-            cleanLoginValue();
         }
     });
 
     // avatar menu press logout show button login 
-    const onHandlerLogout = () => {
-        axiosBaseUrl.get(LOGOUT_URL)
+    const onHandlerLogout = async () => {
+        await axiosBaseUrl.get(LOGOUT_URL)
             .then(response => {
                 setResponseLogout(response.data);
             })
@@ -172,16 +176,16 @@ const AuthenticationDataProvider = ({ children }) => {
         localStorage.removeItem('user');
     }
 
-    const onHandlerDeleteAccount = () => {
+    // delete account
+    const onHandlerDeleteAccount = async () => {
         console.log("delete");
-        // axios
-        //     .delete(LOGIN_URL[responseLogin.username])
-        //     .then(response => {
-        //         console.log(response.status)
-        //     })
-        //     .catch(error => {
-        //         console.log(error)
-        //     })
+        await (LOGIN_URL.responseLogin.username)
+            .then(response => {
+                console.log(response.status)
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
     return (

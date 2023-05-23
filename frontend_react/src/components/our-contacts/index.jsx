@@ -5,9 +5,9 @@ import MenuList from '@mui/material/MenuList';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 
-import "./search-list.css";
+import "./our-contacts.css"
 
-const SearchList = () => {
+const OurContacts = () => {
 
     return (
         <section className='w-100 d-flex'
@@ -24,13 +24,22 @@ const SearchList = () => {
                                     fontSize: '1.2rem',
                                     letterSpacing: '0.00938em',
                                 }}>
-                                Search Results
+                                F.A.Q
                             </li>
-                            <MenuItem className='search-link'>
-                                <Link>Movies</Link>
+                            <MenuItem className='contacts-link'>
+                                <Link to={"/about"}>Our History</Link>
                             </MenuItem>
-                            <MenuItem className='search-link'>
-                                <Link>People</Link>
+                            <MenuItem className='contacts-link'>
+                                <Link to={"logos-attribution"}>Logos & Attribution</Link>
+                            </MenuItem>
+                            <MenuItem className='contacts-link'>
+                                <Link to={"general"}>General</Link>
+                            </MenuItem>
+                            <MenuItem className='contacts-link'>
+                                <Link to={"account"}>Account</Link>
+                            </MenuItem>
+                            <MenuItem className='contacts-link'>
+                                <Link to={"website"}>Website</Link>
                             </MenuItem>
                         </MenuList>
                     </Paper>
@@ -43,4 +52,4 @@ const SearchList = () => {
     );
 }
 
-export { SearchList };
+export { OurContacts };
