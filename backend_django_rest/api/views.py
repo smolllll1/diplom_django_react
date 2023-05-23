@@ -88,7 +88,7 @@ def register(request):
 
     user_exists = User.objects.filter(username=name).exists()
     if user_exists:
-        return ValidationError({'message': 'A user with such data already exists!'})
+        return ValidationError('A user with such data already exists!')
     else:
         user = User.objects.create_user(name, email, password)
         user.save()
@@ -98,35 +98,38 @@ def register(request):
             data['id'] = user.id
         return Response({'registrationRespons': data})
 
+
 @api_view(['POST', 'DELETE'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 @authentication_classes([BasicAuthentication])
 def user(request: Request):
     if request.method == 'POST':
         username = request.user
         password = request.user.password
-        user = authenticate(username=username, password=password)
-        login(request, user)
-        last_login = username.last_login
-        format_last_sesion = last_login.strftime('%d-%m-%Y, %H:%M')
-        last_login_serializer = NoteSerializer(data={'name': f'{username}', 'title': f'{format_last_sesion}'})
-        filter_name = Test.objects.filter(name=username)
-        first_filter_name = filter_name.first()
-        if filter_name and last_login_serializer.is_valid():
-            if len(filter_name) < 5:
-                last_login_serializer.save() 
-            if len(filter_name) == 5:  
-                first_filter_name.delete()
-                last_login_serializer.save() 
-        if not filter_name and last_login_serializer.is_valid():
-            last_login_serializer.save()  
-        atribyt = [f'{i}' for i in filter_name]
-        add_last_login = LoginSerializer(request.user).data            
-        add_last_login['last_login'] = atribyt
-
-        return Response({
-            'loginRespons': add_last_login
-        })
+        try:
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            last_login = username.last_login
+            format_last_sesion = last_login.strftime('%d-%m-%Y, %H:%M')
+            last_login_serializer = NoteSerializer(data={'name': f'{username}', 'title': f'{format_last_sesion}'})
+            filter_name = Test.objects.filter(name=username)
+            first_filter_name = filter_name.first()
+            if filter_name and last_login_serializer.is_valid():
+                if len(filter_name) < 5:
+                    last_login_serializer.save() 
+                if len(filter_name) == 5:  
+                    first_filter_name.delete()
+                    last_login_serializer.save() 
+            if not filter_name and last_login_serializer.is_valid():
+                last_login_serializer.save()  
+            atribyt = [f'{i}' for i in filter_name]
+            add_last_login = LoginSerializer(request.user).data            
+            add_last_login['last_login'] = atribyt
+            return Response({
+                'loginRespons': add_last_login})
+        except User.DoesNotExist:
+            return ValidationError('User not found')
+        
     if request.method == 'DELETE':
             username = request.data.get('name')
             try:
