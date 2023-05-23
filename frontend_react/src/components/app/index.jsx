@@ -24,7 +24,7 @@ import { NotFound } from '../../pages/not-found';
 import { AuthenticationDataProvider } from '../data/authentication-data';
 import { ContentDataProvider } from '../data/content-data';
 import { NotificationDataProvider } from '../data/notification-data';
-import { SearchValueProvider } from '../data/search-value';
+import { SearchValueProvider } from '../data/search-data';
 import { Layout } from '../layout/layout';
 
 const App = () => {

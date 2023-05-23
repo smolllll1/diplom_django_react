@@ -1,0 +1,11 @@
+/* PAGE SEARCH */
+
+.search-link>a {
+    width: 100%;
+    text-decoration: none;
+    color: gray;
+}
+
+.search-link>a:hover {
+    color: #01b4e4;
+}

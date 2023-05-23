@@ -63,7 +63,7 @@ null
 <Link to={"search"}>
     <IconButton size="large"
         aria-label="search"
-        style={{ color: "white" }}>
+        style={{ color: "rgb(1, 180, 228)" }}>
         <SearchIcon />
     </IconButton>
 </Link>

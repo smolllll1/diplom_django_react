@@ -66,8 +66,8 @@ const FormLogin = ({ formikLogin, errMsgLogin }) => {
                                 onBlur={formikLogin.handleBlur}
                             />
                         </div>
-                        {errMsgLogin !== null ?
-                            <p className="text-center text-danger">{errMsgLogin}</p>
+                        {errMsgLogin ?
+                            <p className="text-center text-danger mb-0">{errMsgLogin}</p>
                             :
                             null
                         }

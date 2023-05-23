@@ -1,16 +1,5 @@
 /**input search */
-.search-form {
-    height: 30px;
-    align-self: center;
-}
-
-/* button submit */
-.d-flex>button:nth-child(2) {
-    color: darkturquoise;
-    text-transform: capitalize;
-    font-size: 1rem;
-}
-
-.d-flex>button:nth-child(2):hover {
-    color: seashell;
+.search-input {
+    height: 40px;
+    border-style: none;
 }

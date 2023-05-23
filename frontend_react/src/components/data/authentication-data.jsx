@@ -88,13 +88,12 @@ const AuthenticationDataProvider = ({ children }) => {
                         navigate('/login');
                         cleanRegistrationValue();
                     }, 5000)
-                })
-                .catch(error => {
-                    setErrMsgRegistration(error.message);
+                }).catch(error => {
+                    setErrMsgRegistration("A user with such data already exists");
                     setTimeout(() => {
                         navigate('/login');
                         cleanRegistrationValue();
-                    }, 3000)
+                    }, 2000)
                 });
 
             function cleanRegistrationValue() {
@@ -146,23 +145,21 @@ const AuthenticationDataProvider = ({ children }) => {
                     setTimeout(() => {
                         cleanLoginValue();
                         setErrMsgLogin('');
-                    }, 3000)
+                    }, 2000)
                 }
             } catch (error) {
-                setErrMsgLogin(error.message);
+                setErrMsgLogin("No such user exists");
                 setTimeout(() => {
                     navigate('/registration');
                     cleanLoginValue();
                     setErrMsgLogin('');
-                }, 3000)
+                }, 2000)
             };
 
             function cleanLoginValue() {
                 formikLogin.values.name = "";
                 formikLogin.values.password = "";
             };
-
-            // cleanLoginValue();
         }
     });
 
@@ -179,6 +176,7 @@ const AuthenticationDataProvider = ({ children }) => {
         localStorage.removeItem('user');
     }
 
+    // delete account
     const onHandlerDeleteAccount = async () => {
         console.log("delete");
         await (LOGIN_URL.responseLogin.username)
