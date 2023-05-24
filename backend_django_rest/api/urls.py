@@ -21,4 +21,5 @@ urlpatterns = [
     path('cooky_login/', include('rest_framework.urls')),
     path('login/', views.user, name='login'),
     path('logout/', views.logout_view, name='logout'), 
+    path('about/', views.notification, name='notification')
 ]

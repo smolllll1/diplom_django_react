@@ -1,10 +1,15 @@
 from rest_framework import serializers
-from .models import Test, Registration, People, Movies
+from .models import LastLogin, Registration, People, Movies, Notification
 from django.contrib.auth.models import User
 
-class NoteSerializer(serializers.ModelSerializer):
+class NotificationSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Test
+        model = Notification
+        fields = ['name', 'email', 'subject', 'notification']
+
+class LastLoginSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LastLogin
         fields = ['name', 'title']
 
 class RegisterSerializer(serializers.ModelSerializer):

@@ -14,8 +14,8 @@ import requests
 import json
 from rest_framework import filters
 from rest_framework import generics
-from .models import People, Movies, Test
-from .serializers import RegisterSerializer, LoginSerializer, PeopleSerializer, NoteSerializer, MovieSerializer
+from .models import People, Movies, LastLogin
+from .serializers import RegisterSerializer, LoginSerializer, PeopleSerializer, LastLoginSerializer, MovieSerializer, NotificationSerializer
 
 # Create your views here.
 
@@ -80,6 +80,21 @@ class MoviesViewSet(generics.ListAPIView, mixins.CreateModelMixin,
     search_fields = ['title']
     lookup_field = 'id'
 
+@permission_classes([IsAuthenticated])
+@api_view(['POST'])
+def notification(request):
+    email = request.data.get('email') 
+    name = User.objects.filter(email=email)
+    username_list = name.values_list('username', flat=True)
+    data = request.data
+    data['name'] = username_list[0]
+    serializer = NotificationSerializer(data=data)
+    if serializer.is_valid():
+        serializer.save()
+    else:
+        pass
+    return Response({'notificationRespons': 'Request has been saved!'})
+
 @api_view(['POST'])
 def register(request):
     name = request.data.get('name')
@@ -111,8 +126,8 @@ def user(request: Request):
             login(request, user)
             last_login = username.last_login
             format_last_sesion = last_login.strftime('%d-%m-%Y, %H:%M')
-            last_login_serializer = NoteSerializer(data={'name': f'{username}', 'title': f'{format_last_sesion}'})
-            filter_name = Test.objects.filter(name=username)
+            last_login_serializer = LastLoginSerializer(data={'name': f'{username}', 'title': f'{format_last_sesion}'})
+            filter_name = LastLogin.objects.filter(name=username)
             first_filter_name = filter_name.first()
             if filter_name and last_login_serializer.is_valid():
                 if len(filter_name) < 5:

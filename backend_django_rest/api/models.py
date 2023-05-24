@@ -3,13 +3,9 @@ from django.contrib.postgres.fields import ArrayField
 from django.core.validators import RegexValidator
 
 # Create your models here.
-class Test(models.Model):
+class LastLogin(models.Model):
     title = models.TextField(max_length=100,blank=True)
     name = models.TextField(max_length=100,blank=True)
-    # popularity = models.TextField(null=True, blank=True)
-    # updated = models.DateTimeField(auto_now=True)
-    # created = models.DateTimeField(auto_now_add=True)
-
     def __str__(self):
         return self.title
     
@@ -51,4 +47,11 @@ class Movies(models.Model):
     video = models.BooleanField(default=False)
     vote_average = models.FloatField()
     vote_count = models.IntegerField()
-    
+
+class Notification(models.Model):
+    email_validator = RegexValidator(regex='^\w+(_?\w*)*-?\w*(_?\w*)*@\w+(\.\w*)+$', message='xxxxxx@xxxxxx')
+    email = models.CharField(max_length=100, validators=(email_validator, ))
+    subject = models.CharField(max_length=500)    
+    notification = models.CharField(max_length=1500)
+    date_request = models.DateTimeField(auto_now_add=True)
+    name = models.TextField(max_length=100,blank=True)
