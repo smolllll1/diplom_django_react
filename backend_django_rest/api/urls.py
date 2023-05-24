@@ -7,8 +7,8 @@ from rest_framework import routers
 router = routers.SimpleRouter()
 router.register(r'pop_movies', MoviesViewSet)
 router.register(r'pop_people', PeopleViewSet)
-router.register(r'search_people', SearchPeopleViewSet)
-router.register(r'search_movies', SearchMoviesViewSet)
+router.register(r'search/search_people', SearchPeopleViewSet)
+router.register(r'search/search_movies', SearchMoviesViewSet)
 
 
 urlpatterns = [
