@@ -25,7 +25,6 @@ const AuthenticationDataProvider = ({ children }) => {
 
     // Show confetti after registration. in folder component: form-registration use pege: registration, fn submit registration
     const [success, setSuccess] = useState(false);
-
     // Response Registration backend onSubmit
     const [responseRegistration, setResponseRegistration] = useState(null);
     // Error Registration
@@ -40,6 +39,9 @@ const AuthenticationDataProvider = ({ children }) => {
     const [responseLogout, setResponseLogout] = useState(null);
     // Error Logout
     const [errMsgLogout, setErrMsgLogout] = useState('');
+
+    // DELETE ACCOUNT
+    const [deleteAccount, setDeleteAccount] = useState(false);
 
     // formikRegistration logics
     const formikRegistration = useFormik({
@@ -168,6 +170,9 @@ const AuthenticationDataProvider = ({ children }) => {
         await axiosBaseUrl.get(LOGOUT_URL)
             .then(response => {
                 setResponseLogout(response.data);
+                setTimeout(() => {
+                    setResponseLogout(null);
+                }, 10000)
             })
             .catch(error => {
                 setErrMsgLogout(error.message);
@@ -178,14 +183,29 @@ const AuthenticationDataProvider = ({ children }) => {
 
     // delete account
     const onHandlerDeleteAccount = async () => {
-        console.log("delete");
-        await (LOGIN_URL.responseLogin.username)
-            .then(response => {
-                console.log(response.status)
+        try {
+            const response = await axiosBaseUrl({
+                method: "delete", url: LOGIN_URL,
+                data: {
+                    name: responseLogin.username,
+                },
             })
-            .catch(error => {
-                console.log(error)
-            })
+            if (response.status === 200) {
+                cleanUsersData();
+                localStorage.removeItem('user');
+                setDeleteAccount(true);
+                navigate('/');
+            }
+        } catch (error) {
+            console.log(error)
+        }
+        function cleanUsersData() {
+            responseLogin.id = "";
+            responseLogin.username = "";
+            responseLogin.email = "";
+            responseLogin.date_joined = "";
+            responseLogin.last_login = [];
+        };
     }
 
     return (
@@ -206,6 +226,9 @@ const AuthenticationDataProvider = ({ children }) => {
             errMsgLogout: errMsgLogout,
             // Person settings component
             onHandlerDeleteAccount: onHandlerDeleteAccount,
+            // DELETE ACCOUNT
+            deleteAccount: deleteAccount,
+            setDeleteAccount: setDeleteAccount,
         }}>
             {children}
         </AuthenticationData.Provider>

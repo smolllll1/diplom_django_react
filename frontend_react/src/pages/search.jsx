@@ -3,6 +3,7 @@ import { motion as m } from 'framer-motion';
 import SearchNav from '../components/search-nav';
 import { SearchList } from '../components/search-list';
 import { SearchData } from "../components/data/search-data";
+import Divider from '@mui/material/Divider';
 
 const Search = () => {
 
@@ -15,6 +16,7 @@ const Search = () => {
             exit={{ opacity: 0 }}
         >
             <SearchNav formikSearch={formikSearch} />
+            <Divider/>
             <SearchList />
         </m.div>
     );

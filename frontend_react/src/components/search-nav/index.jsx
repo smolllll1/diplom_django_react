@@ -1,6 +1,5 @@
 import React from "react";
 import Button from '@mui/material/Button';
-import { Divider } from "@mui/material";
 
 import './search-nav.css'
 
@@ -20,7 +19,7 @@ const SearchNav = ({ formikSearch }) => {
     }
 
     return (
-        <section>
+        <section className="d-flex w-100 p-0">
             <form className="d-flex w-100 p-3" onSubmit={formikSearch.handleSubmit}>
                 <label className="w-100" htmlFor="name">
                     <input className="w-100 search-input"
@@ -36,7 +35,6 @@ const SearchNav = ({ formikSearch }) => {
                     Search
                 </Button>
             </form>
-            <Divider/>
         </section>
     )
 }

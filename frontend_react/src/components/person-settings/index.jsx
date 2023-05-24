@@ -14,6 +14,14 @@ const PersonSettings = ({ responseLogin }) => {
     const navigate = useNavigate();
     const { onHandlerDeleteAccount } = useContext(AuthenticationData)
 
+    const myStyleBtnDeleteAccount = {
+        btn: {
+            color: "gray",
+            "&:hover": {
+                color: "#01D277"
+            }
+        }
+    }
     return (
         <m.div
             initial={{ opacity: 0 }}
@@ -83,8 +91,10 @@ const PersonSettings = ({ responseLogin }) => {
                                 <MenuItem className='setting-link'>
                                     <Link to={"api"}>API</Link>
                                 </MenuItem>
-                                <MenuItem className='setting-link' onClick={onHandlerDeleteAccount}>
-                                    <Link to={`/`}>Delete Account</Link>
+                                <MenuItem className='setting-btn'
+                                    sx={myStyleBtnDeleteAccount.btn}
+                                    onClick={onHandlerDeleteAccount}>
+                                    Delete Account
                                 </MenuItem>
                             </MenuList>
                         </Paper>

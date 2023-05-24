@@ -15,6 +15,7 @@ const SearchValueProvider = ({ children }) => {
 
     // search text
     const [isSearchValue, setIsSearchValue] = useState("");
+    console.log(isSearchValue)
 
     // formikSearch logics
     const formikSearch = useFormik({
@@ -45,7 +46,7 @@ const SearchValueProvider = ({ children }) => {
     } = useQuery(["search_people/?pege=", isSearchValue], () => getSearchPeople(isSearchValue), {
         keepPreviousData: true
     });
-    // console.log(searchPeopleResults)
+    console.log(searchPeopleResults)
 
     if (isLoading) return <div className="text-center vh-100 mt-5">
         <CircularStatic />

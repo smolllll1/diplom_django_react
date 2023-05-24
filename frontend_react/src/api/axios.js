@@ -24,12 +24,12 @@ export const getAllMoviesId = async (idParam) => {
   return response.data;
 };
 // search people request
-export const getSearchPeople = async (Param) => {
-  const response = await axiosBaseUrl.get(`search_people/?search=${Param}`);
+export const getSearchPeople = async (value) => {
+  const response = await axiosBaseUrl.get(`search/search_people/?search=${value}`);
   return response.data;
 };
 // search movies request
-export const getSearchMovies = async (Param) => {
-  const response = await axiosBaseUrl.get(`search_movies/?search=${Param}`);
+export const getSearchMovies = async (value) => {
+  const response = await axiosBaseUrl.get(`search/search_movies/?search=${value}`);
   return response.data;
 };
