@@ -12,8 +12,8 @@ import { MoviesListInfo } from '../movies-list-info';
 import { PeoplePages } from '../../pages/people-pages';
 import { PeopleListInfo } from '../people-list-info';
 import { Search } from "../../pages/search";
-import {SearchListPeople} from "../search-list-people";
-import {SearchListMovies} from "../search-list-movies";
+import { SearchCardsPeople } from "../search-cards-people";
+import { SearchCardsMovies } from "../search-cards-movies";
 import { UsersAccount } from '../../pages/users-account';
 import { UsersSettings } from '../../pages/users-settings';
 import { UsersEvents } from '../../pages/users-events';
@@ -71,9 +71,10 @@ const App = () => {
                       <Route exact path="sessions" element={<h2>Sessions</h2>} />
                       <Route exact path="api" element={<h2>API</h2>} />
                     </Route>
-                    <Route exact path="search/:id" element={<Search />} >
-                      <Route exact path="movies" element={<SearchListMovies />} />
-                      <Route exact path="people" element={<SearchListPeople />} />
+                    <Route exact path="search" element={<Search />} />
+                    <Route exact path="search/:queryId" element={<Search />} >
+                      {/* <Route exact path=":queryId" element={<SearchCardsMovies />} /> */}
+                      {/* <Route exact path=":queryId" element={<SearchCardsPeople />} /> */}
                     </Route>
                     {/* content pages */}
                     <Route exact path="pop_movies" element={<MoviesPages />} />

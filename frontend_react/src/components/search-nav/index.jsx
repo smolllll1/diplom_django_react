@@ -1,5 +1,6 @@
 import React from "react";
 import Button from '@mui/material/Button';
+import { Link } from "react-router-dom";
 
 import './search-nav.css'
 
@@ -23,7 +24,7 @@ const SearchNav = ({ formikSearch }) => {
             <form className="d-flex w-100 p-3" onSubmit={formikSearch.handleSubmit}>
                 <label className="w-100" htmlFor="name">
                     <input className="w-100 search-input"
-                        type="text"
+                        type="search"
                         name="searchValue"
                         value={formikSearch.values.searchValue}
                         onChange={formikSearch.handleChange}
@@ -31,9 +32,11 @@ const SearchNav = ({ formikSearch }) => {
                         placeholder="Search for a movie, person..."
                     />
                 </label>
-                <Button type="submit" sx={useStyleBtnSearch.btn}>
-                    Search
-                </Button>
+                <Link to={`?query=${formikSearch.values.searchValue}`}>
+                    <Button type="submit" sx={useStyleBtnSearch.btn}>
+                        Search
+                    </Button>
+                </Link>
             </form>
         </section>
     )
