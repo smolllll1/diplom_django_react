@@ -8,7 +8,7 @@ import { Contacts } from '../../pages/contacts';
 import { Registration } from '../../pages/registration';
 import { Login } from '../../pages/login';
 import { MoviesPages } from '../../pages/movies-pages';
-import { MoviesListInfo } from '../movies-list-info';
+import MoviesListInfo from '../movies-list-info';
 import { PeoplePages } from '../../pages/people-pages';
 import { PeopleListInfo } from '../people-list-info';
 import { Search } from "../../pages/search";

@@ -4,14 +4,18 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
+import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountMenu from "./avatar/index";
 import SearchIcon from '@mui/icons-material/Search';
 import { AuthenticationData } from "../data/authentication-data";
+import { connect } from "react-redux";
 
-import './login-nav.css'
+import './login-nav.css';
 
-const LoginNav = () => {
+const LoginNav = (data) => {
+
+    console.log(data)
 
     const {
         onHandlerLogout,
@@ -29,46 +33,62 @@ const LoginNav = () => {
                 null
             }
             {responseLogin ?
-            <Link to={`events/${responseLogin?.username}`}>
-                <IconButton
-                    size="large"
-                    aria-label="show 0 new notifications">
-                    <Badge badgeContent={0} color="error">
-                        <NotificationsIcon className="bell" />
-                    </Badge>
-                </IconButton>
+                <Link to={`users/account/${responseLogin?.username}`}>
+                    <IconButton
+                        size="large"
+                        aria-label="show 0 new add movies">
+                        <Badge badgeContent={data.movie.length} color="error">
+                            <AddCircleOutlinedIcon className="add-movies" />
+                        </Badge>
+                    </IconButton>
                 </Link>
                 :
-null
+                null
             }
-{
-    responseLogin ?
-        <AccountMenu
-            responseLogin={responseLogin}
-            onHandlerLogout={onHandlerLogout}
-        />
-        :
-        null
-}
-{
-    !responseLogin ?
-    <Link to={'login'}>
-        <Button type="button">
-            Login
-        </Button>
-    </Link>
-    :
-    <div className="me-5 px-2"></div>
-}
-<Link to={"search"}>
-    <IconButton size="large"
-        aria-label="search"
-        style={{ color: "rgb(1, 180, 228)" }}>
-        <SearchIcon />
-    </IconButton>
-</Link>
+            {responseLogin ?
+                <Link to={`events/${responseLogin?.username}`}>
+                    <IconButton
+                        size="large"
+                        aria-label="show 0 new notifications">
+                        <Badge badgeContent={0} color="error">
+                            <NotificationsIcon className="bell" />
+                        </Badge>
+                    </IconButton>
+                </Link>
+                :
+                null
+            }
+            {
+                responseLogin ?
+                    <AccountMenu
+                        responseLogin={responseLogin}
+                        onHandlerLogout={onHandlerLogout}
+                    />
+                    :
+                    null
+            }
+            {
+                !responseLogin ?
+                    <Link to={'login'}>
+                        <Button type="button">
+                            Login
+                        </Button>
+                    </Link>
+                    :
+                    <div className="me-5 px-2"></div>
+            }
+            <Link to={"search"}>
+                <IconButton size="large"
+                    aria-label="search"
+                    style={{ color: "rgb(1, 180, 228)" }}>
+                    <SearchIcon />
+                </IconButton>
+            </Link>
         </Stack >
     )
 }
 
-export default LoginNav;
+const mapStateToProps = (state) => {
+    return state;
+}
+export default connect(mapStateToProps)(LoginNav);

@@ -7,8 +7,10 @@ import { useQuery } from "react-query";
 import Alert from 'react-bootstrap/Alert';
 import Button from '@mui/material/Button';
 import { Link, useNavigate } from "react-router-dom";
+import { addMovie } from "../../redux/actions";
+import { connect } from "react-redux";
 
-const MoviesListInfo = () => {
+const MoviesListInfo = ({ state, addMovie }) => {
 
     const navigate = useNavigate();
     // click cards movies id
@@ -31,6 +33,17 @@ const MoviesListInfo = () => {
             textTransform: "capitalize",
             '&:hover': {
                 backgroundColor: "#90cea1",
+            },
+        }
+    }
+
+    const useStyleBtnAddMovies = {
+        button: {
+            backgroundColor: "#01b4e4",
+            color: 'floralwhite',
+            textTransform: "capitalize",
+            '&:hover': {
+                backgroundColor: "#0d253f",
             },
         }
     }
@@ -60,7 +73,7 @@ const MoviesListInfo = () => {
                         style={{ backgroundColor: 'rgba(13, 37, 63, 1)', zIndex: "0" }}>
                         <img src={`https://image.tmdb.org/t/p/original${listInfoMovies?.backdrop_path}`}
                             className="rounded position-absolute opacity-25"
-                            style={{ width: "100%", height: "100vh", objectFit: "cover", zIndex: "-1000"  }}
+                            style={{ width: "100%", height: "100vh", objectFit: "cover", zIndex: "-1000" }}
                             alt={listInfoMovies?.title}
                         />
                         <div className="row g-0">
@@ -95,6 +108,13 @@ const MoviesListInfo = () => {
                                         >
                                             Go Back
                                         </Button>
+                                        <Button className="fs-5 ms-3"
+                                            variant="contained"
+                                            onClick={() => {addMovie(listInfoMovies)}}
+                                            sx={useStyleBtnAddMovies.button}
+                                        >
+                                            Add Movie
+                                        </Button>
                                     </div>
                                 </div>
                             </div>
@@ -106,4 +126,16 @@ const MoviesListInfo = () => {
     }
 };
 
-export { MoviesListInfo };
+const mapStateToProps = (state) => {
+    return state
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addMovie: (information) => {
+            dispatch(addMovie(information))
+        }
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MoviesListInfo);

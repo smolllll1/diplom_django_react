@@ -27,7 +27,9 @@ const SearchCardsPeople = () => {
                     <h6 className='text-secondary fw-light'>There are no people that matched your query.</h6>
                     :
                     searchPeopleResults?.data?.results.map((item) => {
-                        return <Card key={item.id} className='d-flex flex-row w-100 mb-2 p-0'>
+                        return <Card key={item.id}
+                            className='d-flex flex-row w-100 mb-2 p-0'
+                            style={{ backgroundColor: "rgba(13, 37, 63, .9)" }}>
                             <div className='d-flex'>
                                 <Link to={`/pop_people/${item.id}`} onClick={() => { onHandlerCardsInfoPeople(item.id) }}>
                                     <Card.Img src={`https://www.themoviedb.org/t/p/w90_and_h90_face${item.profile_path}`}
@@ -36,8 +38,8 @@ const SearchCardsPeople = () => {
                                 </Link>
                             </div>
                             <Card.Body className='d-flex row m-0'>
-                                <Card.Title className='fs-6 fw-bold'>{item.name}</Card.Title>
-                                <Card.Text className='fs-6'>{item.known_for_department}</Card.Text>
+                                <Card.Title className='fs-6 fw-bold text-white'>{item.name}</Card.Title>
+                                <Card.Text className='fs-6 text-white'>{item.known_for_department}</Card.Text>
                             </Card.Body>
                         </Card>
                     })

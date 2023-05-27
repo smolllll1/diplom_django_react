@@ -43,43 +43,45 @@ function SliderHomePage() {
         <section className='d-flex row w-100 mx-0'>
             <div className='my-0 slide-top' />
             {isRandomFirst === "" ?
-                <CircularStatic />
+                <div className='d-flex mt-5 justify-content-center'>
+                    <CircularStatic />
+                </div>
                 :
                 (<Carousel className='w-100 px-0'>
                     <Carousel.Item settimeout={5000}>
-                        <Link to={`/pop_movies/${isRandomFirst.id}`}
-                            onClick={() => { onHandlerCardsInfoMovies(isRandomFirst.id) }}>
+                        <Link to={`/pop_movies/${isRandomFirst?.id}`}
+                            onClick={() => { onHandlerCardsInfoMovies(isRandomFirst?.id) }}>
                             <img className="d-block w-100"
                                 src={`https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces_filter(duotone,190235,ad47dd)${isRandomFirst?.backdrop_path}`}
                                 alt="First slide"
                                 style={{ width: "100%", height: "50vh", objectFit: "cover" }} />
                         </Link>
                         <Carousel.Caption>
-                            <h3>{isRandomFirst.title}</h3>
+                            <h3>{isRandomFirst?.title}</h3>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item settimeout={5000}>
-                        <Link to={`/pop_movies/${isRandomSecond.id}`}
-                            onClick={() => { onHandlerCardsInfoMovies(isRandomSecond.id) }}>
+                        <Link to={`/pop_movies/${isRandomSecond?.id}`}
+                            onClick={() => { onHandlerCardsInfoMovies(isRandomSecond?.id) }}>
                             <img className="d-block w-100"
                                 src={`https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces_filter(duotone,190235,ad47dd)${isRandomSecond?.backdrop_path}`}
                                 alt="First slide"
                                 style={{ width: "100%", height: "50vh", objectFit: "cover" }} />
                         </Link>
                         <Carousel.Caption>
-                            <h3>{isRandomSecond.title}</h3>
+                            <h3>{isRandomSecond?.title}</h3>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item settimeout={5000} >
-                        <Link to={`/pop_movies/${isRandomThird.id}`}
-                            onClick={() => { onHandlerCardsInfoMovies(isRandomThird.id) }}>
+                        <Link to={`/pop_movies/${isRandomThird?.id}`}
+                            onClick={() => { onHandlerCardsInfoMovies(isRandomThird?.id) }}>
                             <img className="d-block w-100"
                                 src={`https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces_filter(duotone,190235,ad47dd)${isRandomThird?.backdrop_path}`}
                                 alt="First slide"
                                 style={{ width: "100%", height: "50vh", objectFit: "cover" }} />
                         </Link>
                         <Carousel.Caption>
-                            <h3>{isRandomThird.title}</h3>
+                            <h3>{isRandomThird?.title}</h3>
                         </Carousel.Caption>
                     </Carousel.Item>
                 </Carousel>

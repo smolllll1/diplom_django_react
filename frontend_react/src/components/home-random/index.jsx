@@ -43,7 +43,9 @@ const HomeRandom = () => {
                     </div>
                 </div>
                 :
-                <CircularStatic />
+                <div className='mt-5'>
+                   <CircularStatic /> 
+                </div>
             }
         </section>
     );
