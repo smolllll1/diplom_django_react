@@ -36,6 +36,7 @@ const FormRegiatration = ({ formikRegistration }) => {
                                 }
                             </label>
                             <input className="input-style-registration"
+                                id="name"
                                 type="text"
                                 name="name"
                                 placeholder="Enter your name"
@@ -60,6 +61,7 @@ const FormRegiatration = ({ formikRegistration }) => {
                                 }
                             </label>
                             <input className="input-style-registration"
+                                id="phone"
                                 type="tel"
                                 name="phone"
                                 placeholder="Enter your phone"
@@ -84,6 +86,7 @@ const FormRegiatration = ({ formikRegistration }) => {
                                 }
                             </label>
                             <input className="input-style-registration"
+                                id="email"
                                 type="email"
                                 name="email"
                                 placeholder="Enter your email"
@@ -99,6 +102,7 @@ const FormRegiatration = ({ formikRegistration }) => {
                                 Country
                             </label>
                             <select className="input-style-registration w-25"
+                                id="country"
                                 name="country"
                                 value={formikRegistration.values.country}
                                 onChange={formikRegistration.handleChange}
@@ -130,6 +134,7 @@ const FormRegiatration = ({ formikRegistration }) => {
                                 }
                             </label>
                             <input className="input-style-registration"
+                                id="password"
                                 type="password"
                                 name="password"
                                 placeholder="Enter your password"
@@ -147,7 +152,7 @@ const FormRegiatration = ({ formikRegistration }) => {
                                     ? "text-danger"
                                     : ""}`
                             }
-                                htmlFor="confirm-password">
+                                htmlFor="confirmPassword">
                                 {formikRegistration.touched.confirmPassword
                                     && formikRegistration.errors.confirmPassword
                                     ? formikRegistration.errors.confirmPassword
@@ -155,6 +160,7 @@ const FormRegiatration = ({ formikRegistration }) => {
                                 }
                             </label>
                             <input className="input-style-registration"
+                                id="confirmPassword"
                                 type="password"
                                 name="confirmPassword"
                                 placeholder="Confirm your password"
@@ -181,6 +187,7 @@ const FormRegiatration = ({ formikRegistration }) => {
                             </label>
                             <div className="d-flex gap-2">
                                 <input className="input-checkbox-registration"
+                                    id="terms"
                                     type="checkbox"
                                     name="terms"
                                     value="checked"

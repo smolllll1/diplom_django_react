@@ -48,6 +48,16 @@ const SearchValueProvider = ({ children }) => {
         keepPreviousData: true
     });
 
+    // click li counter search movies
+    const onHandlerSearchCardsMovies = (value) => {
+        setIsSearchValue(value)
+    }
+
+    // click li counter search people
+    const onHandlerSearchCardsPeople = (value) => {
+        setIsSearchValue(value)
+    }
+
     return (
         <SearchData.Provider
             value={{
@@ -59,6 +69,10 @@ const SearchValueProvider = ({ children }) => {
                 searchMoviesResults: searchMoviesResults,
                 // search text
                 isSearchValue: isSearchValue,
+                // click li counter search movies
+                onHandlerSearchCardsMovies: onHandlerSearchCardsMovies,
+                // click li counter search people
+                onHandlerSearchCardsPeople: onHandlerSearchCardsPeople,
             }}
         >
             {children}

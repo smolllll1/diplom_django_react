@@ -24,7 +24,7 @@ const SearchCardsMovies = () => {
     return (
       <Fragment>
         {searchMoviesResults?.data?.count === 0 ?
-          <h6 className='text-warning fw-light'>There are no movies that matched your query.</h6>
+          <h6 className='text-secondary fw-light'>There are no movies that matched your query.</h6>
           :
           searchMoviesResults?.data?.results.map((item) => {
             return <Card key={item.id} className='d-flex flex-row w-100 mb-2 p-0'>

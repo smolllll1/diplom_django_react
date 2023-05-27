@@ -3,8 +3,11 @@ import { motion as m } from "framer-motion";
 import { HomeRandom } from "../components/home-random";
 import { SliderHomePage } from "../components/slider-home";
 import { AuthenticationData } from "../components/data/authentication-data";
+import { SearchData } from "../components/data/search-data";
+import FormSearch from "../components/form-search";
 
 const Home = () => {
+    const { formikSearch } = useContext(SearchData);
     const { responseLogout, deleteAccount, setDeleteAccount } = useContext(AuthenticationData);
 
     setTimeout(() => {
@@ -38,6 +41,8 @@ const Home = () => {
                 null
             }
             <HomeRandom />
+            <div className='my-0 home-random-bottom' />
+            <FormSearch formikSearch={formikSearch} />
             <SliderHomePage />
         </m.div>
     )

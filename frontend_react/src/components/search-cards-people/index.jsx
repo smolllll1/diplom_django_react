@@ -24,14 +24,13 @@ const SearchCardsPeople = () => {
         return (
             <Fragment>
                 {searchPeopleResults?.data?.count === 0 ?
-                    <h6 className='text-warning fw-light'>There are no people that matched your query.</h6>
+                    <h6 className='text-secondary fw-light'>There are no people that matched your query.</h6>
                     :
                     searchPeopleResults?.data?.results.map((item) => {
                         return <Card key={item.id} className='d-flex flex-row w-100 mb-2 p-0'>
                             <div className='d-flex'>
                                 <Link to={`/pop_people/${item.id}`} onClick={() => { onHandlerCardsInfoPeople(item.id) }}>
-                                    <Card.Img src={`https://www.themoviedb.org/t/p/w90_and_h90_face${item.profile_path
-                                        }`}
+                                    <Card.Img src={`https://www.themoviedb.org/t/p/w90_and_h90_face${item.profile_path}`}
                                         style={{ width: "6rem", objectFit: "cover" }}
                                         alt="Card image" />
                                 </Link>

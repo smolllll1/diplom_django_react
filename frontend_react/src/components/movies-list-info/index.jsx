@@ -6,7 +6,7 @@ import { ContentData } from "../data/content-data";
 import { useQuery } from "react-query";
 import Alert from 'react-bootstrap/Alert';
 import Button from '@mui/material/Button';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const MoviesListInfo = () => {
 
@@ -57,20 +57,21 @@ const MoviesListInfo = () => {
                     </div>
                     :
                     <div className="d-flex card my-3 p-0 position-relative w-100"
-                        style={{ backgroundColor: 'rgba(13, 37, 63, 1)' }}>
-                        <img
-                            src={`https://image.tmdb.org/t/p/original${listInfoMovies?.backdrop_path}`}
+                        style={{ backgroundColor: 'rgba(13, 37, 63, 1)', zIndex: "0" }}>
+                        <img src={`https://image.tmdb.org/t/p/original${listInfoMovies?.backdrop_path}`}
                             className="rounded position-absolute opacity-25"
-                            style={{ width: "100%", height: "100vh", objectFit: "cover" }}
+                            style={{ width: "100%", height: "100vh", objectFit: "cover", zIndex: "-1000"  }}
                             alt={listInfoMovies?.title}
                         />
                         <div className="row g-0">
                             <div className="col-md-4 d-flex p-5 vh-100 justify-content-center align-items-center">
                                 <div className="w-100 h-100 d-flex">
-                                    <img src={`https://image.tmdb.org/t/p/original${listInfoMovies?.backdrop_path}`}
-                                        className="rounded"
-                                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                                        alt={listInfoMovies?.title} />
+                                    <Link onClick={() => { navigate(-1) }}>
+                                        <img src={`https://image.tmdb.org/t/p/original${listInfoMovies?.backdrop_path}`}
+                                            className="rounded"
+                                            style={{ width: "100%", height: "100%", objectFit: "cover", zIndex: "1000" }}
+                                            alt={listInfoMovies?.title} />
+                                    </Link>
                                 </div>
                             </div>
                             <div className="col-md-8 d-flex vh-100 justify-content-center align-items-center">

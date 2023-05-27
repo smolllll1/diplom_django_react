@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import Paper from '@mui/material/Paper';
@@ -14,7 +14,11 @@ const SearchList = () => {
 
     const location = useLocation();
 
-    const { searchMoviesResults, searchPeopleResults } = useContext(SearchData);
+    const { isSearchValue,
+        searchMoviesResults,
+        searchPeopleResults,
+        onHandlerSearchCardsMovies,
+        onHandlerSearchCardsPeople } = useContext(SearchData);
 
     return (
         <section className='row g-0'
@@ -34,13 +38,19 @@ const SearchList = () => {
                                 Search Results
                             </li>
                             <MenuItem className='search-item'>
-                                <Link to={"movies"}>Movies</Link>
+                                <Link to={`/search_movies/?query=${isSearchValue}`}
+                                    onClick={() => { onHandlerSearchCardsMovies(isSearchValue) }}>
+                                    Movies
+                                </Link>
                                 <span className='count-span'>
                                     {searchMoviesResults?.data?.count}
                                 </span>
                             </MenuItem>
                             <MenuItem className='search-item'>
-                                <Link to={"people"}>People</Link>
+                                <Link to={`/search_people/?query=${isSearchValue}`}
+                                    onClick={() => { onHandlerSearchCardsPeople(isSearchValue) }}>
+                                    People
+                                </Link>
                                 <span className='count-span'>
                                     {searchPeopleResults?.data?.count}
                                 </span>
@@ -49,18 +59,19 @@ const SearchList = () => {
                     </Paper>
                 </Stack>
             </div>
-            {location?.search.split("=")[1] === ""
-                ||
-                (searchMoviesResults?.data?.count === 0 && searchPeopleResults?.data?.count === 0) ?
+            {location?.search.split("=")[1] === "" ?
                 <div className='col-md-8 d-flex row mt-3 mb-3 m-0 pe-5 justify-content-center'>
-                    <h6 className='text-danger fw-light'>Enter the value in the search lield.</h6>
+                    <h6 className='text-danger fw-light'>Enter the value in the search field.</h6>
                 </div>
-                :
-                <div className='col-md-8 d-flex row mt-3 mb-3 m-0 pe-5 justify-content-center'>
-                    <SearchCardsMovies />
-                    <SearchCardsPeople />
-                    <Outlet />
-                </div>
+                : searchMoviesResults?.data?.count === 0 && searchPeopleResults?.data?.count === 0 ?
+                    <div className='col-md-8 d-flex row mt-3 mb-3 m-0 pe-5 justify-content-center'>
+                        <h6 className='text-secondary fw-light'>Nothing found.</h6>
+                    </div>
+                    :
+                    <div className='col-md-8 d-flex row mt-3 mb-3 m-0 pe-5 justify-content-center'>
+                        <SearchCardsMovies />
+                        <SearchCardsPeople />
+                    </div>
             }
         </section>
     );

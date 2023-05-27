@@ -53,6 +53,7 @@ const FormNotification = () => {
                                 }
                             </Form.Label>
                             <Form.Control
+                                id="email"
                                 type="email"
                                 name="email"
                                 placeholder="Enter your email"
@@ -75,6 +76,7 @@ const FormNotification = () => {
                                 }
                             </Form.Label>
                             <Form.Control
+                                id="subject"
                                 type="text"
                                 name="subject"
                                 placeholder="Enter your subject"
@@ -96,6 +98,7 @@ const FormNotification = () => {
                                 }
                             </Form.Label>
                             <Form.Control as="textarea" rows={3}
+                                id="notification"
                                 type="text"
                                 name="notification"
                                 placeholder="Enter your notification"

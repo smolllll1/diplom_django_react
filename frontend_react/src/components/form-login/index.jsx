@@ -33,6 +33,7 @@ const FormLogin = ({ formikLogin, errMsgLogin }) => {
                                 }
                             </label>
                             <input className="w-100 input-style-login"
+                                id="name"
                                 type="text"
                                 name="name"
                                 placeholder="Enter your name"
@@ -57,6 +58,7 @@ const FormLogin = ({ formikLogin, errMsgLogin }) => {
                                 }
                             </label>
                             <input className="w-100 input-style-login"
+                                id="password"
                                 type="password"
                                 name="password"
                                 placeholder="Enter your password"
