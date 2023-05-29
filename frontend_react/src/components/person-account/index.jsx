@@ -3,10 +3,23 @@ import { Link } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { motion as m } from "framer-motion";
+import { PersonAccountCards } from '../person-account-cards';
 
 import './person-account.css'
 
 const PersonAccount = ({ responseLogin }) => {
+
+    const myStyleAccountUserBtn = {
+        btn: {
+            color: "dimgray",
+            textTransform: "capitalize",
+            fontSize: "1rem",
+            '&:hover': {
+                color: "#01D277",
+
+            },
+        }
+    }
 
     return (
         <m.div
@@ -16,7 +29,7 @@ const PersonAccount = ({ responseLogin }) => {
             style={{ width: "100%" }}
         >
             <div className='d-flex row m-0'>
-                <div className='d-flex col top-person-account align-items-center'>
+                <section className='d-flex col p-0 top-person-account align-items-center'>
                     <div className='d-flex m-5 justify-content-center 
                             align-items-center avatar-person-account-circle'>
                         <p style={{ fontSize: "4rem" }}>
@@ -41,18 +54,19 @@ const PersonAccount = ({ responseLogin }) => {
                             }
                         </span>
                     </p>
-                </div>
-                <Stack spacing={2}
-                    backgroundColor="white"
-                    borderBottom="1px solid gray"
-                    justifyContent="center"
-                    direction="row">
-                    <Button variant="text">Button</Button>
-                    <Button variant="text">Button</Button>
-                    <Button variant="text">Button</Button>
-                </Stack>
-                <div className='d-flex row m-0 bg-white'>
-                    <h4>Stats</h4>
+                </section>
+                <nav className='p-0'>
+                    <Stack spacing={2}
+                        backgroundColor="white"
+                        justifyContent="center"
+                        direction="row">
+                        <Button variant="text" sx={myStyleAccountUserBtn.btn}>Button</Button>
+                        <Button variant="text" sx={myStyleAccountUserBtn.btn}>Button</Button>
+                        <Button variant="text" sx={myStyleAccountUserBtn.btn}>Button</Button>
+                    </Stack>
+                </nav>
+                <section className='d-flex row m-0 p-0 bg-white border-top'>
+                    <h4 className='mt-2'>Stats</h4>
                     <div className='d-flex col m-0'>
                         <div className='m-2'>
                             <p className='fs-5'>Total Edits</p>
@@ -65,10 +79,17 @@ const PersonAccount = ({ responseLogin }) => {
                                 style={{ color: "#01D277", fontSize: "4rem" }}>0</p>
                         </div>
                     </div>
-                </div>
+                </section>
+                <section className='d-flex row m-0 p-0 border-top'
+                style={{ backgroundColor: "rgba(13, 37, 63, 1)" }}>
+                    <h4 className='mt-2 text-white'>List of added movies</h4>
+                    <div className='px-5'>
+                    <PersonAccountCards />  
+                    </div>
+                </section>
             </div>
         </m.div >
     )
 }
 
-export default PersonAccount
+export default PersonAccount;

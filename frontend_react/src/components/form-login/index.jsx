@@ -11,7 +11,7 @@ const FormLogin = ({ formikLogin, errMsgLogin }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="d-flex w-100 align-items-center justify-content-center wrapper-login" >
-            <form className="d-flex form-login"
+            <form className="m-3 d-flex form-login"
                 onSubmit={formikLogin.handleSubmit}
             >
                 <div className="wrap-form-login-text">

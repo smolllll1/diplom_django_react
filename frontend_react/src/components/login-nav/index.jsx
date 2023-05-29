@@ -15,19 +15,28 @@ import './login-nav.css';
 
 const LoginNav = (data) => {
 
-    console.log(data)
-
     const {
         onHandlerLogout,
         responseLogout,
         responseLogin,
     } = useContext(AuthenticationData);
 
+    const myStyleNavBtn = {
+        btn: {
+            color: "seashell",
+            textTransform: "capitalize",
+            fontSize: "1rem",
+            '&:hover': {
+                color: "#01b4e4",
+            },
+        }
+    }
+
     return (
-        <Stack direction="row" spacing={2}>
+        <Stack direction="row" spacing={0}>
             {!responseLogin && !responseLogout ?
-                <Link to={'registration'}>
-                    <Button type="button" id="registration-btn">Registration</Button>
+                <Link to={'registration'} className="text-decoration-none">
+                    <Button type="button" sx={myStyleNavBtn.btn}>Registration</Button>
                 </Link>
                 :
                 null
@@ -69,8 +78,8 @@ const LoginNav = (data) => {
             }
             {
                 !responseLogin ?
-                    <Link to={'login'}>
-                        <Button type="button">
+                    <Link to={'login'} className="text-decoration-none">
+                        <Button type="button" sx={myStyleNavBtn.btn}>
                             Login
                         </Button>
                     </Link>
@@ -91,4 +100,5 @@ const LoginNav = (data) => {
 const mapStateToProps = (state) => {
     return state;
 }
+
 export default connect(mapStateToProps)(LoginNav);

@@ -12,8 +12,8 @@ const PopularMovies = ({dataMovies}) => {
 
     return (
         <Fragment>
+            <h3 className="m-0 mt-1 px-2 align-self-center text-secondary">Popular Movies</h3>
             <div className="d-flex col justify-content-around mt-3">
-                <h3 className="m-0 px-2 align-self-center text-secondary">Popular Movies</h3>
                 <ButtonFilterMovies
                     dataMovies={dataMovies}
                     setFilteredMovies={setFilteredMovies}

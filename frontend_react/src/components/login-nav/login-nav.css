@@ -1,24 +1,11 @@
-/* LOGIN REGISTRATION BUTTONS */
-
 /* component <AccountMenu/> Link: Username, Settings, Logout*/
-.underline-avatar,
+.link-avatar,
 .view-profile {
     text-decoration: none;
     color: rgba(128, 128, 128, .8);
 }
 
-.underline-avatar:hover {
-    color: seashell;
-}
-
-/** Login button */
-.css-e53awj-MuiStack-root>a:last-child button {
-    color: darkturquoise;
-    text-transform: capitalize;
-    font-size: 1rem;
-}
-
-.css-e53awj-MuiStack-root>a:last-child button:hover {
+.link-avatar:hover {
     color: seashell;
 }
 
@@ -33,22 +20,4 @@
 .bell {
     color: white;
     align-content: center;
-}
-
-/* Avatar */
-.css-e53awj-MuiStack-root>:not(style)+:not(style) {
-    text-decoration: none;
-}
-
-.css-ianz0n-MuiAvatar-root {
-    align-self: center;
-}
-
-/** Registration button */
-#registration-btn {
-    color: darkturquoise;
-}
-
-#registration-btn:hover {
-    color: seashell;
 }

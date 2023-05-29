@@ -1,4 +1,4 @@
-/* BUTTONS NAV */
+/* HEADER NAVBAR */
 .navbar {
     background-image: linear-gradient(#17518f,#0f345c 50%,rgba(3,37,65, 1));
     filter: none;
@@ -8,21 +8,8 @@
     text-transform: capitalize;
     font-size: 1rem;
 }
-/* movies */
-.css-e53awj-MuiStack-root>a:nth-child(1) button {
-    color: rgb(144, 206, 161);
-}
-.css-e53awj-MuiStack-root>a:nth-child(1) button:hover {
-    color: seashell;
-}
-/* people */
-.css-e53awj-MuiStack-root>a:nth-child(2) button {
-    color: aqua;
-}
-.css-e53awj-MuiStack-root>a:nth-child(2) button:hover {
-    color: seashell;
-}
+
 /** registration bell avatar login */
-.css-e53awj-MuiStack-root {
+.css-m69qwo-MuiStack-root {
     align-items: center;
 }

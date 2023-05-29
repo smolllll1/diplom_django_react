@@ -9,13 +9,15 @@ import Button from '@mui/material/Button';
 import { Link, useNavigate } from "react-router-dom";
 import { addMovie } from "../../redux/actions";
 import { connect } from "react-redux";
+import { AuthenticationData } from "../data/authentication-data";
 
-const MoviesListInfo = ({ state, addMovie }) => {
+const MoviesListInfo = ({ addNewMovie }) => {
 
     const navigate = useNavigate();
     // click cards movies id
     const { isCardsMoviesId } = useContext(ContentData);
-
+    // hidden add movie button if yuo are not logged in
+    const { responseLogin } = useContext(AuthenticationData);
     // cards movies
     const {
         isLoading,
@@ -26,6 +28,7 @@ const MoviesListInfo = ({ state, addMovie }) => {
         keepPreviousData: true
     });
 
+    // button style go back
     const useStyleBtnGoBack = {
         button: {
             backgroundColor: "#01D277",
@@ -36,7 +39,7 @@ const MoviesListInfo = ({ state, addMovie }) => {
             },
         }
     }
-
+    // button style add movie
     const useStyleBtnAddMovies = {
         button: {
             backgroundColor: "#01b4e4",
@@ -55,7 +58,7 @@ const MoviesListInfo = ({ state, addMovie }) => {
         <Alert variant="danger">
             Something went wrong! Error: {error.message}
         </Alert>
-    </div>;
+    </div>
 
     if (listInfoMovies) {
         return (
@@ -95,26 +98,35 @@ const MoviesListInfo = ({ state, addMovie }) => {
                                             {listInfoMovies?.title}
                                         </h2>
                                         <h2 className="card-text fw-light">
-                                            ({listInfoMovies?.release_date})
+                                            {listInfoMovies?.release_date}
                                         </h2>
                                         <h3>Overview</h3>
                                         <p className="card-text">
                                             {listInfoMovies?.overview}
                                         </p>
-                                        <Button className="fs-5"
+                                        <Button className="fs-5 mb-3 me-3"
                                             variant="contained"
                                             onClick={() => { navigate(-1) }}
-                                            sx={useStyleBtnGoBack.button}
-                                        >
+                                            sx={useStyleBtnGoBack.button}>
                                             Go Back
                                         </Button>
-                                        <Button className="fs-5 ms-3"
-                                            variant="contained"
-                                            onClick={() => {addMovie(listInfoMovies)}}
-                                            sx={useStyleBtnAddMovies.button}
-                                        >
-                                            Add Movie
-                                        </Button>
+                                        {responseLogin ?
+                                            <Button className="fs-5 mb-3"
+                                                variant="contained"
+                                                disabled={false}
+                                                onClick={() => { addNewMovie(listInfoMovies) }}
+                                                sx={useStyleBtnAddMovies.button}>
+                                                Add Movie
+                                            </Button>
+                                            :
+                                            <Button className="fs-5 mb-3"
+                                                variant="contained"
+                                                disabled={true}
+                                                onClick={() => { addNewMovie(listInfoMovies) }}
+                                                sx={useStyleBtnAddMovies.button}>
+                                                Add Movie
+                                            </Button>
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -132,7 +144,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addMovie: (information) => {
+        addNewMovie: (information) => {
             dispatch(addMovie(information))
         }
     }

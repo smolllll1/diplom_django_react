@@ -33,11 +33,11 @@ export default function MoreMenuButton() {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         sx={{
-          color: "darkturquoise",
+          color: "seashell",
           textTransform: "capitalize",
           fontSize: "1rem",
-          ':hover': {
-            color: "seashell",
+          '&:hover': {
+            color: "#01b4e4",
           },
         }}
       >

@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import { motion as m } from "framer-motion";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import { ContentData } from '../data/content-data';
 import { SearchData } from '../data/search-data';
 
 export const SearchMoviesList = () => {
 
+    const navigate = useNavigate();
     const { onHandlerCardsInfoMovies } = useContext(ContentData);
     const { searchMoviesResults, isSearchValue } = useContext(SearchData);
 
@@ -14,14 +15,13 @@ export const SearchMoviesList = () => {
         <m.div initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            style={{ backgroundColor: "#8F3ABB" }}
-            className="w-100 px-5">
-            <h6 className='text-dark fw-light mt-3'>
+            className="d-flex row w-100 px-5">
+            <h6 className="text-secondary fw-light mb-3 mt-3">
                 <b>{searchMoviesResults?.data?.count}</b> movies were found for the search query "<b>{isSearchValue}</b>"
             </h6>
             {searchMoviesResults?.data?.results.map((item) => {
                 return <Card key={item.id} style={{ backgroundColor: "rgba(13, 37, 63, .9)" }}
-                    className='d-flex flex-row w-100 mt-3 mb-3'>
+                    className='d-flex flex-row w-100 p-0 mb-3 border-secondary'>
                     <div className='d-flex'>
                         <Link to={`/pop_movies/${item.id}`}
                             onClick={() => { onHandlerCardsInfoMovies(item.id) }}>
@@ -34,8 +34,15 @@ export const SearchMoviesList = () => {
                         <Card.Title className='fs-6 fw-bold text-white'>
                             {item.title}
                         </Card.Title>
-                        <Card.Text className='fs-6 text-white'>
+                        <Card.Text className='m-0 fs-6 text-white'>
                             {item.release_date}
+                        </Card.Text>
+                        <Card.Text className='fs-7'>
+                            <Link className='text-decoration-none'
+                                style={{ color: "#01D277" }}
+                                onClick={() => { navigate(-1) }}>
+                                Go Back
+                            </Link>
                         </Card.Text>
                     </Card.Body>
                 </Card>

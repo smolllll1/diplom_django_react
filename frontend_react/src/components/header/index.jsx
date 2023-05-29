@@ -10,6 +10,17 @@ import './header.css'
 
 const Header = () => {
 
+    const myStyleNavBtn = {
+        btn: {
+            color: "seashell",
+            textTransform: "capitalize",
+            fontSize: "1rem",
+            '&:hover': {
+                color: "#01b4e4",
+            },
+        }
+    }
+
     return (
         <header className="w-100">
             <nav className="navbar navbar-expand-lg navbar-dark">
@@ -18,11 +29,11 @@ const Header = () => {
                         <img src={logo} alt="logo" width={100} />
                     </Link>
                     <Stack className="button-nav" direction="row" spacing={2}>
-                        <Link to={"pop_movies"}>
-                            <Button type="button">Movies</Button>
+                        <Link to={"pop_movies"} className="text-decoration-none">
+                            <Button type="button" sx={myStyleNavBtn.btn}>Movies</Button>
                         </Link>
-                        <Link to={"pop_people"}>
-                            <Button type="button" className="people">People</Button>
+                        <Link to={"pop_people"} className="text-decoration-none">
+                            <Button type="button" className="people" sx={myStyleNavBtn.btn}>People</Button>
                         </Link>
                         <MoreMenuButton />
                     </Stack>

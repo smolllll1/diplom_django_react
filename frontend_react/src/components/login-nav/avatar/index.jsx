@@ -36,14 +36,17 @@ export default function AccountMenu({ onHandlerLogout, responseLogin }) {
                     <IconButton
                         onClick={handleClick}
                         size="small"
-                        sx={{ ml: 2 }}
+                        sx={{ ml: 1 }}
                         aria-controls={open ? 'account-menu' : undefined}
                         aria-haspopup="true"
                         aria-expanded={open ? 'true' : undefined}
                     >
-                        <Avatar
-                            sx={{ width: 34, height: 34, bgcolor: "#01D277", fontSize: "1rem" }}
-                        >
+                        <Avatar sx={{
+                            width: 34,
+                            height: 34,
+                            bgcolor: "#01D277",
+                            fontSize: "1rem",
+                        }}>
                             {/* avatar first letter username */}
                             {responseLogin?.username[0]}
                         </Avatar>
@@ -92,17 +95,25 @@ export default function AccountMenu({ onHandlerLogout, responseLogin }) {
                             className="text-decoration-none text-secondary">
                             {responseLogin?.username}
                             <br />
-                            <span className='m-0 p-0 pt-3 view-profile' style={{ fontSize: '.75rem' }}>View profile</span>
+                            <span className='m-0 p-0 pt-3 view-profile'
+                                style={{ fontSize: '.75rem' }}>
+                                View profile
+                            </span>
                         </Link>
                     </p>
                 </MenuItem>
                 <Divider />
                 <MenuItem sx={myStyleMenuItem.li} onClick={handleClose}>
-                    <Link to={`settings/${responseLogin?.username}`} className="underline-avatar">Settings</Link>
+                    <Link to={`settings/${responseLogin?.username}`}
+                        className="text-decoration-none link-avatar">
+                        Settings
+                    </Link>
                 </MenuItem>
                 <Divider />
                 <MenuItem sx={myStyleMenuItem.li} onClick={(() => { onHandlerLogout(); handleClose(); })}>
-                    <Link to={'/'} className="underline-avatar">Logout</Link>
+                    <Link to={'/'} className="text-decoration-none link-avatar">
+                        Logout
+                    </Link>
                 </MenuItem>
             </Menu>
         </Fragment >

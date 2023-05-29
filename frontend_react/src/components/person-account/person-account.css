@@ -18,8 +18,3 @@
     border-radius: 50%;
     background-color: #01D277;
 }
-
-.css-3z0mn7-MuiStack-root>button:nth-child(n) {
-    text-transform: capitalize;
-    color: dimgray;
-}
