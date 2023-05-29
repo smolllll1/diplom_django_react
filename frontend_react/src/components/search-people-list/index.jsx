@@ -21,6 +21,13 @@ export const SearchPeopleList = () => {
                 <b>{searchPeopleResults?.data?.count}</b> people were found for the search query
                 "<b>{isSearchValue}</b>"
             </h6>
+            {searchPeopleResults?.data?.count === 0 ?
+                <h6 className='text-secondary fw-light'>To return to the previous page click
+                    <Link onClick={() => { navigate(-1) }} className="text-decoration-none"> here</Link>
+                </h6>
+                :
+                null
+            }
             {searchPeopleResults?.data?.results.map((item) => {
                 return <Card key={item.id} className='d-flex flex-row w-100 p-0 mb-3'>
                     <div className='d-flex'>

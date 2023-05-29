@@ -80,7 +80,7 @@ const MoviesListInfo = ({ addNewMovie }) => {
                             alt={listInfoMovies?.title}
                         />
                         <div className="row g-0">
-                            <div className="col-md-4 d-flex p-5 vh-100 justify-content-center align-items-center">
+                            <div className="col-lg-5 d-flex p-4 vh-100 justify-content-center align-items-center">
                                 <div className="w-100 h-100 d-flex">
                                     <Link onClick={() => { navigate(-1) }}>
                                         <img src={`https://image.tmdb.org/t/p/original${listInfoMovies?.backdrop_path}`}
@@ -90,7 +90,7 @@ const MoviesListInfo = ({ addNewMovie }) => {
                                     </Link>
                                 </div>
                             </div>
-                            <div className="col-md-8 d-flex vh-100 justify-content-center align-items-center">
+                            <div className="col-lg-7 d-flex vh-100 justify-content-center align-items-center">
                                 <div className="w-100 h-75 d-flex row"
                                     style={{ zIndex: "1000" }}>
                                     <div className="card-body text-white">

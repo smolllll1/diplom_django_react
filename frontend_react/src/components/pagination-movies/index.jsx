@@ -64,6 +64,7 @@ const PaginationMovies = (
                             {...item}
                         />
                     )}
+                    size="small"
                     showFirstButton
                     showLastButton
                     siblingCount={1}

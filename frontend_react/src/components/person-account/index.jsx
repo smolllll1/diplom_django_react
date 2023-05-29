@@ -3,23 +3,25 @@ import { Link } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { motion as m } from "framer-motion";
-import { PersonAccountCards } from '../person-account-cards';
+import { ListSelectedMovies } from '../list-selected-movies';
+import { ListPurchasedMovies } from '../list-purchased-movies';
 
-import './person-account.css'
+import './person-account.css';
+
+// button style nav
+const myStyleAccountUserBtn = {
+    btn: {
+        color: "dimgray",
+        textTransform: "capitalize",
+        fontSize: "1rem",
+        '&:hover': {
+            color: "#01D277",
+
+        },
+    }
+}
 
 const PersonAccount = ({ responseLogin }) => {
-
-    const myStyleAccountUserBtn = {
-        btn: {
-            color: "dimgray",
-            textTransform: "capitalize",
-            fontSize: "1rem",
-            '&:hover': {
-                color: "#01D277",
-
-            },
-        }
-    }
 
     return (
         <m.div
@@ -80,11 +82,16 @@ const PersonAccount = ({ responseLogin }) => {
                         </div>
                     </div>
                 </section>
-                <section className='d-flex row m-0 p-0 border-top'
-                style={{ backgroundColor: "rgba(13, 37, 63, 1)" }}>
+                <section className='g-0 row m-0 p-0 border-top'
+                    style={{ backgroundColor: "rgba(13, 37, 63, 1)" }}>
                     <h4 className='mt-2 text-white'>List of added movies</h4>
-                    <div className='px-5'>
-                    <PersonAccountCards />  
+                    <div className='col-lg-6 d-flex row px-5'>
+                        <p className='mt-2 fs-5 text-white'>List of selected movies</p>
+                        <ListSelectedMovies />
+                    </div>
+                    <div className='col-lg-6 d-flex row px-5'>
+                        <p className='mt-2 fs-5 text-white'>List of purchased movies</p>
+                        <ListPurchasedMovies />
                     </div>
                 </section>
             </div>

@@ -68,7 +68,7 @@ const PeopleListInfo = () => {
                             boxShadow: "4px 5px 5px -4px rgba(13, 37, 63)",
                         }}>
                         <div className="row g-0">
-                            <div className="col-md-4 p-5 d-flex justify-content-center">
+                            <div className="col-lg-4 p-4 d-flex justify-content-center">
                                 <div className="w-100">
                                     <Link onClick={() => { navigate(-1) }}>
                                         <img src={`https://image.tmdb.org/t/p/original${listInfoPeople?.profile_path}`}
@@ -78,7 +78,7 @@ const PeopleListInfo = () => {
                                     </Link>
                                 </div>
                             </div>
-                            <div className="col-md-8 d-flex justify-content-center align-items-center">
+                            <div className="col-lg-8 d-flex justify-content-center align-items-center">
                                 <div className="w-100 d-flex row">
                                     <div className="card-body">
                                         <h2 className="card-title fw-bold">

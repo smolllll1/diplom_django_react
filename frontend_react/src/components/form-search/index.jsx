@@ -37,13 +37,15 @@ const FormSearch = ({ formikSearch }) => {
                     />
                 </label>
                 {location.pathname === "/" ?
-                    <Link to={`search/?query=${formikSearch.values.searchValue}`}>
+                    <Link className="text-decoration-none"
+                        to={`search/?query=${formikSearch.values.searchValue}`}>
                         <Button type="submit" sx={useStyleBtnSearch.btn}>
                             Search
                         </Button>
                     </Link>
                     :
-                    <Link to={`?query=${formikSearch.values.searchValue}`}>
+                    <Link className="text-decoration-none"
+                        to={`?query=${formikSearch.values.searchValue}`}>
                         <Button type="submit" sx={useStyleBtnSearch.btn}>
                             Search
                         </Button>

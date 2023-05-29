@@ -19,6 +19,13 @@ export const SearchMoviesList = () => {
             <h6 className="text-secondary fw-light mb-3 mt-3">
                 <b>{searchMoviesResults?.data?.count}</b> movies were found for the search query "<b>{isSearchValue}</b>"
             </h6>
+            {searchMoviesResults?.data?.count === 0 ?
+                <h6 className='text-secondary fw-light'>To return to the previous page click
+                    <Link onClick={() => { navigate(-1) }} className="text-decoration-none"> here</Link>
+                </h6>
+                :
+                null
+            }
             {searchMoviesResults?.data?.results.map((item) => {
                 return <Card key={item.id} style={{ backgroundColor: "rgba(13, 37, 63, .9)" }}
                     className='d-flex flex-row w-100 p-0 mb-3 border-secondary'>
