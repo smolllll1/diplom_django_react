@@ -7,19 +7,21 @@ const TermsUse = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="w-100 bg-white py-5 ps-5">
-            <h4>Terms of Use</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, eveniet cumque ipsa sequi facilis cum cupiditate, sed, velit optio est voluptates! Iusto nam illo voluptas voluptates, recusandae nihil quod suscipit.</p>
-            <h6>1.Paragraph</h6>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, eveniet cumque ipsa sequi facilis cum cupiditate, sed, velit optio est voluptates! Iusto nam illo voluptas voluptates, recusandae nihil quod suscipit.</p>
-            <h6>2.Paragraph</h6>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, eveniet cumque ipsa sequi facilis cum cupiditate, sed, velit optio est voluptates! Iusto nam illo voluptas voluptates, recusandae nihil quod suscipit.</p>
-            <h6>3.Paragraph</h6>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, eveniet cumque ipsa sequi facilis cum cupiditate, sed, velit optio est voluptates! Iusto nam illo voluptas voluptates, recusandae nihil quod suscipit.</p>
-            <h6>4.Paragraph</h6>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, eveniet cumque ipsa sequi facilis cum cupiditate, sed, velit optio est voluptates! Iusto nam illo voluptas voluptates, recusandae nihil quod suscipit.</p>
-            <h6>5.Paragraph</h6>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, eveniet cumque ipsa sequi facilis cum cupiditate, sed, velit optio est voluptates! Iusto nam illo voluptas voluptates, recusandae nihil quod suscipit.</p>
+            className="d-flex w-100 bg-white justify-content-center">
+            <section className="d-flex row w-100 bg-white my-3 m-0">
+                <h4>Terms of Use</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, eveniet cumque ipsa sequi facilis cum cupiditate, sed, velit optio est voluptates! Iusto nam illo voluptas voluptates, recusandae nihil quod suscipit.</p>
+                <h6>1.Paragraph</h6>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, eveniet cumque ipsa sequi facilis cum cupiditate, sed, velit optio est voluptates! Iusto nam illo voluptas voluptates, recusandae nihil quod suscipit.</p>
+                <h6>2.Paragraph</h6>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, eveniet cumque ipsa sequi facilis cum cupiditate, sed, velit optio est voluptates! Iusto nam illo voluptas voluptates, recusandae nihil quod suscipit.</p>
+                <h6>3.Paragraph</h6>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, eveniet cumque ipsa sequi facilis cum cupiditate, sed, velit optio est voluptates! Iusto nam illo voluptas voluptates, recusandae nihil quod suscipit.</p>
+                <h6>4.Paragraph</h6>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, eveniet cumque ipsa sequi facilis cum cupiditate, sed, velit optio est voluptates! Iusto nam illo voluptas voluptates, recusandae nihil quod suscipit.</p>
+                <h6>5.Paragraph</h6>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, eveniet cumque ipsa sequi facilis cum cupiditate, sed, velit optio est voluptates! Iusto nam illo voluptas voluptates, recusandae nihil quod suscipit.</p>
+            </section>
         </m.div>
     );
 }

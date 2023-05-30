@@ -20,7 +20,7 @@ const Footer = () => {
                         <div className="w-100 bg-white rounded justify-content-center mt-4 p-2 d-flex align-items-center fw-bold"
                             style={{ color: 'rgb(1, 180, 228)' }}>
                             Hi
-                            <p className="ms-1 my-0 p-0">
+                            <p className="ms-1 mt-0 m-0 p-0">
                                 <Link to={`users/account/${responseLogin?.username}`}
                                     style={{ textDecoration: 'none', color: 'rgb(1, 180, 228)' }}>
                                     {responseLogin?.username}
@@ -30,7 +30,7 @@ const Footer = () => {
                         </div>
                         :
                         <div className="w-100 bg-white rounded justify-content-center mt-4 p-2 d-flex align-items-center fw-bold">
-                            <p className="ms-1 my-0 p-0">
+                            <p className="mt-0 m-0 p-0">
                                 <Link to="registration" style={{ textDecoration: 'none', color: 'rgb(1, 180, 228)' }}>
                                     JOIN THE COMMUNITY
                                 </Link>

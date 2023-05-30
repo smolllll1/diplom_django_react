@@ -74,7 +74,7 @@ const MoviesListInfo = ({ addNewMovie }) => {
                     :
                     <div className="d-flex card my-3 p-0 position-relative w-100"
                         style={{ backgroundColor: 'rgba(13, 37, 63, 1)', zIndex: "0" }}>
-                        <img src={`https://image.tmdb.org/t/p/original${listInfoMovies?.backdrop_path}`}
+                        <img src={`http://image.tmdb.org/t/p/original${listInfoMovies?.backdrop_path}`}
                             className="rounded position-absolute opacity-25"
                             style={{ width: "100%", height: "100vh", objectFit: "cover", zIndex: "-1000" }}
                             alt={listInfoMovies?.title}
@@ -83,7 +83,7 @@ const MoviesListInfo = ({ addNewMovie }) => {
                             <div className="col-lg-5 d-flex p-4 vh-100 justify-content-center align-items-center">
                                 <div className="w-100 h-100 d-flex">
                                     <Link onClick={() => { navigate(-1) }}>
-                                        <img src={`https://image.tmdb.org/t/p/original${listInfoMovies?.backdrop_path}`}
+                                        <img src={`http://image.tmdb.org/t/p/w500${listInfoMovies?.backdrop_path}`}
                                             className="rounded"
                                             style={{ width: "100%", height: "100%", objectFit: "cover", zIndex: "1000" }}
                                             alt={listInfoMovies?.title} />
@@ -151,3 +151,5 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MoviesListInfo);
+
+// http://image.tmdb.org/t/p/original

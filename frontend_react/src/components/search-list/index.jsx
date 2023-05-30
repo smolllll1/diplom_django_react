@@ -23,9 +23,9 @@ const SearchList = () => {
     return (
         <section className='row g-0'
             style={{ backgroundColor: "#ffffff" }}>
-            <div className='col-md-4'>
+            <div className='col-md-4 d-flex justify-content-center'>
                 <Stack direction="row" spacing={2} sx={{ borderTop: '10px' }}>
-                    <Paper className='mt-3 mb-3 ms-5' style={{ width: "300px" }}>
+                    <Paper className='mt-3 mb-3' style={{ width: "300px" }}>
                         <MenuList className='w-100 p-0'>
                             <li className='px-3 py-2 rounded-top'
                                 style={{
@@ -60,15 +60,15 @@ const SearchList = () => {
                 </Stack>
             </div>
             {location?.search.split("=")[1] === "" ?
-                <div className='col-md-8 d-flex row mt-3 mb-3 m-0 pe-5 justify-content-center'>
+                <div className='col-md-8 d-flex row mt-3 mb-3 m-0 justify-content-center'>
                     <h6 className='text-danger fw-light'>Enter the value in the search field.</h6>
                 </div>
                 : searchMoviesResults?.data?.count === 0 && searchPeopleResults?.data?.count === 0 ?
-                    <div className='col-md-8 d-flex row mt-3 mb-3 m-0 pe-5 justify-content-center'>
+                    <div className='col-md-8 d-flex row mt-3 mb-3 m-0 justify-content-center'>
                         <h6 className='text-secondary fw-light'>Nothing found.</h6>
                     </div>
                     :
-                    <div className='col-md-8 d-flex row mt-3 mb-3 m-0 pe-5 justify-content-center'>
+                    <div className='col-md-8 d-flex row mt-3 mb-3 m-0 justify-content-center'>
                         <SearchCardsMovies />
                         <SearchCardsPeople />
                     </div>

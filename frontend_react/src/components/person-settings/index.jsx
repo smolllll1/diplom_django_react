@@ -49,8 +49,8 @@ const PersonSettings = ({ responseLogin }) => {
                     </h2>
                 </div>
             </section>
-            <section className='d-flex '>
-                <div>
+            <section className='row g-0'>
+                <div className='col-md-4 d-flex justify-content-center'>
                     <Stack direction="row" spacing={2} sx={{ borderTop: '10px' }}>
                         <Paper className='mt-3 mb-3 mx-5' style={{ width: "300px" }}>
                             <MenuList className='p-0'>
@@ -100,7 +100,7 @@ const PersonSettings = ({ responseLogin }) => {
                         </Paper>
                     </Stack>
                 </div>
-                <div className='w-100 mt-3 mb-3 me-5'>
+                <div className='col-md-8 d-flex row mt-3 mb-3 m-0 justify-content-center'>
                     <Outlet />
                 </div>
             </section>
