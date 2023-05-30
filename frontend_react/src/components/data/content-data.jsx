@@ -10,7 +10,8 @@ const ContentDataProvider = ({ children }) => {
 
     // click cards (people-list-info page, movies-list-info page)
     const [isCardsPeopleId, setIsCardsPeopleId] = useState(parseInt(location?.pathname.split("/")[2]));
-    const [isCardsMoviesId, setIsCardsMoviesId] = useState(parseInt(location?.pathname.split("/")[2]));
+    // const [isCardsMoviesId, setIsCardsMoviesId] = useState(parseInt(location?.pathname.split("/")[2]));
+    // const [isCardsMoviesId, setIsCardsMoviesId] = useState(parseInt(location?.pathname.split("=")[2]));
     console.log(isCardsMoviesId)
 
     // pagination (people page, movies page)
