@@ -14,12 +14,14 @@ router.register(r'search/search_movies', SearchMoviesViewSet)
 urlpatterns = [
     path('', include(router.urls)), #http://127.0.0.1:8000/
     path('add_movies/', views.add_movies, name='movies'),
-    path('add_movies/<str:pk>', views.add_movies, name='movies_pk'),   
+    path('add_movies/<str:pk>', views.add_movies, name='movies_pk'), 
+    # path('pop_movies/<str:pk>', views.pop_movies_pk, name='pop_movies_pk'),  
     path('add_people/', views.add_people, name='people'),
     path('add_people/<str:pk>', views.add_people, name='people_pk'),
     path('registration/', views.register, name='registration'),
     path('cooky_login/', include('rest_framework.urls')),
     path('login/', views.user, name='login'),
     path('logout/', views.logout_view, name='logout'), 
-    path('about/', views.notification, name='notification')
+    path('about/', views.notification, name='notification'),
+    path('users/account/', views.add_movies_in_account, name='add_movies_in_account')
 ]
