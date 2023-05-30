@@ -23,7 +23,7 @@ const MoviesCards = ({ item }) => {
                         alt={item.title}>
                         <Card.Img variant="top"
                             style={{ height: "10rem", objectFit: "cover", cursor: "pointer" }}
-                            src={`http://image.tmdb.org/t/p/w500${item.backdrop_path}`}
+                            src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
                             alt={item.title}
                             onClick={() => { onHandlerCardsInfoMovies(item.id) }}
                         />

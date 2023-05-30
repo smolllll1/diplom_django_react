@@ -152,4 +152,4 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(MoviesListInfo);
 
-// http://image.tmdb.org/t/p/original
+// https://image.tmdb.org/t/p/original
