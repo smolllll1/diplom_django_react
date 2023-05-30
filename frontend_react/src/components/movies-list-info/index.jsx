@@ -24,7 +24,7 @@ const MoviesListInfo = ({ addNewMovie }) => {
         isError,
         error,
         data: listInfoMovies,
-    } = useQuery(["pop_movies", isCardsMoviesId], () => getAllMoviesId(isCardsMoviesId), {
+    } = useQuery(["pop_movies/img=", isCardsMoviesId], () => getAllMoviesId(isCardsMoviesId), {
         keepPreviousData: true
     });
 
