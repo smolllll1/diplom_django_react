@@ -83,12 +83,12 @@ class MoviesViewSet(generics.ListAPIView, mixins.CreateModelMixin,
     filter_backends = [filters.SearchFilter]
     search_fields = ['title']
 
-# @api_view(['GET'])
-# def pop_movies_pk(request, pk=1):
-#     odj_ig = Movies.objects.get(id=pk)
-#     serializer = MovieSerializer(odj_ig)
-#     data = serializer.data
-#     return Response({'pop_movies_pk_Respons': data})
+@api_view(['GET'])
+def pop_movies_pk(request, pk=1):
+    odj_ig = Movies.objects.get(id=pk)
+    serializer = MovieSerializer(odj_ig)
+    data = serializer.data
+    return Response(data)
 
 @api_view(['POST'])
 def notification(request):
