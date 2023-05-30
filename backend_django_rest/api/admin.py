@@ -7,7 +7,7 @@ from .models import People, Movies
 
 @admin.register(People)
 class PeopleAdmin(admin.ModelAdmin):
-	list_display = ['name', 'known_for_department', 'id_my']
+	list_display = ['name', 'known_for_department']
 	list_filter = ['known_for_department']
 	
 @admin.register(Movies)

@@ -14,11 +14,12 @@ import requests
 import json
 from rest_framework import filters
 from rest_framework import generics
-from .models import People, Movies, LastLogin
-from .serializers import RegisterSerializer, LoginSerializer, PeopleSerializer, LastLoginSerializer, MovieSerializer, NotificationSerializer
+from .models import People, Movies, LastLogin, AddMovies
+from .serializers import RegisterSerializer, LoginSerializer, PeopleSerializer, LastLoginSerializer, MovieSerializer, NotificationSerializer, UserFileSerializer
 
 # Create your views here.
 
+#Pagination for Data
 class DataPagination(PageNumberPagination):
     page_size = 20
     page_size_query_param = 'page_size'
@@ -29,6 +30,7 @@ class DataPagination(PageNumberPagination):
         response.data['total_pages'] = self.page.paginator.num_pages
         return response
 
+#Pagination for Search
 class SearchPagination(PageNumberPagination):
     page_size = 10000
     page_size_query_param = 'page_size'
@@ -52,6 +54,7 @@ class SearchMoviesViewSet(viewsets.ModelViewSet):
     pagination_class = SearchPagination 
     filter_backends = [filters.SearchFilter]
     search_fields = ['title']  
+    
 
 class PeopleViewSet(generics.ListAPIView, mixins.CreateModelMixin,
                 mixins.RetrieveModelMixin,
@@ -61,9 +64,9 @@ class PeopleViewSet(generics.ListAPIView, mixins.CreateModelMixin,
                 viewsets.GenericViewSet):
     queryset = People.objects.all()
     serializer_class = PeopleSerializer
+    lookup_field = 'id'
     filter_backends = [filters.SearchFilter]
     search_fields = ['name']
-    lookup_field = 'id'
     pagination_class = DataPagination
     
 
@@ -75,25 +78,40 @@ class MoviesViewSet(generics.ListAPIView, mixins.CreateModelMixin,
                 viewsets.GenericViewSet):
     queryset = Movies.objects.all()
     serializer_class = MovieSerializer
+    lookup_field = 'id'
     pagination_class = DataPagination
     filter_backends = [filters.SearchFilter]
     search_fields = ['title']
-    lookup_field = 'id'
 
-@permission_classes([IsAuthenticated])
+# @api_view(['GET'])
+# def pop_movies_pk(request, pk=1):
+#     odj_ig = Movies.objects.get(id=pk)
+#     serializer = MovieSerializer(odj_ig)
+#     data = serializer.data
+#     return Response({'pop_movies_pk_Respons': data})
+
 @api_view(['POST'])
 def notification(request):
     email = request.data.get('email') 
     name = User.objects.filter(email=email)
-    username_list = name.values_list('username', flat=True)
-    data = request.data
-    data['name'] = username_list[0]
-    serializer = NotificationSerializer(data=data)
-    if serializer.is_valid():
-        serializer.save()
+    if name:
+        username_list = name.values_list('username', flat=True)
+        data = request.data
+        data['name'] = username_list[0]
+        serializer = NotificationSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+        else:
+            pass
+        return Response({'notificationRespons': 'Request has been saved!'})
     else:
-        pass
-    return Response({'notificationRespons': 'Request has been saved!'})
+        data = request.data
+        serializer = NotificationSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+        else:
+            pass
+        return Response({'notificationRespons': 'Request has been saved!'})   
 
 @api_view(['POST'])
 def register(request):
@@ -115,7 +133,7 @@ def register(request):
 
 
 @api_view(['POST', 'DELETE'])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 @authentication_classes([BasicAuthentication])
 def user(request: Request):
     if request.method == 'POST':
@@ -170,7 +188,7 @@ def add_movies(request, pk=1):
     for item_data in results_data:
         serializer = MovieSerializer(data=item_data)
         known_for = item_data.get('id')
-        movies_data = Movies.objects.filter(id=known_for).exists()
+        movies_data = Movies.objects.filter(id=known_for)
         if serializer.is_valid() and not movies_data:
             serializer.save()
         else:
@@ -186,38 +204,30 @@ def add_people(request, pk=1):
     for item_data in results_data:
         serializer = PeopleSerializer(data=item_data)
         known_for = item_data.get('id')
-        people_data = People.objects.filter(id=known_for).exists()
+        people_data = People.objects.filter(id=known_for)
         if serializer.is_valid() and not people_data:
             serializer.save()
         else:
              pass
     return Response(json_data)
 
-# @api_view(['POST'])
-# def search(request):
-#     message = request.data.get('message')
-#     apiRequst = requests.get(f'https://api.themoviedb.org/3/search/movie?api_key={key.api_key}&query={message}')
-#     json_data = json.loads(apiRequst.content)
-#     return Response(json_data)
-    # return Response(json_data.get("results"))
+#Add user profile data
 
-# @api_view(['GET'])
-# def pop_people_id(request, id=1):
-#     try:
-#         person = People.objects.get(id=id)
-#     except People.DoesNotExist:
-#         return Response(status=statistics.HTTP_404_NOT_FOUND)
-
-#     serializer = PeopleSerializer(person)
-#     return Response(serializer.data)
-
-# @api_view(['GET'])
-# def pop_movies_id(request, id=1):
-#     try:
-#         person = Movies.objects.get(id=id)
-#     except People.DoesNotExist:
-#         return Response(status=statistics.HTTP_404_NOT_FOUND)
-
-#     serializer = MovieSerializer(person)
-#     return Response(serializer.data)
+@permission_classes([IsAuthenticated])
+@api_view(['POST'])
+def add_movies_in_account(request):
+    id_movie = request.data.get('id')
+    serializer = UserFileSerializer(data={'name':f'{request.user}', 'id_movie': f'{id_movie}'})
+    primary_movie = AddMovies.objects.filter(id_movie=id_movie)
+    if not primary_movie:
+        if serializer.is_valid():
+            serializer.save()
+            user_movies = AddMovies.objects.filter(name=request.user)
+            respons_objects = []
+            for objects in user_movies:
+                movies_objects = Movies.objects.get(id=objects.id_movie)
+                serializer_movie = MovieSerializer(movies_objects)
+                respons_objects.append(serializer_movie.data)
+            return Response({'UserFilesResponse': respons_objects})
+    return Response({'UserFilesResponse': 'The object is already present!'})
         

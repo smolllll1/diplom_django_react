@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.postgres.fields import ArrayField
 from django.core.validators import RegexValidator
 
 # Create your models here.
@@ -21,10 +20,9 @@ class Registration(models.Model):
     password = models.CharField(max_length=100)
 
 class People(models.Model):
-    id_my = models.IntegerField(primary_key=True)
     adult = models.BooleanField(default=False)
     gender = models.IntegerField()
-    id = models.IntegerField(primary_key=False)
+    id = models.IntegerField(primary_key=True)
     known_for = models.JSONField()
     known_for_department = models.CharField(max_length=500)
     name = models.CharField(max_length=500)
@@ -32,11 +30,10 @@ class People(models.Model):
     profile_path = models.CharField(max_length=500) 
 
 class Movies(models.Model):
-    id_my = models.IntegerField(primary_key=True)
     adult = models.BooleanField(default=False)
     backdrop_path = models.CharField(max_length=500)
     genre_ids = models.JSONField()
-    id = models.IntegerField(primary_key=False)
+    id = models.IntegerField(primary_key=True)
     original_language = models.CharField(max_length=500)
     original_title = models.CharField(max_length=500)
     overview = models.CharField(max_length=500)
@@ -48,6 +45,8 @@ class Movies(models.Model):
     vote_average = models.FloatField()
     vote_count = models.IntegerField()
 
+#Communication with the administrator via "About"
+
 class Notification(models.Model):
     email_validator = RegexValidator(regex='^\w+(_?\w*)*-?\w*(_?\w*)*@\w+(\.\w*)+$', message='xxxxxx@xxxxxx')
     email = models.CharField(max_length=100, validators=(email_validator, ))
@@ -55,3 +54,10 @@ class Notification(models.Model):
     notification = models.CharField(max_length=1500)
     date_request = models.DateTimeField(auto_now_add=True)
     name = models.TextField(max_length=100,blank=True)
+
+#Add fields to store user data
+
+class AddMovies(models.Model):
+    name = models.TextField(max_length=100,blank=True)
+    id_movie = models.IntegerField()    
+

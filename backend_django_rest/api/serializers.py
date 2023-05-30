@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import LastLogin, Registration, People, Movies, Notification
+from .models import LastLogin, Registration, People, Movies, Notification, AddMovies
 from django.contrib.auth.models import User
 
 class NotificationSerializer(serializers.ModelSerializer):
@@ -35,3 +35,8 @@ class MovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movies
         fields = ['adult', 'backdrop_path', 'genre_ids', 'id', 'original_language', 'original_title', 'overview', 'popularity', 'poster_path', 'release_date', 'title', 'video', 'vote_average', 'vote_count']
+
+class UserFileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AddMovies
+        fields = ['id_movie', 'name']
