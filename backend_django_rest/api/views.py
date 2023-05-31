@@ -68,6 +68,13 @@ class PeopleViewSet(generics.ListAPIView, mixins.CreateModelMixin,
     filter_backends = [filters.SearchFilter]
     search_fields = ['name']
     pagination_class = DataPagination
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        serialized_data = serializer.data
+        serialized_data['people_url'] = 'https://image.tmdb.org/t/p/original'
+        serialized_data['people_scroll_url'] = 'http://image.tmdb.org/t/p/w500'
+        return Response(serialized_data)
     
 
 class MoviesViewSet(generics.ListAPIView, mixins.CreateModelMixin,
@@ -82,6 +89,13 @@ class MoviesViewSet(generics.ListAPIView, mixins.CreateModelMixin,
     pagination_class = DataPagination
     filter_backends = [filters.SearchFilter]
     search_fields = ['title']
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        serialized_data = serializer.data
+        serialized_data['movies_url'] = 'https://image.tmdb.org/t/p/original'
+        serialized_data['movies_select_url'] = 'https://www.themoviedb.org/t/p/w94_and_h141_bestv2'
+        return Response(serialized_data)
 
 @api_view(['GET'])
 def pop_movies_pk(request, pk=1):
