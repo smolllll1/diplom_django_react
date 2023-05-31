@@ -14,7 +14,6 @@ import { AuthenticationData } from "../data/authentication-data";
 const MoviesListInfo = ({ addNewMovie }) => {
 
     const location = useLocation();
-    console.log(location)
     const navigate = useNavigate();
     // click cards movies id
     const { isCardsMoviesId } = useContext(ContentData);
@@ -62,7 +61,7 @@ const MoviesListInfo = ({ addNewMovie }) => {
         </Alert>
     </div>
 
-    if (listInfoMovies) {
+    if (location.pathname.split("/")[3]) {
         return (
             <m.div
                 initial={{ opacity: 0 }}
@@ -74,7 +73,7 @@ const MoviesListInfo = ({ addNewMovie }) => {
                         <CircularStatic />
                     </div>
                     :
-                    (listInfoMovies?.results?.filter((item) => {
+                    (listInfoMovies?.results.filter((item) => {
                         return item.id === parseInt(location.pathname.split("/")[3]);
                     }).map((item, i) => {
                         return <div key={item.id * i + "y"}
