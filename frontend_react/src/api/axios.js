@@ -19,8 +19,8 @@ export const getAllPeopleId = async (idParam) => {
   return response.data;
 };
 // all movies request
-export const getAllMoviesId = async (idParam) => {
-  const response = await axiosBaseUrl.get(`pop_movies/${idParam}`);
+export const getAllMoviesId = async () => {
+  const response = await axiosBaseUrl.get(`pop_movies/image/`);
   return response.data;
 };
 // search people request

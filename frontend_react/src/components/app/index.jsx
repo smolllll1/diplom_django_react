@@ -79,7 +79,7 @@ const App = () => {
                     <Route exact path="search_people" element={<SearchPeopleList />} />
                     {/* content pages */}
                     <Route exact path="pop_movies" element={<MoviesPages />} />
-                    <Route exact path="pop_movies/:moviesId" element={<MoviesListInfo />} />
+                    <Route exact path="pop_movies/image/:moviesId" element={<MoviesListInfo />} />
                     <Route exact path="pop_people" element={<PeoplePages />} />
                     <Route exact path="pop_people/:personId" element={<PeopleListInfo />} />
                     {/* page under development */}
