@@ -74,9 +74,9 @@ const MoviesListInfo = ({ addNewMovie }) => {
                     </div>
                     :
                     listInfoMovies?.results.filter((item) => {
+                        console.log(item)
                         return item.id === parseInt(location.pathname.split("/")[3]);
                     }).map((item, i) => {
-                        console.log(item)
                         return <div key={item.id * i + "y"}
                             className="d-flex card my-3 p-0 position-relative w-100"
                             style={{ backgroundColor: 'rgba(13, 37, 63, 1)', zIndex: "0" }}>
