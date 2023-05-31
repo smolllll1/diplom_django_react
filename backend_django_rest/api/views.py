@@ -41,6 +41,16 @@ class SearchPagination(PageNumberPagination):
         response.data['total_pages'] = self.page.paginator.num_pages
         return response
 
+class ImagePeopleViewSet(viewsets.ModelViewSet):
+    queryset = People.objects.all()
+    serializer_class = PeopleSerializer
+    pagination_class = SearchPagination 
+
+class ImageMoviesViewSet(viewsets.ModelViewSet):
+    queryset = Movies.objects.all()
+    serializer_class = MovieSerializer
+    pagination_class = SearchPagination 
+
 class SearchPeopleViewSet(viewsets.ModelViewSet):
     queryset = People.objects.all()
     serializer_class = PeopleSerializer
@@ -54,7 +64,7 @@ class SearchMoviesViewSet(viewsets.ModelViewSet):
     pagination_class = SearchPagination 
     filter_backends = [filters.SearchFilter]
     search_fields = ['title']  
-    
+
 
 class PeopleViewSet(generics.ListAPIView, mixins.CreateModelMixin,
                 mixins.RetrieveModelMixin,
@@ -96,13 +106,6 @@ class MoviesViewSet(generics.ListAPIView, mixins.CreateModelMixin,
         serialized_data['movies_url'] = 'https://image.tmdb.org/t/p/original'
         serialized_data['movies_select_url'] = 'https://www.themoviedb.org/t/p/w94_and_h141_bestv2'
         return Response(serialized_data)
-
-@api_view(['GET'])
-def pop_movies_pk(request, pk=1):
-    odj_ig = Movies.objects.get(id=pk)
-    serializer = MovieSerializer(odj_ig)
-    data = serializer.data
-    return Response(data)
 
 @api_view(['POST'])
 def notification(request):
