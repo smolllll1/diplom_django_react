@@ -27,6 +27,7 @@ const MoviesListInfo = ({ addNewMovie }) => {
     } = useQuery(["pop_movies/", isCardsMoviesId], () => getAllMoviesId(isCardsMoviesId), {
         keepPreviousData: true
     });
+    console.log(listInfoMovies)
 
     // button style go back
     const useStyleBtnGoBack = {
