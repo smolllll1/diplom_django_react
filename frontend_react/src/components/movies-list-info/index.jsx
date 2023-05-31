@@ -24,10 +24,10 @@ const MoviesListInfo = ({ addNewMovie }) => {
         isError,
         error,
         data: listInfoMovies,
-    } = useQuery(["pop_movies/img=", isCardsMoviesId], () => getAllMoviesId(isCardsMoviesId), {
+    } = useQuery(["pop_movies/", isCardsMoviesId], () => getAllMoviesId(isCardsMoviesId), {
         keepPreviousData: true
     });
-
+    
     // button style go back
     const useStyleBtnGoBack = {
         button: {
@@ -151,5 +151,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MoviesListInfo);
-
-// https://image.tmdb.org/t/p/original
