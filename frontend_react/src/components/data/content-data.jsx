@@ -6,13 +6,10 @@ const ContentData = createContext();
 const ContentDataProvider = ({ children }) => {
 
     const location = useLocation();
-    console.log(location)
 
     // click cards (people-list-info page, movies-list-info page)
     const [isCardsPeopleId, setIsCardsPeopleId] = useState(parseInt(location?.pathname.split("/")[2]));
-    // const [isCardsMoviesId, setIsCardsMoviesId] = useState(parseInt(location?.pathname.split("/")[2]));
-    const [isCardsMoviesId, setIsCardsMoviesId] = useState(parseInt(location?.pathname.split("=")[1]));
-    console.log(isCardsMoviesId)
+    const [isCardsMoviesId, setIsCardsMoviesId] = useState(parseInt(location?.pathname.split("/")[2]));
 
     // pagination (people page, movies page)
     const [isPagePeople, setIsPagePeople] = useState(location.search ? parseInt(location?.search.split("=")[1]) : 1);
