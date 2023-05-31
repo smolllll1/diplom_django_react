@@ -14,7 +14,6 @@ import { AuthenticationData } from "../data/authentication-data";
 const MoviesListTest = ({ addNewMovie }) => {
 
     const location = useLocation();
-    console.log(parseInt(location.pathname.split("/")[2]))
     const navigate = useNavigate();
     // click cards movies id
     const { isPageMovies } = useContext(ContentData);
@@ -29,7 +28,6 @@ const MoviesListTest = ({ addNewMovie }) => {
     } = useQuery(["pop_movies/", isPageMovies], () => getMoviesPage(isPageMovies), {
         keepPreviousData: true
     });
-    console.log(listInfoMovies)
 
     // button style go back
     const useStyleBtnGoBack = {

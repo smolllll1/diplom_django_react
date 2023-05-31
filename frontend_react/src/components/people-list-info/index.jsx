@@ -8,10 +8,6 @@ import Alert from 'react-bootstrap/Alert';
 import ScrollInfoMovies from "./scroll-info-movies";
 import { Link, useNavigate } from "react-router-dom";
 
-const LIST_PEOPLE_URL = {
-    base: "https://image.tmdb.org/t/p/original",
-}
-
 const PeopleListInfo = () => {
 
     const navigate = useNavigate();
@@ -52,8 +48,6 @@ const PeopleListInfo = () => {
         }
     ];
 
-    console.log(`${LIST_PEOPLE_URL?.base}${listInfoPeople?.profile_path}`)
-
     if (listInfoPeople) {
         return (
             <m.div
@@ -77,9 +71,7 @@ const PeopleListInfo = () => {
                             <div className="col-lg-4 p-4 d-flex justify-content-center">
                                 <div className="w-100">
                                     <Link onClick={() => { navigate(-1) }}>
-                                        <img
-                                            src={`${LIST_PEOPLE_URL?.base}${listInfoPeople?.profile_path}`}
-                                            // src={`https://image.tmdb.org/t/p/original${listInfoPeople?.profile_path}`}
+                                        <img src={`https://image.tmdb.org/t/p/original${listInfoPeople?.profile_path}`}
                                             className="rounded"
                                             style={{ width: "100%", height: "100%", objectFit: "cover" }}
                                             alt={listInfoPeople?.name} />
